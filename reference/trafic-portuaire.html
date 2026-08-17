@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trafic Portuaire — Signaux, circulation &amp; VHF — Aide-mémoire</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <style>
+    .ref-table { width: 100%; font-size: 0.85rem; }
+    .ref-table th { background: #1a5276; }
+    .ref-table td:first-child { font-weight: 600; }
+    .sw { display:inline-block; width:14px; height:14px; vertical-align:middle; margin:0 1px; border:1px solid #888; border-radius:2px; }
+    .sw-r{background:#e74c3c;} .sw-g{background:#27ae60;} .sw-y{background:#f1c40f;} .sw-w{background:#fafafa;}
+    .note{font-size:0.8rem;color:var(--color-muted);}
+  </style>
+</head>
+<body>
+<div class="container">
+
+<h1>Trafic Portuaire — Aide-mémoire exhaustif</h1>
+<p class="meta">Signaux d'entrée/sortie des ports, circulation portuaire, liaison VHF. <strong>Fiche exhaustive à imprimer.</strong></p>
+
+<div class="card card--tip">
+  <h4>🧭 À quoi servent ces signaux ?</h4>
+  <p>À l'entrée/sortie d'un port, des <strong>feux</strong> fonctionnent <strong>de jour comme de nuit</strong> pour réguler le trafic (ferries, cargos, plaisance) : quand passer, quand attendre, port ouvert ou fermé. Ils sont complétés par la <strong>VHF</strong> avec la capitainerie ou la vigie.</p>
+</div>
+
+<h2>1. 🚦 Feux d'entrée et de sortie de port</h2>
+<p class="note">3 feux verticaux (rouges/verts) = signal principal ; un <strong>feu jaune accolé</strong> signale des exceptions.</p>
+<table class="ref-table">
+  <tr><th>Signal</th><th>Signification</th><th>Réaction</th></tr>
+  <tr><td><span class="sw sw-r"></span><span class="sw sw-r"></span><span class="sw sw-r"></span> 3 rouges fixes / occ. lente</td><td><strong>Interdiction de passer</strong> — attendre le vert (trafic alterné)</td><td>⛔ on attend</td></tr>
+  <tr><td><span class="sw sw-g"></span><span class="sw sw-g"></span><span class="sw sw-g"></span> 3 verts fixes / occ. lente</td><td><strong>Autorisation de passer</strong> — aucun navire en face (<strong>sens unique</strong>)</td><td>✅ on passe</td></tr>
+  <tr><td><span class="sw sw-g"></span><span class="sw sw-g"></span><span class="sw sw-w"></span> 2 verts + 1 blanc</td><td><strong>Autorisation de passer</strong> — un navire peut venir en face (<strong>double sens</strong>)</td><td>✅ prudence</td></tr>
+  <tr><td><span class="sw sw-g"></span><span class="sw sw-w"></span><span class="sw sw-g"></span> blanc entre 2 verts</td><td><strong>Attendre les instructions</strong> avant de passer (vigie / capitainerie)</td><td>⏳ on appelle &amp; attend</td></tr>
+  <tr><td><span class="sw sw-r"></span><span class="sw sw-r"></span><span class="sw sw-r"></span> 3 rouges <strong>à éclats</strong></td><td><strong>Danger grave : port fermé</strong></td><td>⬆️ on se déroute</td></tr>
+  <tr><td><span class="sw sw-y"></span> jaune accolé au signal</td><td><strong>Exception :</strong> petits navires / <strong>chenal secondaire</strong> passent sans tenir compte du signal principal</td><td>⚠️ cas particuliers</td></tr>
+</table>
+<p class="note">Piège : <strong>3 rouges à éclats</strong> = port fermé (se dérouter) ≠ <strong>3 rouges fixes</strong> = passage interdit momentané (attendre le vert).</p>
+
+<h2>2. 📻 Liaison VHF portuaire</h2>
+<table class="ref-table">
+  <tr><th>Canal</th><th>Usage</th></tr>
+  <tr><td><strong>12</strong></td><td><strong>Trafic portuaire</strong> — autorités portuaires (mouvements, consignes d'entrée/sortie)</td></tr>
+  <tr><td><strong>14</strong></td><td><strong>Opérations du port</strong> — autorités / capitainerie</td></tr>
+  <tr><td>9</td><td>Ports de plaisance</td></tr>
+  <tr><td>13</td><td>Sécurité maritime (CROSS) + autorités portuaires</td></tr>
+  <tr><td>16</td><td>Appel, veille et détresse — <strong>veille obligatoire</strong> si VHF à bord (01/01/2025)</td></tr>
+  <tr><td>70</td><td>ASN (DSC) — <strong>jamais en phonie</strong></td></tr>
+</table>
+<p class="note"><strong>Procédure :</strong> à l'approche, on joint la <strong>capitainerie / vigie</strong> sur le canal du port (propre à chaque port, le plus souvent <strong>12 ou 14</strong>, affiché à l'entrée) ; on annonce nom, position, demande ; on attend les consignes — ou le signal « attendre instructions ». En port, puissance réduite à <strong>1 W</strong>.</p>
+
+<h2>3. 🔵 Bateaux de service et des autorités</h2>
+<table class="ref-table">
+  <tr><th>Bateau</th><th>Signal</th><th>Conduite</th></tr>
+  <tr><td>Police, douane, gendarmerie, pompiers <strong>en mission</strong></td><td><strong>Feu bleu clignotant</strong> (gyrophare)</td><td>ralentir, s'écarter, <strong>obéir</strong> aux injonctions (contrôle, arraisonnement)</td></tr>
+  <tr><td>Bateau-pilote en service</td><td><strong>Feu blanc sur feu rouge</strong> (RIPAM)</td><td>prudence, lui laisser la place</td></tr>
+  <tr><td>Capitainerie / vigie</td><td>Signaux lumineux, haut-parleur, VHF</td><td>suivre ses consignes ; elle régule l'entrée/sortie</td></tr>
+</table>
+<p class="note">Remorqueurs et vedettes de service en manœuvre : on ne gêne pas et on évite les remous.</p>
+
+<h2>4. 🐢 Circulation dans le port &amp; pictogrammes</h2>
+<ul style="font-size:0.9rem;">
+  <li><strong>Vitesse réduite</strong> : généralement <strong>5 nœuds max</strong> dans les ports (fixé par l'arrêté) ; rappel : <strong>5 nœuds max dans la bande des 300 m</strong>.</li>
+  <li><strong>Sens de circulation</strong>, priorités, zones de mouillage, interdictions (baignade, engins tractés, pêche) : fixés par le <strong>règlement particulier de police du port</strong> (arrêté préfectoral) et affichés en <strong>panneaux / pictogrammes</strong> à l'entrée et sur les plans d'eau.</li>
+  <li>Les <strong>marques jaunes</strong> (marque spéciale IALA) délimitent les zones réglementées du port — voir <a href="balisage.html">fiche balisage</a>.</li>
+  <li>Prudence autour des gros navires : on ne gêne pas leur manœuvre, on suit leurs signaux et consignes VHF.</li>
+</ul>
+
+<h2>5. 📋 Pour l'examen</h2>
+<ul style="font-size:0.9rem;">
+  <li>3 feux verts → <strong>autorisation de passer (sens unique)</strong> ; 2 verts + 1 blanc → <strong>autorisation en double sens</strong>.</li>
+  <li>Blanc entre 2 verts → <strong>attendre l'autorisation de passer</strong> (appel VHF / vigie) ; 3 rouges à éclats → <strong>port fermé, ne pas entrer</strong>.</li>
+  <li>Trafic portuaire → <strong>canal 12</strong> ; opérations → 14 ; veille/détresse → 16 ; ASN → 70.</li>
+  <li>Bateau des autorités en mission (feu bleu) → <strong>ralentir, s'écarter, obéir</strong>.</li>
+</ul>
+
+<hr>
+<p class="meta" style="text-align:center;">
+  Voir aussi : <a href="radio-vhf.html">Radio VHF</a> ·
+  <a href="balisage.html">Balisage IALA</a> ·
+  <a href="feux.html">Feux des navires</a> ·
+  <a href="../lessons/0004-balisage-maritime.html">Leçon 4</a> ·
+  Sources : programme officiel (arrêté du 28/09/2007, mer.gouv.fr) · ANFR (voies VHF) · QCM officiels des centres d'examen · SHOM · code des ports maritimes · arrêtés préfectoraux des ports (ex. PREMAR)
+</p>
+
+</div>
+</body>
+</html>

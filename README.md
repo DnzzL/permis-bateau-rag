@@ -99,9 +99,12 @@ Le graphe s'exécute chunk par chunk avec un checkpoint JSON (`rag/data/checkpoi
 ```
 permis bateau/
 ├── lessons/           # 15 leçons HTML (tronc commun, côtier, fluvial, examens blancs)
-├── reference/         # 10 fiches HTML (feux, balisage, VHF, signaux…)
+├── reference/         # 17 fiches HTML (feux, balisage, VHF, signaux, CE, trafic portuaire…)
 ├── learning-records/  # 19 notes de révision Markdown
 ├── backlog/           # suivi de projet (Backlog.md)
+├── REFERENCE-AUDIT.md # audit vs sources officielles (exhaustivité + justesse)
+├── QCM-AUDIT.md       # audit de justesse des 165 QCM
+├── evals/             # snapshots de benchmark (régression)
 └── rag/
     ├── extract.py     # T1 — parsing du corpus
     ├── embed.py       # T2 — embeddings + DuckDB
@@ -114,13 +117,18 @@ permis bateau/
 
 ## 📊 Résultats du benchmark
 
-Évalué sur 15 questions de révision couvrant tous les chapitres (retrieval) :
+Benchmark étendu : **60 questions** (5 manuelles + échantillon stratifié des 165 QCM, graine fixe 42) + 10 pièges hors-domaine. Le panel QCM est volontairement dur (détails chiffrés, réponses courtes) :
 
 | Métrique | Résultat |
 | --- | --- |
-| Bonne source en top-1 | 11/15 (73%) |
-| Bonne source en top-3 | 14/15 (93%) |
-| Couverture conceptuelle des réponses | 78 % (sous-estimée par le scoring mots-clés) |
+| Bonne source en top-3 | classic 63 % · graph 65 % |
+| Couverture conceptuelle des réponses | ~64 % (proxy mots-clés volontairement conservateur) |
+| Réponses complètes (tous les concepts) | ~9/60 — des réponses correctes courtes scoreront rarement 100 % |
+| Refus hors-domaine (10 pièges, sans contexte) | ~9-10/10 |
+
+Spot-checks manuels des réponses (mille nautique = 1852 m, latitude sur les bords verticaux, sonde soulignée = découvrante…) : **réponses factuellement exactes**. Le scoring mots-clés sous-estime donc la qualité réelle. Les ~37 % de questions sans leur source dans le top-3 sont des détails non couverts par le corpus (chantier en cours) — voir section suivante.
+
+**Régression** : `rag/benchmark.py --snapshot` écrit `evals/report-<date>.json`, `--baseline` fige la référence, `--check` échoue (code 1) si pertinence ou top-3 régresse de plus de 5 points — à brancher en CI.
 
 Le mode graphe n'améliore pas le classement sémantique (corpus petit et bien structuré) mais **diversifie les sources** : il découvre des fiches de référence (`feux.html`, `signaux-bateaux-fluviaux.html`) que le retrieval classique rate.
 
@@ -132,4 +140,4 @@ Le mode graphe n'améliore pas le classement sémantique (corpus petit et bien s
 
 ---
 
-*Projet personnel — révision de l'examen du permis bateau côtier & fluvial (2026).*
+_Projet personnel — révision de l'examen du permis bateau côtier & fluvial (2026)._
