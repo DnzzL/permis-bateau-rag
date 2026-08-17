@@ -106,11 +106,13 @@ def extract_from_chunk(client, chunk_text: str, chunk_id: int) -> dict:
         print(f"  ⚠️ Chunk {chunk_id}: JSON invalide ({e}); skipping")
         return {"entities": [], "relations": []}
 
-    # Filtre les types inconnus
+    # Filtre les types inconnus et les relations incomplètes
     entities = [e for e in data.get("entities", [])
                 if e.get("type") in ENTITY_TYPES and e.get("name")]
     relations = [r for r in data.get("relations", [])
-                 if r.get("relation_type") in RELATION_TYPES]
+                 if r.get("relation_type") in RELATION_TYPES
+                 and (r.get("source") or r.get("subject") or r.get("entity_a"))
+                 and (r.get("target") or r.get("object") or r.get("entity_b"))]
     return {"entities": entities, "relations": relations}
 
 
@@ -169,15 +171,20 @@ def build_graph(extractions: list[dict]) -> tuple[list[dict], list[dict], list[d
 
         # Résout les relations vers les entités normalisées
         for r in extraction["relations"]:
-            src_key = r["source"].strip().lower()
-            tgt_key = r["target"].strip().lower()
+            # Tolérant aux variantes de schéma renvoyées par le LLM
+            src_key = (r.get("source") or r.get("subject") or r.get("entity_a") or "").strip().lower()
+            tgt_key = (r.get("target") or r.get("object") or r.get("entity_b") or "").strip().lower()
+            rel = r.get("relation_type") or r.get("relation")
+            if not src_key or not tgt_key or not rel:
+                print(f"  ⚠️ chunk {chunk_id}: relation incomplète ignorée")
+                continue
             src_norm = local_ids.get(src_key) or normalize_name(src_key)
             tgt_norm = local_ids.get(tgt_key) or normalize_name(tgt_key)
             if src_norm in entity_map and tgt_norm in entity_map:
                 relations_out.append({
                     "source": src_norm,
                     "target": tgt_norm,
-                    "relation": r["relation_type"],
+                    "relation": rel,
                     "chunk_id": chunk_id,
                 })
             else:

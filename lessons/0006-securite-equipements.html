@@ -1,489 +1,750 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leçon 6 — Sécurité et Équipements Obligatoires</title>
-  <link rel="stylesheet" href="../assets/permis.css">
-  <script src="../assets/quiz.js"></script>
-  <style>
-    .equip-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 0.75rem;
-      margin: 1rem 0;
-    }
-    .equip-card {
-      border: 1px solid var(--color-border);
-      border-radius: 6px;
-      padding: 0.75rem;
-      text-align: center;
-      background: white;
-    }
-    .equip-card h5 { margin: 0.3rem 0; font-size: 0.9rem; }
-    .equip-card p { font-size: 0.8rem; margin: 0; color: var(--color-muted); }
-    .equip-card .emoji-icon { font-size: 2rem; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leçon 6 — Sécurité et Équipements Obligatoires</title>
+    <link rel="stylesheet" href="../assets/permis.css" />
+    <script src="../assets/quiz.js"></script>
+    <style>
+      .equip-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.75rem;
+        margin: 1rem 0;
+      }
+      .equip-card {
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        padding: 0.75rem;
+        text-align: center;
+        background: white;
+      }
+      .equip-card h5 {
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+      }
+      .equip-card p {
+        font-size: 0.8rem;
+        margin: 0;
+        color: var(--color-muted);
+      }
+      .equip-card .emoji-icon {
+        font-size: 2rem;
+      }
 
-    .zone-table { width: 100%; margin: 1rem 0; font-size: 0.9rem; }
-    .zone-table th { background: #1a5276; }
-    .zone-table .oui { text-align: center; color: var(--color-correct); font-weight: bold; }
-    .zone-table .non { text-align: center; color: var(--color-muted); }
+      .zone-table {
+        width: 100%;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .zone-table th {
+        background: #1a5276;
+      }
+      .zone-table .oui {
+        text-align: center;
+        color: var(--color-correct);
+        font-weight: bold;
+      }
+      .zone-table .non {
+        text-align: center;
+        color: var(--color-muted);
+      }
 
-    .signal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 0.75rem;
-      margin: 1rem 0;
-    }
-    .signal-card {
-      border: 1px solid var(--color-border);
-      border-radius: 6px;
-      padding: 0.75rem;
-      text-align: center;
-      background: white;
-    }
-    .signal-card h5 { margin: 0.3rem 0; font-size: 0.9rem; }
-    .signal-card p { font-size: 0.8rem; margin: 0; }
-    .signal-card .signal-svg { font-size: 2rem; }
+      .signal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 0.75rem;
+        margin: 1rem 0;
+      }
+      .signal-card {
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        padding: 0.75rem;
+        text-align: center;
+        background: white;
+      }
+      .signal-card h5 {
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+      }
+      .signal-card p {
+        font-size: 0.8rem;
+        margin: 0;
+      }
+      .signal-card .signal-svg {
+        font-size: 2rem;
+      }
 
-    .two-cols {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-    }
-    .two-cols > div { flex: 1; min-width: 220px; }
+      .two-cols {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+      }
+      .two-cols > div {
+        flex: 1;
+        min-width: 220px;
+      }
 
-    .checklist { font-size: 0.95rem; }
-    .checklist li { margin-bottom: 0.3rem; }
-  </style>
-</head>
-<body>
-<div class="container">
+      .checklist {
+        font-size: 0.95rem;
+      }
+      .checklist li {
+        margin-bottom: 0.3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="meta">
+        Leçon 6 · ⏱ 25 minutes ·
+        <span class="tag tag--commun">Tronc commun</span>
+        <span class="tag tag--important">Fondamental</span>
+      </p>
 
-<p class="meta">Leçon 6 · ⏱ 25 minutes · <span class="tag tag--commun">Tronc commun</span> <span class="tag tag--important">Fondamental</span></p>
+      <h1>Sécurité et Équipements Obligatoires</h1>
 
-<h1>Sécurité et Équipements Obligatoires</h1>
+      <div class="card card--info">
+        <h4>🎯 Objectif de cette leçon</h4>
+        <p>
+          Connaître les équipements de sécurité obligatoires pour naviguer
+          jusqu'à 6 milles (permis côtier) et savoir réagir en cas d'urgence.
+          L'examen pose plusieurs questions sur ce chapitre — et en mer, ces
+          réflexes peuvent sauver des vies.
+        </p>
+      </div>
 
-<div class="card card--info">
-  <h4>🎯 Objectif de cette leçon</h4>
-  <p>Connaître les équipements de sécurité obligatoires pour naviguer jusqu'à 6 milles (permis côtier) et savoir réagir en cas d'urgence. L'examen pose plusieurs questions sur ce chapitre — et en mer, ces réflexes peuvent sauver des vies.</p>
-</div>
+      <h2>Pourquoi la sécurité ?</h2>
 
-<h2>Pourquoi la sécurité ?</h2>
+      <p>
+        La Méditerranée peut être traître. Un moteur qui tombe en panne à
+        l'entrée d'un port, un homme qui tombe à l'eau, un incendie moteur —
+        tout arrive. Les équipements de sécurité sont
+        <strong>obligatoires</strong>, mais ils ne servent à rien si vous ne
+        savez pas les utiliser.
+      </p>
 
-<p>La Méditerranée peut être traître. Un moteur qui tombe en panne à l'entrée d'un port, un homme qui tombe à l'eau, un incendie moteur — tout arrive. Les équipements de sécurité sont <strong>obligatoires</strong>, mais ils ne servent à rien si vous ne savez pas les utiliser.</p>
+      <div class="card card--warning">
+        <h4>⚠️ En Méditerranée</h4>
+        <p>
+          L'été, des centaines de plaisanciers partent sans VHF ni fusées, avec
+          pour seul téléphone portable. Problème : en mer, le réseau ne passe
+          pas toujours, et les secours ne peuvent pas vous localiser sans VHF
+          (canal 16). <strong>La VHF est votre meilleur allié.</strong>
+        </p>
+      </div>
 
-<div class="card card--warning">
-  <h4>⚠️ En Méditerranée</h4>
-  <p>L'été, des centaines de plaisanciers partent sans VHF ni fusées, avec pour seul téléphone portable. Problème : en mer, le réseau ne passe pas toujours, et les secours ne peuvent pas vous localiser sans VHF (canal 16). <strong>La VHF est votre meilleur allié.</strong></p>
-</div>
+      <hr />
 
-<hr>
+      <h2>1. Les zones de navigation</h2>
 
-<h2>1. Les zones de navigation</h2>
+      <p>
+        Les équipements obligatoires dépendent de votre
+        <strong>zone de navigation</strong>, définie par la
+        <strong>Division 240</strong> (réglementation française). Pour le permis
+        côtier, vous naviguez en <strong>Zone 1</strong> : jusqu'à
+        <strong>6 milles</strong> d'un abri.
+      </p>
 
-<p>Les équipements obligatoires dépendent de votre <strong>zone de navigation</strong>, définie par la <strong>Division 240</strong> (réglementation française). Pour le permis côtier, vous naviguez en <strong>Zone 1</strong> : jusqu'à <strong>6 milles</strong> d'un abri.</p>
+      <table class="zone-table">
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th>Distance d'un abri</th>
+            <th>Permis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Zone 0</strong> (Basique)</td>
+            <td>0–2 milles</td>
+            <td>Permis côtier</td>
+          </tr>
+          <tr>
+            <td><strong>Zone 1</strong> (Côtier)</td>
+            <td>2–6 milles</td>
+            <td>Permis côtier ✅</td>
+          </tr>
+          <tr>
+            <td><strong>Zone 2</strong> (Semi-hauturier)</td>
+            <td>6–60 milles</td>
+            <td>Permis hauturier</td>
+          </tr>
+          <tr>
+            <td><strong>Zone 3</strong> (Hauturier)</td>
+            <td>&gt; 60 milles</td>
+            <td>Permis hauturier</td>
+          </tr>
+        </tbody>
+      </table>
 
-<table class="zone-table">
-  <thead>
-    <tr><th>Zone</th><th>Distance d'un abri</th><th>Permis</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Zone 0</strong> (Basique)</td>
-      <td>0–2 milles</td>
-      <td>Permis côtier</td>
-    </tr>
-    <tr>
-      <td><strong>Zone 1</strong> (Côtier)</td>
-      <td>2–6 milles</td>
-      <td>Permis côtier ✅</td>
-    </tr>
-    <tr>
-      <td><strong>Zone 2</strong> (Semi-hauturier)</td>
-      <td>6–60 milles</td>
-      <td>Permis hauturier</td>
-    </tr>
-    <tr>
-      <td><strong>Zone 3</strong> (Hauturier)</td>
-      <td>&gt; 60 milles</td>
-      <td>Permis hauturier</td>
-    </tr>
-  </tbody>
-</table>
+      <hr />
 
-<hr>
+      <h2>2. Équipements obligatoires — Zone 1 (0–6 milles)</h2>
 
-<h2>2. Équipements obligatoires — Zone 1 (0–6 milles)</h2>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <div class="emoji-icon">🦺</div>
+          <h5>Gilets de sauvetage</h5>
+          <p>1 par personne, adapté au gabarit. À porter en navigation.</p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🪞</div>
+          <h5>VV individuel</h5>
+          <p>
+            Vêtement haute visibilité + sifflet + lumière individuelle. Par
+            personne.
+          </p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">📻</div>
+          <h5>VHF</h5>
+          <p>
+            Obligatoire en Zone 1. Portable ou fixe. Canal 16 pour les appels
+            d'urgence. Depuis le 1er janvier 2025 : veille permanente
+            <strong>obligatoire</strong> sur le canal 16 pour tout bateau équipé
+            d'une VHF dans les eaux françaises.
+          </p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🧭</div>
+          <h5>Compas magnétique</h5>
+          <p>Permet de faire le point et de garder le cap sans GPS.</p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🚀</div>
+          <h5>Fusées de détresse</h5>
+          <p>
+            Signaux pyrotechniques : fusées parachute, fumigènes, feux à main.
+          </p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🛟</div>
+          <h5>Bouée courante</h5>
+          <p>Bouée de sauvetage avec filin lumineux. Obligatoire.</p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🧯</div>
+          <h5>Extincteur</h5>
+          <p>
+            Un ou plusieurs selon la taille du navire (moteur fixe = extincteur
+            obligatoire).
+          </p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🪣</div>
+          <h5>Assèchement</h5>
+          <p>Seau, écope ou pompe manuelle pour évacuer l'eau.</p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🚁</div>
+          <h5>Remorquage</h5>
+          <p>Filin de remorquage adapté à la puissance du navire.</p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🗺️</div>
+          <h5>Cartes marines</h5>
+          <p>
+            Cartes papier ou électroniques (EPIRB, GPS). Instructions nautiques.
+          </p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🔦</div>
+          <h5>Projecteur</h5>
+          <p>
+            Obligatoire pour la navigation de nuit. Également utile pour
+            signaler.
+          </p>
+        </div>
+        <div class="equip-card">
+          <div class="emoji-icon">🪢</div>
+          <h5>Anti-chute</h5>
+          <p>
+            Dispositif anti-chute pour la navigation de nuit (ligne de vie).
+          </p>
+        </div>
+      </div>
 
-<div class="equip-grid">
-  <div class="equip-card">
-    <div class="emoji-icon">🦺</div>
-    <h5>Gilets de sauvetage</h5>
-    <p>1 par personne, adapté au gabarit. À porter en navigation.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🪞</div>
-    <h5>VV individuel</h5>
-    <p>Vêtement haute visibilité + sifflet + lumière individuelle. Par personne.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">📻</div>
-    <h5>VHF</h5>
-    <p>Obligatoire en Zone 1. Portable ou fixe. Canal 16 pour les appels d'urgence.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🧭</div>
-    <h5>Compas magnétique</h5>
-    <p>Permet de faire le point et de garder le cap sans GPS.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🚀</div>
-    <h5>Fusées de détresse</h5>
-    <p>Signaux pyrotechniques : fusées parachute, fumigènes, feux à main.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🛟</div>
-    <h5>Bouée courante</h5>
-    <p>Bouée de sauvetage avec filin lumineux. Obligatoire.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🧯</div>
-    <h5>Extincteur</h5>
-    <p>Un ou plusieurs selon la taille du navire (moteur fixe = extincteur obligatoire).</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🪣</div>
-    <h5>Assèchement</h5>
-    <p>Seau, écope ou pompe manuelle pour évacuer l'eau.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🚁</div>
-    <h5>Remorquage</h5>
-    <p>Filin de remorquage adapté à la puissance du navire.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🗺️</div>
-    <h5>Cartes marines</h5>
-    <p>Cartes papier ou électroniques (EPIRB, GPS). Instructions nautiques.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🔦</div>
-    <h5>Projecteur</h5>
-    <p>Obligatoire pour la navigation de nuit. Également utile pour signaler.</p>
-  </div>
-  <div class="equip-card">
-    <div class="emoji-icon">🪢</div>
-    <h5>Anti-chute</h5>
-    <p>Dispositif anti-chute pour la navigation de nuit (ligne de vie).</p>
-  </div>
-</div>
+      <div class="card card--tip">
+        <h4>🧠 Incontournables pour l'examen</h4>
+        <p>
+          <strong>Pour la Zone 1 (0–6 milles) :</strong><br />
+          • Gilets de sauvetage individuels<br />
+          • VHF (canal 16)<br />
+          • Fusées de détresse (3 feux à main + 3 fumigènes, ou 2 fusées
+          parachute + 2 fumigènes)<br />
+          • Compas magnétique<br />
+          • Bouée courante avec filin lumineux<br />
+          • Extincteur (si moteur fixe)<br />
+          • Dispositif d'assèchement (seau, écope) et de remorquage<br /><br />
+          <strong>🧠 Astuce mémoire :</strong> « <strong>G</strong>ilets,
+          <strong>V</strong>HF, <strong>F</strong>usées,
+          <strong>C</strong>ompas, <strong>B</strong>ouée,
+          <strong>E</strong>xtincteur, <strong>A</strong>ssèchement,
+          <strong>R</strong>emorquage » → GVF-CBEAR
+        </p>
+      </div>
 
-<div class="card card--tip">
-  <h4>🧠 Incontournables pour l'examen</h4>
-  <p><strong>Pour la Zone 1 (0–6 milles) :</strong><br>
-  • Gilets de sauvetage individuels<br>
-  • VHF (canal 16)<br>
-  • Fusées de détresse (3 feux à main + 3 fumigènes, ou 2 fusées parachute + 2 fumigènes)<br>
-  • Compas magnétique<br>
-  • Bouée courante avec filin lumineux<br>
-  • Extincteur (si moteur fixe)<br>
-  • Dispositif d'assèchement (seau, écope) et de remorquage<br><br>
-  <strong>🧠 Astuce mémoire :</strong> « <strong>G</strong>ilets, <strong>V</strong>HF, <strong>F</strong>usées, <strong>C</strong>ompas, <strong>B</strong>ouée, <strong>E</strong>xtincteur, <strong>A</strong>ssèchement, <strong>R</strong>emorquage » → GVF-CBEAR</p>
-</div>
+      <hr />
 
-<hr>
+      <h2>3. Les signaux de détresse</h2>
 
-<h2>3. Les signaux de détresse</h2>
+      <p>
+        En cas de danger grave et imminent, vous devez
+        <strong>signaler votre position</strong> aux secours. Les moyens sont
+        classés en signaux <strong>visuels</strong> (pyrotechniques) et
+        <strong>sonores/radio</strong>.
+      </p>
 
-<p>En cas de danger grave et imminent, vous devez <strong>signaler votre position</strong> aux secours. Les moyens sont classés en signaux <strong>visuels</strong> (pyrotechniques) et <strong>sonores/radio</strong>.</p>
+      <h3>3.1 Signaux pyrotechniques</h3>
 
-<h3>3.1 Signaux pyrotechniques</h3>
+      <div class="signal-grid">
+        <div class="signal-card">
+          <div class="signal-svg">🚀</div>
+          <h5>Fusée parachute</h5>
+          <p>Monte à 300 m, éclaire 40 secondes. Visibilité : 15-20 milles.</p>
+          <p class="meta">Zone 1 ✅</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-svg">💨</div>
+          <h5>Fumigène flottant</h5>
+          <p>Fumée orange pendant 3 minutes. Utilisation de jour.</p>
+          <p class="meta">Zone 1 ✅</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-svg">🧨</div>
+          <h5>Feu à main</h5>
+          <p>Flamme rouge pendant 60 secondes. Utilisation de nuit.</p>
+          <p class="meta">Zone 1 ✅</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-svg">🚩</div>
+          <h5>Signal ASN</h5>
+          <p>
+            <strong>Appareil de Signalisation de Nuit</strong> : projecteur
+            puissant, signaux SOS en morse.
+          </p>
+          <p class="meta">Zone 1 ✅</p>
+        </div>
+      </div>
 
-<div class="signal-grid">
-  <div class="signal-card">
-    <div class="signal-svg">🚀</div>
-    <h5>Fusée parachute</h5>
-    <p>Monte à 300 m, éclaire 40 secondes. Visibilité : 15-20 milles.</p>
-    <p class="meta">Zone 1 ✅</p>
-  </div>
-  <div class="signal-card">
-    <div class="signal-svg">💨</div>
-    <h5>Fumigène flottant</h5>
-    <p>Fumée orange pendant 3 minutes. Utilisation de jour.</p>
-    <p class="meta">Zone 1 ✅</p>
-  </div>
-  <div class="signal-card">
-    <div class="signal-svg">🧨</div>
-    <h5>Feu à main</h5>
-    <p>Flamme rouge pendant 60 secondes. Utilisation de nuit.</p>
-    <p class="meta">Zone 1 ✅</p>
-  </div>
-  <div class="signal-card">
-    <div class="signal-svg">🚩</div>
-    <h5>Signal ASN</h5>
-    <p><strong>Appareil de Signalisation de Nuit</strong> : projecteur puissant, signaux SOS en morse.</p>
-    <p class="meta">Zone 1 ✅</p>
-  </div>
-</div>
+      <div class="card card--warning">
+        <h4>⚠️ Règles d'utilisation des fusées</h4>
+        <ul>
+          <li>
+            Les fusées sont <strong>périssables</strong> : vérifiez la date
+            d'expiration tous les ans
+          </li>
+          <li>
+            Tirez les fusées <strong>sous le vent</strong> (pour que la fumée ne
+            vous aveugle pas)
+          </li>
+          <li>
+            Fusée parachute = <strong>de nuit</strong> (éclaire + signale).
+            Fumigène = <strong>de jour</strong> (fumée orange visible de loin)
+          </li>
+          <li>
+            Utilisez les signaux par <strong>série de 3</strong> : 3 fusées, 3
+            feux à main, 3 fumigènes — c'est le signal de détresse universel
+          </li>
+          <li>Ne tirez jamais une fusée « pour essayer » 🚫</li>
+        </ul>
+      </div>
 
-<div class="card card--warning">
-  <h4>⚠️ Règles d'utilisation des fusées</h4>
-  <ul>
-    <li>Les fusées sont <strong>périssables</strong> : vérifiez la date d'expiration tous les ans</li>
-    <li>Tirez les fusées <strong>sous le vent</strong> (pour que la fumée ne vous aveugle pas)</li>
-    <li>Fusée parachute = <strong>de nuit</strong> (éclaire + signale). Fumigène = <strong>de jour</strong> (fumée orange visible de loin)</li>
-    <li>Utilisez les signaux par <strong>série de 3</strong> : 3 fusées, 3 feux à main, 3 fumigènes — c'est le signal de détresse universel</li>
-    <li>Ne tirez jamais une fusée « pour essayer » 🚫</li>
-  </ul>
-</div>
+      <h3>3.2 Appels radio (VHF)</h3>
 
-<h3>3.2 Appels radio (VHF)</h3>
+      <p>
+        La <strong>VHF</strong> est le moyen de communication principal en mer.
+        Les canaux essentiels :
+      </p>
 
-<p>La <strong>VHF</strong> est le moyen de communication principal en mer. Les canaux essentiels :</p>
+      <table class="zone-table">
+        <thead>
+          <tr>
+            <th>Canal</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Canal 16</strong></td>
+            <td>
+              Détresse, urgence, sécurité — veille permanente obligatoire sur ce
+              canal pour tout bateau équipé d'une VHF (depuis le 1er janvier
+              2025, dans les eaux françaises)
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Canal 9</strong></td>
+            <td>Appel entre plaisanciers (canal de travail secondaire)</td>
+          </tr>
+          <tr>
+            <td><strong>Canal 10</strong></td>
+            <td>Appels de sécurité et correspondance entre navires</td>
+          </tr>
+          <tr>
+            <td><strong>Canal 79</strong></td>
+            <td>Cross Méditerranée (CROSS MED)</td>
+          </tr>
+        </tbody>
+      </table>
 
-<table class="zone-table">
-  <thead>
-    <tr><th>Canal</th><th>Usage</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Canal 16</strong></td>
-      <td>Détresse, urgence, sécurité — écoute permanente obligatoire quand la VHF est allumée</td>
-    </tr>
-    <tr>
-      <td><strong>Canal 9</strong></td>
-      <td>Appel entre plaisanciers (canal de travail secondaire)</td>
-    </tr>
-    <tr>
-      <td><strong>Canal 10</strong></td>
-      <td>Appels de sécurité et correspondance entre navires</td>
-    </tr>
-    <tr>
-      <td><strong>Canal 79</strong></td>
-      <td>Cross Méditerranée (CROSS MED)</td>
-    </tr>
-  </tbody>
-</table>
+      <div class="two-cols">
+        <div>
+          <div class="card card--info">
+            <h4>📡 Procédure d'appel d'urgence</h4>
+            <p>
+              1. Canal 16<br />
+              2. « MAYDAY MAYDAY MAYDAY » (détresse) ou « PAN PAN PAN »
+              (urgence)<br />
+              3. « Ici [nom du bateau] » (3 fois)<br />
+              4. Position (latitude/longitude ou repère visible)<br />
+              5. Nature de l'urgence<br />
+              6. Nombre de personnes à bord<br />
+              7. Terminer par « TERMINÉ »
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="card card--warning">
+            <h4>⚠️ MAYDAY vs PAN PAN</h4>
+            <p>
+              <strong>MAYDAY</strong> = détresse immédiate (voie d'eau,
+              incendie, homme à la mer).<br /><br />
+              <strong>PAN PAN</strong> = urgence grave mais sans danger immédiat
+              (panne moteur, désorientation).
+            </p>
+          </div>
+        </div>
+      </div>
 
-<div class="two-cols">
-  <div>
-    <div class="card card--info">
-      <h4>📡 Procédure d'appel d'urgence</h4>
-      <p>1. Canal 16<br>
-      2. « MAYDAY MAYDAY MAYDAY » (détresse) ou « PAN PAN PAN » (urgence)<br>
-      3. « Ici [nom du bateau] » (3 fois)<br>
-      4. Position (latitude/longitude ou repère visible)<br>
-      5. Nature de l'urgence<br>
-      6. Nombre de personnes à bord<br>
-      7. Terminer par « TERMINÉ »</p>
-    </div>
-  </div>
-  <div>
-    <div class="card card--warning">
-      <h4>⚠️ MAYDAY vs PAN PAN</h4>
-      <p><strong>MAYDAY</strong> = détresse immédiate (voie d'eau, incendie, homme à la mer).<br><br>
-      <strong>PAN PAN</strong> = urgence grave mais sans danger immédiat (panne moteur, désorientation).</p>
-    </div>
-  </div>
-</div>
+      <hr />
 
-<hr>
+      <h2>4. Homme à la mer ⛑️</h2>
 
-<h2>4. Homme à la mer ⛑️</h2>
+      <p>
+        L'homme à la mer est la situation d'urgence la plus fréquente en
+        plaisance. La règle d'or :
+        <strong>NE JAMAIS PERDRE LA PERSONNE DES YEUX</strong>.
+      </p>
 
-<p>L'homme à la mer est la situation d'urgence la plus fréquente en plaisance. La règle d'or : <strong>NE JAMAIS PERDRE LA PERSONNE DES YEUX</strong>.</p>
+      <div class="card card--warning">
+        <h4>⚡ Conduite à tenir immédiate</h4>
+        <ol>
+          <li>
+            <strong>CRIEZ</strong> « Homme à la mer ! » — tout l'équipage doit
+            savoir
+          </li>
+          <li>
+            <strong>DÉSIGNEZ</strong> une personne pour ne pas quitter la
+            victime des yeux (bras tendu, pointé)
+          </li>
+          <li><strong>LANCEZ</strong> la bouée courante + fumigène flottant</li>
+          <li>
+            <strong>VHF</strong> Canal 16 : MAYDAY (position, nombre) si la
+            victime n'est pas récupérée rapidement
+          </li>
+          <li>
+            <strong>MANŒUVRE</strong> : demi-tour immédiat pour revenir sur la
+            victime
+          </li>
+        </ol>
+      </div>
 
-<div class="card card--warning">
-  <h4>⚡ Conduite à tenir immédiate</h4>
-  <ol>
-    <li><strong>CRIEZ</strong> « Homme à la mer ! » — tout l'équipage doit savoir</li>
-    <li><strong>DÉSIGNEZ</strong> une personne pour ne pas quitter la victime des yeux (bras tendu, pointé)</li>
-    <li><strong>LANCEZ</strong> la bouée courante + fumigène flottant</li>
-    <li><strong>VHF</strong> Canal 16 : MAYDAY (position, nombre) si la victime n'est pas récupérée rapidement</li>
-    <li><strong>MANŒUVRE</strong> : demi-tour immédiat pour revenir sur la victime</li>
-  </ol>
-</div>
+      <div class="two-cols">
+        <div>
+          <h4>Méthode du demi-tour</h4>
+          <p>La technique la plus simple et rapide :</p>
+          <ol>
+            <li>
+              Mettez la barre <strong>toute du côté de l'homme à la mer</strong>
+            </li>
+            <li>Le bateau fait un demi-tour et revient face à la victime</li>
+            <li>
+              Passez <strong>sous le vent</strong> de la victime (pour ne pas
+              l'écraser)
+            </li>
+            <li>Moteur au point mort dans le dernier mètre</li>
+            <li>Récupérez avec une gaffe ou un filin</li>
+          </ol>
+        </div>
+        <div>
+          <h4>Erreurs à ne pas commettre</h4>
+          <ul>
+            <li>❌ Ne pas faire demi-tour immédiatement</li>
+            <li>❌ Lâcher la barre pour chercher un gilet</li>
+            <li>❌ Arrêter le moteur — vous perdez la capacité de manœuvrer</li>
+            <li>
+              ❌ Se jeter à l'eau pour sauver la personne (risque de noyade
+              double)
+            </li>
+            <li>
+              ❌ Perdre la victime des yeux (la tête flotte à peine dans les
+              vagues)
+            </li>
+          </ul>
+        </div>
+      </div>
 
-<div class="two-cols">
-  <div>
-    <h4>Méthode du demi-tour</h4>
-    <p>La technique la plus simple et rapide :</p>
-    <ol>
-      <li>Mettez la barre <strong>toute du côté de l'homme à la mer</strong></li>
-      <li>Le bateau fait un demi-tour et revient face à la victime</li>
-      <li>Passez <strong>sous le vent</strong> de la victime (pour ne pas l'écraser)</li>
-      <li>Moteur au point mort dans le dernier mètre</li>
-      <li>Récupérez avec une gaffe ou un filin</li>
-    </ol>
-  </div>
-  <div>
-    <h4>Erreurs à ne pas commettre</h4>
-    <ul>
-      <li>❌ Ne pas faire demi-tour immédiatement</li>
-      <li>❌ Lâcher la barre pour chercher un gilet</li>
-      <li>❌ Arrêter le moteur — vous perdez la capacité de manœuvrer</li>
-      <li>❌ Se jeter à l'eau pour sauver la personne (risque de noyade double)</li>
-      <li>❌ Perdre la victime des yeux (la tête flotte à peine dans les vagues)</li>
-    </ul>
-  </div>
-</div>
+      <hr />
 
-<hr>
+      <h2>5. Checklist avant départ</h2>
 
-<h2>5. Checklist avant départ</h2>
+      <p>
+        Avant chaque sortie, une routine rapide peut vous éviter des problèmes
+        majeurs :
+      </p>
 
-<p>Avant chaque sortie, une routine rapide peut vous éviter des problèmes majeurs :</p>
+      <div class="two-cols">
+        <div>
+          <div class="card card--info">
+            <h4>📋 Avant de quitter le quai</h4>
+            <ul class="checklist">
+              <li>✅ Bulletin météo consulté (vent, mer, visibilité)</li>
+              <li>✅ GPS et VHF sous tension</li>
+              <li>✅ Gilets de sauvetage portés</li>
+              <li>
+                ✅ Réservoir : niveau de carburant suffisant (1/3 aller, 1/3
+                retour, 1/3 sécurité)
+              </li>
+              <li>
+                ✅ Moteur : vérification du niveau d'huile et du refroidissement
+              </li>
+              <li>✅ Batterie : charge suffisante</li>
+              <li>✅ Fusées : date de validité vérifiée</li>
+              <li>✅ Extincteur : accessible et sous pression</li>
+              <li>✅ Bouée courante : dégagée, prête à être lancée</li>
+              <li>✅ Carte marine : destination et cap connus</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="card card--warning">
+            <h4>📋 En cours de navigation</h4>
+            <ul class="checklist">
+              <li>☑️ Point régulier (position, cap, vitesse)</li>
+              <li>☑️ Veille visuelle et auditive permanente</li>
+              <li>✅ VHF sur canal 16 en veille (obligatoire)</li>
+              <li>☑️ Surveillance météo (évolution du ciel)</li>
+              <li>☑️ Communication de la navigation à une personne à terre</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-<div class="two-cols">
-  <div>
-    <div class="card card--info">
-      <h4>📋 Avant de quitter le quai</h4>
-      <ul class="checklist">
-        <li>✅ Bulletin météo consulté (vent, mer, visibilité)</li>
-        <li>✅ GPS et VHF sous tension</li>
-        <li>✅ Gilets de sauvetage portés</li>
-        <li>✅ Réservoir : niveau de carburant suffisant (1/3 aller, 1/3 retour, 1/3 sécurité)</li>
-        <li>✅ Moteur : vérification du niveau d'huile et du refroidissement</li>
-        <li>✅ Batterie : charge suffisante</li>
-        <li>✅ Fusées : date de validité vérifiée</li>
-        <li>✅ Extincteur : accessible et sous pression</li>
-        <li>✅ Bouée courante : dégagée, prête à être lancée</li>
-        <li>✅ Carte marine : destination et cap connus</li>
+      <hr />
+
+      <h2>6. Quiz — Testez vos connaissances</h2>
+
+      <div
+        class="quiz-question"
+        data-correct="1"
+        data-feedback="Pour la navigation côtière (zone 1, 0-6 milles), la VHF est obligatoire. Le téléphone seul ne suffit pas car le réseau maritime n'est pas garanti. La VHF permet d'appeler le CROSS sur le canal 16."
+      >
+        <p>
+          <strong>Q1.</strong> Quel est l'équipement obligatoire pour naviguer
+          jusqu'à 6 milles d'un abri ?
+        </p>
+        <ul class="quiz-options">
+          <li>Un téléphone portable étanche</li>
+          <li>Une VHF</li>
+          <li>Un radar</li>
+          <li>Un pilote automatique</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="2"
+        data-feedback="Le canal 16 est le canal international de détresse et d'appel. Il doit être surveillé en permanence quand la VHF est allumée. Les messages de détresse (MAYDAY) sont diffusés sur ce canal."
+      >
+        <p>
+          <strong>Q2.</strong> Sur quel canal VHF devez-vous appeler en cas de
+          détresse ?
+        </p>
+        <ul class="quiz-options">
+          <li>Canal 9</li>
+          <li>Canal 10</li>
+          <li>Canal 16</li>
+          <li>Canal 79</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="3"
+        data-feedback="Le signal de détresse universel repose sur des séries de 3 : 3 fusées, 3 feux à main, 3 sons, etc. Cela vient de l'époque du morse où le SOS (··· --- ···) est composé de 3 signaux."
+      >
+        <p>
+          <strong>Q3.</strong> Combien de fusées devez-vous tirer pour
+          constituer un signal de détresse ?
+        </p>
+        <ul class="quiz-options">
+          <li>1</li>
+          <li>2</li>
+          <li>4</li>
+          <li>3</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="0"
+        data-feedback="Avant l'été, mais aussi tous les ans avant la saison de navigation, vous devez vérifier la date d'expiration des fusées. Une fusée périmée peut ne pas fonctionner au moment crucial."
+      >
+        <p>
+          <strong>Q4.</strong> Quand devez-vous vérifier la date d'expiration
+          des fusées de détresse ?
+        </p>
+        <ul class="quiz-options">
+          <li>Tous les ans avant la saison</li>
+          <li>Tous les 5 ans</li>
+          <li>Jamais — les fusées n'ont pas de date d'expiration</li>
+          <li>Seulement si vous les utilisez</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="0"
+        data-feedback="Quand quelqu'un tombe à l'eau, la priorité absolue est de ne pas le perdre des yeux. Désignez immédiatement une personne pour le pointer du doigt sans jamais le lâcher du regard."
+      >
+        <p>
+          <strong>Q5.</strong> Dans une situation d'homme à la mer, quelle est
+          la première action à faire ?
+        </p>
+        <ul class="quiz-options">
+          <li>Désigner quelqu'un pour ne pas quitter la victime des yeux</li>
+          <li>Couper le moteur</li>
+          <li>Sauter à l'eau pour le rattraper</li>
+          <li>Appeler les secours avant tout</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="1"
+        data-feedback="Le PAN PAN est utilisé pour une urgence grave mais SANS danger immédiat (panne moteur, désorientation, blessure sans risque vital). Le MAYDAY est réservé aux situations de détresse immédiate (voie d'eau, incendie, homme à la mer non récupéré)."
+      >
+        <p>
+          <strong>Q6.</strong> Quelle est la différence entre MAYDAY et PAN PAN
+          ?
+        </p>
+        <ul class="quiz-options">
+          <li>
+            PAN PAN est un code international, MAYDAY est français uniquement
+          </li>
+          <li>
+            MAYDAY = détresse immédiate, PAN PAN = urgence grave sans danger
+            immédiat
+          </li>
+          <li>PAN PAN = danger, MAYDAY = information seulement</li>
+          <li>Il n'y a pas de différence</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="2"
+        data-feedback="Un fumigène produit une épaisse fumée orange visible de loin. Il est surtout efficace de jour car la couleur orange contraste avec la mer. La fusée parachute est plus visible de nuit (éclaire le ciel)."
+      >
+        <p>
+          <strong>Q7.</strong> Quel signal de détresse est le plus approprié de
+          jour ?
+        </p>
+        <ul class="quiz-options">
+          <li>Fusée parachute</li>
+          <li>Feu à main</li>
+          <li>Fumigène flottant (fumée orange)</li>
+          <li>ASN (projecteur Morse)</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="3"
+        data-feedback="Le fumigène doit être lancé sous le vent pour que la fumée ne vous gêne pas. Les fusées doivent également être tirées sous le vent."
+      >
+        <p>
+          <strong>Q8.</strong> Dans quelle direction devez-vous tirer une fusée
+          de détresse ?
+        </p>
+        <ul class="quiz-options">
+          <li>Face au vent</li>
+          <li>Verticalement, peu importe le vent</li>
+          <li>En direction de la côte</li>
+          <li>Sous le vent</li>
+        </ul>
+      </div>
+
+      <hr />
+
+      <h2>📌 Ce qu'il faut retenir</h2>
+
+      <ul>
+        <li>
+          <strong>Zone 1 (0-6 milles) :</strong> gilets, VHF, fusées, compas,
+          bouée courante, extincteur, assèchement, remorquage, projecteur,
+          cartes
+        </li>
+        <li>
+          <strong>VHF canal 16</strong> : écoute obligatoire. MAYDAY = détresse,
+          PAN PAN = urgence
+        </li>
+        <li>
+          <strong>Signaux de détresse :</strong> par séries de 3. Fusée
+          parachute (nuit), fumigène (jour), feu à main
+        </li>
+        <li>
+          <strong>Homme à la mer :</strong> ne pas quitter des yeux → bouée →
+          VHF → demi-tour → récupération sous le vent
+        </li>
+        <li>
+          <strong>Check-list avant départ :</strong> météo, VHF, gilets,
+          carburant, fusées, extincteur, carte
+        </li>
+        <li>
+          <strong>Ne jamais :</strong> sauter à l'eau pour sauver quelqu'un,
+          couper le moteur, tirer une fusée pour essayer
+        </li>
       </ul>
+
+      <div class="card card--warning">
+        <h4>⚠️ Pour cet été en Méditerranée</h4>
+        <p>
+          Avant votre première sortie :
+          <strong>vérifiez la date des fusées</strong>. Ouvrez la VHF et
+          <strong>testez qu'elle fonctionne</strong> (canal 16, écoutez les
+          messages du CROSS). Prévoyez toujours
+          <strong>1/3 de carburant de réserve</strong> — entre Porquerolles et
+          le Lavandou, il n'y a pas de station-service en mer. Et surtout :
+          <strong>prévenez quelqu'un à terre</strong> de votre heure de retour
+          prévue.
+        </p>
+      </div>
+
+      <hr />
+
+      <div class="lesson-nav">
+        <a href="0005-meteo-vents.html">← Leçon 5 : Météo et vents</a>
+        <a href="0007-reglementation.html">Leçon 7 : Réglementation →</a>
+      </div>
+
+      <p class="meta" style="text-align: center; margin-top: 2rem">
+        <em
+          >Sources :
+          <a href="https://www.mer.gouv.fr/permis-plaisance" target="_blank"
+            >Ministère de la Mer</a
+          >
+          · Division 240 · CROSS Med ·
+          <a
+            href="https://www.service-public.fr/particuliers/vosdroits/F34047"
+            target="_blank"
+            >Service-Public.fr</a
+          ></em
+        >
+      </p>
     </div>
-  </div>
-  <div>
-    <div class="card card--warning">
-      <h4>📋 En cours de navigation</h4>
-      <ul class="checklist">
-        <li>☑️ Point régulier (position, cap, vitesse)</li>
-        <li>☑️ Veille visuelle et auditive permanente</li>
-        <li>☑️ VHF sur canal 16 en veille</li>
-        <li>☑️ Surveillance météo (évolution du ciel)</li>
-        <li>☑️ Communication de la navigation à une personne à terre</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<hr>
-
-<h2>6. Quiz — Testez vos connaissances</h2>
-
-<div class="quiz-question" data-correct="1" data-feedback="Pour la navigation côtière (zone 1, 0-6 milles), la VHF est obligatoire. Le téléphone seul ne suffit pas car le réseau maritime n'est pas garanti. La VHF permet d'appeler le CROSS sur le canal 16.">
-  <p><strong>Q1.</strong> Quel est l'équipement obligatoire pour naviguer jusqu'à 6 milles d'un abri ?</p>
-  <ul class="quiz-options">
-    <li>Un téléphone portable étanche</li>
-    <li>Une VHF</li>
-    <li>Un radar</li>
-    <li>Un pilote automatique</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="2" data-feedback="Le canal 16 est le canal international de détresse et d'appel. Il doit être surveillé en permanence quand la VHF est allumée. Les messages de détresse (MAYDAY) sont diffusés sur ce canal.">
-  <p><strong>Q2.</strong> Sur quel canal VHF devez-vous appeler en cas de détresse ?</p>
-  <ul class="quiz-options">
-    <li>Canal 9</li>
-    <li>Canal 10</li>
-    <li>Canal 16</li>
-    <li>Canal 79</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="3" data-feedback="Le signal de détresse universel repose sur des séries de 3 : 3 fusées, 3 feux à main, 3 sons, etc. Cela vient de l'époque du morse où le SOS (··· --- ···) est composé de 3 signaux.">
-  <p><strong>Q3.</strong> Combien de fusées devez-vous tirer pour constituer un signal de détresse ?</p>
-  <ul class="quiz-options">
-    <li>1</li>
-    <li>2</li>
-    <li>4</li>
-    <li>3</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="0" data-feedback="Avant l'été, mais aussi tous les ans avant la saison de navigation, vous devez vérifier la date d'expiration des fusées. Une fusée périmée peut ne pas fonctionner au moment crucial.">
-  <p><strong>Q4.</strong> Quand devez-vous vérifier la date d'expiration des fusées de détresse ?</p>
-  <ul class="quiz-options">
-    <li>Tous les ans avant la saison</li>
-    <li>Tous les 5 ans</li>
-    <li>Jamais — les fusées n'ont pas de date d'expiration</li>
-    <li>Seulement si vous les utilisez</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="0" data-feedback="Quand quelqu'un tombe à l'eau, la priorité absolue est de ne pas le perdre des yeux. Désignez immédiatement une personne pour le pointer du doigt sans jamais le lâcher du regard.">
-  <p><strong>Q5.</strong> Dans une situation d'homme à la mer, quelle est la première action à faire ?</p>
-  <ul class="quiz-options">
-    <li>Désigner quelqu'un pour ne pas quitter la victime des yeux</li>
-    <li>Couper le moteur</li>
-    <li>Sauter à l'eau pour le rattraper</li>
-    <li>Appeler les secours avant tout</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="1" data-feedback="Le PAN PAN est utilisé pour une urgence grave mais SANS danger immédiat (panne moteur, désorientation, blessure sans risque vital). Le MAYDAY est réservé aux situations de détresse immédiate (voie d'eau, incendie, homme à la mer non récupéré).">
-  <p><strong>Q6.</strong> Quelle est la différence entre MAYDAY et PAN PAN ?</p>
-  <ul class="quiz-options">
-    <li>PAN PAN est un code international, MAYDAY est français uniquement</li>
-    <li>MAYDAY = détresse immédiate, PAN PAN = urgence grave sans danger immédiat</li>
-    <li>PAN PAN = danger, MAYDAY = information seulement</li>
-    <li>Il n'y a pas de différence</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="2" data-feedback="Un fumigène produit une épaisse fumée orange visible de loin. Il est surtout efficace de jour car la couleur orange contraste avec la mer. La fusée parachute est plus visible de nuit (éclaire le ciel).">
-  <p><strong>Q7.</strong> Quel signal de détresse est le plus approprié de jour ?</p>
-  <ul class="quiz-options">
-    <li>Fusée parachute</li>
-    <li>Feu à main</li>
-    <li>Fumigène flottant (fumée orange)</li>
-    <li>ASN (projecteur Morse)</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="3" data-feedback="Le fumigène doit être lancé sous le vent pour que la fumée ne vous gêne pas. Les fusées doivent également être tirées sous le vent.">
-  <p><strong>Q8.</strong> Dans quelle direction devez-vous tirer une fusée de détresse ?</p>
-  <ul class="quiz-options">
-    <li>Face au vent</li>
-    <li>Verticalement, peu importe le vent</li>
-    <li>En direction de la côte</li>
-    <li>Sous le vent</li>
-  </ul>
-</div>
-
-<hr>
-
-<h2>📌 Ce qu'il faut retenir</h2>
-
-<ul>
-  <li><strong>Zone 1 (0-6 milles) :</strong> gilets, VHF, fusées, compas, bouée courante, extincteur, assèchement, remorquage, projecteur, cartes</li>
-  <li><strong>VHF canal 16</strong> : écoute obligatoire. MAYDAY = détresse, PAN PAN = urgence</li>
-  <li><strong>Signaux de détresse :</strong> par séries de 3. Fusée parachute (nuit), fumigène (jour), feu à main</li>
-  <li><strong>Homme à la mer :</strong> ne pas quitter des yeux → bouée → VHF → demi-tour → récupération sous le vent</li>
-  <li><strong>Check-list avant départ :</strong> météo, VHF, gilets, carburant, fusées, extincteur, carte</li>
-  <li><strong>Ne jamais :</strong> sauter à l'eau pour sauver quelqu'un, couper le moteur, tirer une fusée pour essayer</li>
-</ul>
-
-<div class="card card--warning">
-  <h4>⚠️ Pour cet été en Méditerranée</h4>
-  <p>Avant votre première sortie : <strong>vérifiez la date des fusées</strong>. Ouvrez la VHF et <strong>testez qu'elle fonctionne</strong> (canal 16, écoutez les messages du CROSS). Prévoyez toujours <strong>1/3 de carburant de réserve</strong> — entre Porquerolles et le Lavandou, il n'y a pas de station-service en mer. Et surtout : <strong>prévenez quelqu'un à terre</strong> de votre heure de retour prévue.</p>
-</div>
-
-<hr>
-
-<div class="lesson-nav">
-  <a href="0005-meteo-vents.html">← Leçon 5 : Météo et vents</a>
-  <a href="0007-reglementation.html">Leçon 7 : Réglementation →</a>
-</div>
-
-<p class="meta" style="text-align:center; margin-top:2rem;">
-  <em>Sources : <a href="https://www.mer.gouv.fr/permis-plaisance" target="_blank">Ministère de la Mer</a> · 
-  Division 240 · 
-  CROSS Med · 
-  <a href="https://www.service-public.fr/particuliers/vosdroits/F34047" target="_blank">Service-Public.fr</a></em>
-</p>
-
-</div>
-</body>
+  </body>
 </html>

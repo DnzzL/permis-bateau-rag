@@ -52,7 +52,10 @@ class TextExtractor(HTMLParser):
         super().__init__()
         self.parts: list[str] = []
         self._skip = False
-        self._block_tags = {"h2", "h3", "h4", "p", "li", "div", "br", "hr"}
+        # `tr` is a block boundary: table rows are visual lines, so each row
+        # must be emitted on its own line instead of being glued to the next
+        # row (e.g. "Sud … Q(6)+LFl … Ouest … Q(9) …" on one line).
+        self._block_tags = {"h2", "h3", "h4", "p", "li", "div", "br", "hr", "tr"}
 
     def handle_starttag(self, tag, attrs):
         attrs_d = dict(attrs)
@@ -86,7 +89,39 @@ class TextExtractor(HTMLParser):
         raw = re.sub(r"\n{3,}", "\n\n", raw)
         raw = re.sub(r" {2,}", " ", raw)
         lines = [l.strip() for l in raw.split("\n")]
-        return "\n".join(l for l in lines if l)
+        lines = [l for l in lines if l]
+        return "\n".join(_order_cardinal_feux(lines))
+
+
+# Glyphes de forme des bouées cardinales (marqueurs de colonne visuelle).
+_SHAPE_GLYPH_PREFIX = ("▲", "▼", "⟡", "⟣", "◇", "▢", "▣", "⬢", "⬡", "●", "◯", "△", "▽", "✦", "✧", "⧖")
+
+
+def _order_cardinal_feux(lines: list[str]) -> list[str]:
+    """Re-order compact multi-column cards so each cardinal reads fully in
+    visual order (marker → danger → passer → feu → shape) instead of the DOM
+    order that interleaves column lines.
+
+    The HTML source of e.g. lessons/0004-balisage-maritime.html emits each
+    card as: marker, danger, passer, shape, feu. The shape line sits between
+    the "passer" line and the "Feu :" line, so the serialised text ended with
+    "…Feu : Q(6)+LFl — 6+1 long\n⬅️ OUEST …": the feu of one cardinal abuts
+    the NEXT cardinal's marker with no separator, which misattributes the feu
+    inside a chunk (chunk 7 of the balisage lesson). Hoisting the "Feu :"
+    line just above its shape line puts a full clause between a card's feu and
+    the following card's marker, and keeps marker → danger → passer → feu
+    contiguous.
+
+    The rule is deliberately local: it only fires when a "Feu :" line is
+    immediately preceded by a shape-glyph line — a pattern that occurs nowhere
+    else in the corpus (verified by probing every extracted document) — so all
+    other lessons and reference sheets are left untouched.
+    """
+    out = list(lines)
+    for i in range(1, len(out)):
+        if out[i].startswith("Feu :") and out[i - 1].startswith(_SHAPE_GLYPH_PREFIX):
+            out[i - 1], out[i] = out[i], out[i - 1]
+    return out
 
 
 def _strip_tags(text: str) -> str:

@@ -1,613 +1,1411 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leçon 5 — Météo et Vents Méditerranéens</title>
-  <link rel="stylesheet" href="../assets/permis.css">
-  <script src="../assets/quiz.js"></script>
-  <style>
-    .wind-table { width: 100%; margin: 1rem 0; font-size: 0.9rem; }
-    .wind-table th { background: #1a5276; }
-    .wind-table .mistral-row { background: #e8f4f8; }
-    .wind-table td { vertical-align: middle; }
-
-    .wind-svg { text-align: center; margin: 1.5rem 0; }
-    .wind-svg svg { max-width: 100%; }
-
-    .beaufort-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 0.5rem;
-      margin: 1rem 0;
-    }
-    .beaufort-card {
-      border: 1px solid var(--color-border);
-      border-radius: 6px;
-      padding: 0.5rem 0.75rem;
-      text-align: center;
-      background: white;
-    }
-    .beaufort-card h5 { margin: 0.2rem 0; font-size: 0.9rem; }
-    .beaufort-card p { font-size: 0.75rem; margin: 0; }
-    .beaufort-card .force-num {
-      font-size: 1.4rem;
-      font-weight: bold;
-      font-family: var(--font-sans);
-    }
-    .bf-calm { background: #f0f0ea; }
-    .bf-light { background: #d5e8d0; }
-    .bf-moderate { background: #fff3cd; }
-    .bf-rough { background: #fde8e8; }
-    .bf-storm { background: #e8d0d0; }
-
-    .mer-table { width: 100%; margin: 1rem 0; font-size: 0.9rem; }
-    .mer-table th { background: #1a5276; }
-
-    .two-cols {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-    }
-    .two-cols > div { flex: 1; min-width: 200px; }
-
-    .pressure-diagram { text-align: center; margin: 1.5rem 0; }
-
-    .buys-ballot { text-align: center; margin: 1.5rem 0; }
-    .buys-ballot svg { max-width: 100%; }
-
-    .nav-map { text-align: center; margin: 1.5rem 0; }
-    .nav-map svg { max-width: 100%; }
-  </style>
-</head>
-<body>
-<div class="container">
-
-<p class="meta">Leçon 5 · ⏱ 25 minutes · <span class="tag tag--côtier">Côtier</span> <span class="tag tag--important">Important</span></p>
-
-<h1>Météo et Vents Méditerranéens</h1>
-
-<div class="card card--info">
-  <h4>🎯 Objectif de cette leçon</h4>
-  <p>Savoir lire le ciel, anticiper le temps et comprendre les vents en Méditerranée. Le mistral peut passer de 0 à 50 nœuds en une heure — si vous ne savez pas le lire, vous pouvez vous retrouver en difficulté très vite.</p>
-</div>
-
-<h2>Pourquoi la météo en mer ?</h2>
-
-<p>En Méditerranée, la météo change vite. Contrairement à l'Atlantique où les dépressions arrivent avec préavis, les vents méditerranéens peuvent se lever <strong>en moins d'une heure</strong>.</p>
-
-<div class="card card--warning">
-  <h4>⚠️ Exemple concret : Mistral d'été</h4>
-  <p>Un skippeur part de Marseille par <strong>force 2</strong> (brise légère). Une heure plus tard, le mistral se lève : <strong>force 6-7</strong> (vent fort), mer formée en rade de Marseille. Sans connaissance météo, impossible d'anticiper.</p>
-</div>
-
-<hr>
-
-<h2>1. Les vents méditerranéens</h2>
-
-<p>La Méditerranée a ses propres vents régionaux, avec des noms qui viennent de l'italien, du grec, de l'arabe. Les connaître, c'est comprendre d'où vient le vent et quel temps il amène.</p>
-
-<div class="wind-svg">
-  <svg width="560" height="440" viewBox="0 0 560 440" role="img" aria-label="Carte des vents de Méditerranée nord-occidentale">
-    <defs>
-      <marker id="arrRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 Z" fill="#e74c3c"/>
-      </marker>
-      <marker id="arrOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 Z" fill="#e67e22"/>
-      </marker>
-      <marker id="arrBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 Z" fill="#2980b9"/>
-      </marker>
-      <marker id="arrPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 Z" fill="#8e44ad"/>
-      </marker>
-      <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 Z" fill="#27ae60"/>
-      </marker>
-      <marker id="arrSir" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 Z" fill="#d35400"/>
-      </marker>
-    </defs>
-
-    <!-- Fond mer -->
-    <rect x="0" y="0" width="560" height="440" fill="#dcecf4"/>
-
-    <!-- ============ TERRES (nord en haut) ============ -->
-    <!-- France (nord) -->
-    <path d="M 55 0 L 55 52 Q 120 80 190 78 Q 235 94 282 86 L 302 70 Q 342 90 382 82 L 412 52 L 412 0 Z"
-          fill="#d4e6c3" stroke="#7d9e5a" stroke-width="1"/>
-    <text x="205" y="30" font-size="12" fill="#3d6b20" text-anchor="middle" font-weight="bold">FRANCE</text>
-    <text x="300" y="50" font-size="8" fill="#5a7d3a" text-anchor="middle" font-style="italic">vallée du Rhône</text>
-
-    <!-- Espagne (sud-ouest) -->
-    <path d="M 0 92 L 55 90 L 90 118 Q 98 162 68 198 L 30 222 L 0 208 Z"
-          fill="#d4e6c3" stroke="#7d9e5a" stroke-width="1"/>
-    <text x="42" y="150" font-size="11" fill="#3d6b20" text-anchor="middle" font-weight="bold">ESPAGNE</text>
-
-    <!-- Italie (est) -->
-    <path d="M 412 44 L 472 30 Q 508 54 500 96 L 470 150 Q 452 196 464 236 L 448 250 L 428 205 Q 438 150 418 112 Q 404 80 412 44 Z"
-          fill="#d4e6c3" stroke="#7d9e5a" stroke-width="1"/>
-    <text x="452" y="92" font-size="11" fill="#3d6b20" text-anchor="middle" font-weight="bold">ITALIE</text>
-
-    <!-- Corse -->
-    <path d="M 356 158 L 384 154 L 389 200 L 366 214 L 351 186 Z" fill="#d4e6c3" stroke="#7d9e5a" stroke-width="1"/>
-    <text x="370" y="188" font-size="8" fill="#3d6b20" text-anchor="middle">Corse</text>
-    <!-- Sardaigne -->
-    <path d="M 351 232 L 382 230 L 387 280 L 358 294 L 345 262 Z" fill="#d4e6c3" stroke="#7d9e5a" stroke-width="1"/>
-    <text x="366" y="264" font-size="8" fill="#3d6b20" text-anchor="middle">Sardaigne</text>
-
-    <!-- Afrique du Nord (sud) -->
-    <path d="M 0 402 Q 150 380 300 392 Q 440 404 560 382 L 560 440 L 0 440 Z" fill="#e8d8b8" stroke="#b8a078" stroke-width="1"/>
-    <text x="285" y="426" font-size="10" fill="#7d6b40" text-anchor="middle">Afrique du Nord — Sahara</text>
-
-    <!-- Noms de mer -->
-    <text x="150" y="145" font-size="10" fill="#2980b9" text-anchor="middle" font-style="italic" opacity="0.7">Golfe du Lion</text>
-    <text x="300" y="345" font-size="12" fill="#2980b9" text-anchor="middle" font-style="italic" opacity="0.55">Mer Méditerranée</text>
-
-    <!-- Villes repères -->
-    <circle cx="298" cy="96" r="3" fill="#333"/>
-    <text x="304" y="93" font-size="9" fill="#333" text-anchor="start">Marseille</text>
-    <circle cx="102" cy="108" r="3" fill="#333"/>
-    <text x="108" y="105" font-size="9" fill="#333" text-anchor="start">Perpignan</text>
-
-    <!-- Rose des vents -->
-    <g transform="translate(505,315)" font-size="10" fill="#555" font-weight="bold" text-anchor="middle" font-family="sans-serif">
-      <line x1="0" y1="-20" x2="0" y2="20" stroke="#9bb0b8"/>
-      <line x1="-20" y1="0" x2="20" y2="0" stroke="#9bb0b8"/>
-      <path d="M 0 -28 L -5 -18 L 5 -18 Z" fill="#c0392b"/>
-      <text x="0" y="-30">N</text>
-      <text x="0" y="37">S</text>
-      <text x="30" y="4">E</text>
-      <text x="-30" y="4">O</text>
-    </g>
-
-    <!-- ============ VENTS (la flèche indique OÙ souffle le vent) ============ -->
-    <!-- Mistral : vient du N/NO (Rhône), souffle vers le S/SE -->
-    <g>
-      <line x1="300" y1="46" x2="264" y2="188" stroke="#e74c3c" stroke-width="3.5" marker-end="url(#arrRed)"/>
-      <text x="322" y="120" font-size="12" fill="#e74c3c" text-anchor="start" font-weight="bold">Mistral</text>
-      <text x="322" y="133" font-size="9" fill="#c0392b" text-anchor="start">🍃 fort, sec, froid</text>
-    </g>
-
-    <!-- Tramontane : vient du NO (Pyrénées), souffle vers le SE -->
-    <g>
-      <line x1="112" y1="58" x2="190" y2="168" stroke="#e67e22" stroke-width="3.5" marker-end="url(#arrOrange)"/>
-      <text x="60" y="92" font-size="11" fill="#e67e22" text-anchor="start" font-weight="bold">Tramontane</text>
-    </g>
-
-    <!-- Levant : vient de l'E, souffle vers l'O -->
-    <g>
-      <line x1="500" y1="128" x2="398" y2="134" stroke="#2980b9" stroke-width="3.5" marker-end="url(#arrBlue)"/>
-      <text x="452" y="112" font-size="12" fill="#2980b9" text-anchor="middle" font-weight="bold">Levant</text>
-      <text x="452" y="124" font-size="9" fill="#1a5276" text-anchor="middle">☔ humide</text>
-    </g>
-
-    <!-- Marin : vient du SE, souffle vers le NO (côte du Languedoc) -->
-    <g>
-      <line x1="322" y1="298" x2="224" y2="196" stroke="#8e44ad" stroke-width="3.5" marker-end="url(#arrPurple)"/>
-      <text x="238" y="250" font-size="12" fill="#8e44ad" text-anchor="end" font-weight="bold">Marin</text>
-      <text x="238" y="263" font-size="9" fill="#6c3483" text-anchor="end">💧 doux, humide</text>
-    </g>
-
-    <!-- Sirocco : vient du S/SE (Sahara), souffle vers le NO -->
-    <g>
-      <line x1="410" y1="360" x2="338" y2="252" stroke="#d35400" stroke-width="3.5" marker-end="url(#arrSir)"/>
-      <text x="420" y="352" font-size="12" fill="#d35400" text-anchor="start" font-weight="bold">Sirocco</text>
-      <text x="420" y="365" font-size="9" fill="#a04000" text-anchor="start">🌡️ chaud, sable</text>
-    </g>
-
-    <!-- Libeccio : vient du SO, souffle vers le NE (Corse, golfe de Gênes) -->
-    <g>
-      <line x1="212" y1="306" x2="312" y2="222" stroke="#27ae60" stroke-width="3.5" marker-end="url(#arrGreen)"/>
-      <text x="176" y="318" font-size="11" fill="#27ae60" text-anchor="start" font-weight="bold">Libeccio</text>
-    </g>
-  </svg>
-  <p class="meta">Vents de Méditerranée nord-occidentale. <strong>La flèche indique le sens dans lequel souffle le vent</strong> — rappel : un vent porte le nom de la direction <em>d'où il vient</em> (le Mistral vient du N-O et souffle vers le S-E). Vents <strong>au programme de l'examen côtier</strong>.</p>
-</div>
-
-<table class="wind-table">
-  <thead>
-    <tr><th>Vent</th><th>Direction</th><th>Caractère</th><th>Zone</th><th>☀️/☔</th></tr>
-  </thead>
-  <tbody>
-    <tr class="mistral-row">
-      <td><strong>Mistral</strong></td>
-      <td>Nord-Ouest ↖️</td>
-      <td>Fort, froid, sec, rafales &gt; 100 km/h</td>
-      <td>Vallée du Rhône → Marseille → Golfe du Lion</td>
-      <td>☀️ Ciel dégagé</td>
-    </tr>
-    <tr>
-      <td><strong>Tramontane</strong></td>
-      <td>Nord-Ouest ↖️</td>
-      <td>Fort, sec, même famille que le mistral</td>
-      <td>Pyrénées → Golfe du Lion (Perpignan)</td>
-      <td>☀️ Ciel dégagé</td>
-    </tr>
-    <tr>
-      <td><strong>Levant</strong></td>
-      <td>Est ➡️</td>
-      <td>Humide, couvert</td>
-      <td>Toute la côte méditerranéenne</td>
-      <td>☔ Pluie, nuages</td>
-    </tr>
-    <tr>
-      <td><strong>Sirocco</strong></td>
-      <td>Sud-Est ↘️</td>
-      <td>Chaud, sec en Afrique, humide en mer, parfois sableux</td>
-      <td>Afrique du Nord → côte française</td>
-      <td>🌡️ Chaud, pluie possible</td>
-    </tr>
-    <tr>
-      <td><strong>Marin</strong></td>
-      <td>Sud-Est à Sud ↘️</td>
-      <td>Doux, humide, apporte la pluie</td>
-      <td>Côte méditerranéenne française</td>
-      <td>☔ Pluie durable</td>
-    </tr>
-    <tr>
-      <td><strong>Libeccio</strong></td>
-      <td>Sud-Ouest ↙️</td>
-      <td>Modéré à fort, souvent humide (mer formée)</td>
-      <td>Corse, golfe de Gênes, Ligurie</td>
-      <td>⛅ Nuages, pluie possible</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="card card--tip">
-  <h4>🧠 Mnémotechnique météo</h4>
-  <p>« <strong>Mistral et Tramontane</strong> dégagent le ciel. <strong>Levant, Marin, Sirocco</strong> amènent l'eau. »<br>
-  — Si le vent vient du <strong>secteur nord</strong> (N, NO, NE) → ☀️ beau temps.<br>
-  — Si le vent vient du <strong>secteur sud</strong> (S, SE, SO) → 🌧️ pluie possible.</p>
-</div>
-
-<hr>
-
-<h2>2. Les bases : Pression et vent</h2>
-
-<p>Le vent naît des <strong>différences de pression</strong> entre une zone haute (anticyclone) et une zone basse (dépression). Plus les isobares (lignes de pression égale) sont serrées, plus le vent est fort.</p>
-
-<div class="two-cols">
-  <div class="pressure-diagram">
-    <svg width="280" height="200" viewBox="0 0 280 200">
-      <!-- Anticyclone (A) -->
-      <circle cx="80" cy="100" r="60" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="4,3"/>
-      <circle cx="80" cy="100" r="40" fill="none" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,3"/>
-      <circle cx="80" cy="100" r="22" fill="#fde8e8" stroke="#e74c3c" stroke-width="2"/>
-      <text x="80" y="105" font-size="20" fill="#e74c3c" text-anchor="middle" font-weight="bold">A</text>
-      <text x="80" y="15" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="bold">ANTICYCLONE</text>
-      <text x="80" y="175" font-size="9" fill="#666" text-anchor="middle">Haut pression ≥ 1013 hPa</text>
-      <text x="80" y="188" font-size="9" fill="#666" text-anchor="middle">Beau temps, vent faible</text>
-    </svg>
-  </div>
-  <div class="pressure-diagram">
-    <svg width="280" height="200" viewBox="0 0 280 200">
-      <!-- Dépression (D) -->
-      <circle cx="80" cy="100" r="60" fill="none" stroke="#2980b9" stroke-width="1" stroke-dasharray="4,3"/>
-      <circle cx="80" cy="100" r="40" fill="none" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="4,3"/>
-      <circle cx="80" cy="100" r="22" fill="#e8f4f8" stroke="#2980b9" stroke-width="2"/>
-      <text x="80" y="105" font-size="20" fill="#2980b9" text-anchor="middle" font-weight="bold">D</text>
-      <text x="80" y="15" font-size="10" fill="#2980b9" text-anchor="middle" font-weight="bold">DÉPRESSION</text>
-      <text x="80" y="175" font-size="9" fill="#666" text-anchor="middle">Basse pression &lt; 1013 hPa</text>
-      <text x="80" y="188" font-size="9" fill="#666" text-anchor="middle">Mauvais temps, vent fort</text>
-    </svg>
-  </div>
-</div>
-
-<h3>⚡ La Loi de Buys-Ballot</h3>
-
-<p>Une règle essentielle pour l'examen : si vous tournez le <strong>dos au vent</strong>, l'anticyclone (basse pression) est <strong>à droite</strong> et la dépression (haute pression) est <strong>à gauche</strong> — dans l'hémisphère nord.</p>
-
-<div class="buys-ballot">
-  <svg width="350" height="220" viewBox="0 0 350 220">
-    <!-- Fond -->
-    <rect x="0" y="0" width="350" height="220" fill="#f8f8f4" rx="8"/>
-
-    <!-- Personnage (vu du haut) -->
-    <circle cx="175" cy="110" r="15" fill="#333"/>
-    <text x="175" y="115" font-size="11" fill="white" text-anchor="middle" font-weight="bold">Moi</text>
-
-    <!-- Dos du personnage (le vent arrive dans le dos) -->
-    <line x1="175" y1="125" x2="175" y2="200" stroke="#e74c3c" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="185" y="195" font-size="10" fill="#e74c3c">← Vent (dans le dos)</text>
-
-    <!-- Anticyclone à droite -->
-    <g transform="translate(260,70)">
-      <circle cx="0" cy="0" r="20" fill="#fde8e8" stroke="#e74c3c" stroke-width="2"/>
-      <text x="0" y="4" font-size="14" fill="#e74c3c" text-anchor="middle" font-weight="bold">A</text>
-      <text x="0" y="30" font-size="10" fill="#e74c3c" text-anchor="middle">Anticyclone</text>
-      <text x="0" y="42" font-size="8" fill="#666" text-anchor="middle">Haute pression → droite</text>
-    </g>
-
-    <!-- Dépression à gauche -->
-    <g transform="translate(90,70)">
-      <circle cx="0" cy="0" r="20" fill="#e8f4f8" stroke="#2980b9" stroke-width="2"/>
-      <text x="0" y="4" font-size="14" fill="#2980b9" text-anchor="middle" font-weight="bold">D</text>
-      <text x="0" y="30" font-size="10" fill="#2980b9" text-anchor="middle">Dépression</text>
-      <text x="0" y="42" font-size="8" fill="#666" text-anchor="middle">Basse pression → gauche</text>
-    </g>
-
-    <!-- Flèches indiquant -->
-    <path d="M 190 110 Q 220 80 240 70" fill="none" stroke="#e74c3c" stroke-width="1.5" marker-end="url(#arrR)"/>
-    <path d="M 160 110 Q 130 80 110 70" fill="none" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrB)"/>
-
-    <defs>
-      <marker id="arrR" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-        <path d="M 0 0 L 10 5 L 0 10 Z" fill="#e74c3c"/>
-      </marker>
-      <marker id="arrB" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-        <path d="M 0 0 L 10 5 L 0 10 Z" fill="#2980b9"/>
-      </marker>
-    </defs>
-  </svg>
-  <p class="meta"><strong>Buys-Ballot :</strong> dos au vent, A à droite, D à gauche (hémisphère nord).</p>
-</div>
-
-<hr>
-
-<h2>3. L'échelle Beaufort</h2>
-
-<p>La force du vent se mesure en <strong>ne buds</strong> (kt) sur l'échelle Beaufort (0 à 12). Au permis, on vous demande de connaître les forces jusqu'à 7-8.</p>
-
-<div class="beaufort-grid">
-  <div class="beaufort-card bf-calm">
-    <p class="force-num">0</p>
-    <h5>Calme</h5>
-    <p>&lt; 1 kt<br>Mer d'huile</p>
-  </div>
-  <div class="beaufort-card bf-light">
-    <p class="force-num">1</p>
-    <h5>Très légère</h5>
-    <p>1-3 kt<br>Rides</p>
-  </div>
-  <div class="beaufort-card bf-light">
-    <p class="force-num">2</p>
-    <h5>Légère brise</h5>
-    <p>4-6 kt<br>Vaguelettes</p>
-  </div>
-  <div class="beaufort-card bf-moderate">
-    <p class="force-num">3</p>
-    <h5>Petite brise</h5>
-    <p>7-10 kt<br>Petites vagues</p>
-  </div>
-  <div class="beaufort-card bf-moderate">
-    <p class="force-num">4</p>
-    <h5>Jolie brise</h5>
-    <p>11-16 kt<br>Moutons nombreux</p>
-  </div>
-  <div class="beaufort-card bf-moderate">
-    <p class="force-num">5</p>
-    <h5>Bonne brise</h5>
-    <p>17-21 kt<br>Embruns, crêtes</p>
-  </div>
-  <div class="beaufort-card bf-rough">
-    <p class="force-num">6</p>
-    <h5>Vent frais</h5>
-    <p>22-27 kt<br>Lames, crêtes écumeuses</p>
-  </div>
-  <div class="beaufort-card bf-rough">
-    <p class="force-num">7</p>
-    <h5>Grand frais</h5>
-    <p>28-33 kt<br>Mer grosse, embruns</p>
-  </div>
-  <div class="beaufort-card bf-rough">
-    <p class="force-num">8</p>
-    <h5>Coup de vent</h5>
-    <p>34-40 kt<br>Lames déferlantes</p>
-  </div>
-  <div class="beaufort-card bf-storm">
-    <p class="force-num">9</p>
-    <h5>Fort coup de vent</h5>
-    <p>41-47 kt<br>Visibilité réduite</p>
-  </div>
-  <div class="beaufort-card bf-storm">
-    <p class="force-num">10</p>
-    <h5>Tempête</h5>
-    <p>48-55 kt<br>Gros rouleaux</p>
-  </div>
-</div>
-
-<div class="card card--tip">
-  <h4>🧠 Repères pour la Méditerranée</h4>
-  <p>• <strong>Force 3-4</strong> : conditions idéales pour débuter (11-16 kt) — navigation agréable.<br>
-  • <strong>Force 5</strong> : limite pour les petits bateaux &lt; 6 m. Prudence.<br>
-  • <strong>Force 6-7</strong> : mer formée, réservé aux bateaux solides et équipages expérimentés.<br>
-  • <strong>Force 8+</strong> : coup de vent. Restez au port.</p>
-</div>
-
-<hr>
-
-<h2>4. Les nuages et le temps</h2>
-
-<p>Les nuages sont des indicateurs météo fiables. Savoir les lire, c'est pouvoir anticiper le changement de temps avant même d'avoir consulté un bulletin.</p>
-
-<table class="wind-table">
-  <thead>
-    <tr><th>Nuage</th><th>Aspect</th><th>Signification</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Cumulus</strong> ☁️</td>
-      <td>Blanc, cotonneux, base plate</td>
-      <td>Beau temps. Se développe en cumulonimbus si l'air est instable.</td>
-    </tr>
-    <tr>
-      <td><strong>Stratus</strong> 🌫️</td>
-      <td>Gris, en couche uniforme (brouillard)</td>
-      <td>Temps calme mais couvert. Visibilité réduite.</td>
-    </tr>
-    <tr>
-      <td><strong>Cirrus</strong> 🌤️</td>
-      <td>Filaments blancs, haute altitude</td>
-      <td>Temps sec. Peuvent annoncer l'arrivée d'une perturbation.</td>
-    </tr>
-    <tr>
-      <td><strong>Cumulonimbus</strong> ⛈️</td>
-      <td>Grand, dense, en forme d'enclume</td>
-      <td><strong>⚠️ DANGER</strong> Orages, rafales, pluie violente. Peut donner des <strong>mistrals</strong> soudains.</td>
-    </tr>
-    <tr>
-      <td><strong>Altocumulus</strong> 🌥️</td>
-      <td>Vagues ou rouleaux gris/blanc</td>
-      <td>Temps changeant, perturbation à venir.</td>
-    </tr>
-    <tr>
-      <td><strong>Nimbostratus</strong> ☁️</td>
-      <td>Gris sombre, épais, uniforme</td>
-      <td>Pluie continue et durable.</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="card card--warning">
-  <h4>⚠️ Nuages d'orage en Méditerranée</h4>
-  <p>En été, les <strong>cumulonimbus</strong> se forment rapidement au-dessus des reliefs (Alpes, Corse, Pyrénées). Si vous en voyez un se développer, surveillez le vent : le <strong>mistral</strong> ou la <strong>tramontane</strong> peuvent se lever brutalement. La règle : si le ciel est noir dans une direction, <strong>ne prenez pas la mer</strong>.</p>
-</div>
-
-<hr>
-
-<h2>5. Les bulletins météo</h2>
-
-<p>Avant toute sortie en mer, vous devez consulter un <strong>bulletin météorologique maritime</strong>. Depuis un smartphone :</p>
-
-<ul>
-  <li><strong>Météo-France</strong> : site web et app — bulletin pour les zones côtières Méditerranée</li>
-  <li><strong>Marine Weather & Co</strong> : app spécialisée plaisance (Windy, PredictWind)</li>
-  <li><strong>VHF</strong> : émissions météo régulières par les CROSS (canal 16 puis canal info)</li>
-  <li><strong>SHOM</strong> : prévisions de courants, coefficients de marée (utile pour les sorties de port)</li>
-</ul>
-
-<div class="card card--info">
-  <h4>📡 Les infos clés d'un bulletin</h4>
-  <p>• <strong>Force et direction du vent</strong> (ex: Mistral force 5-6)<br>
-  • <strong>Visibilité</strong> : bonne / moyenne / mauvaise / brume<br>
-  • <strong>État de la mer</strong> : calme / peu agitée / agitée / forte / grosse<br>
-  • <strong>Pression</strong> : tendance (hausse → beau temps, baisse → dégradation)<br>
-  • <strong>Prévisions à 24h / 48h</strong><br>
-  • <strong>Zones concernées</strong> : Golfe du Lion, Corse, Côte d'Azur, etc.</p>
-</div>
-
-<hr>
-
-<h2>6. Quiz — Testez vos connaissances</h2>
-
-<div class="quiz-question" data-correct="2" data-feedback="Le mistral est un vent du nord-ouest, froid et sec, typique de la vallée du Rhône. Il dégage le ciel et peut être violent.">
-  <p><strong>Q1.</strong> Quel vent méditerranéen est caractérisé par sa violence, sa fraîcheur, sa sécheresse et un ciel dégagé ?</p>
-  <ul class="quiz-options">
-    <li>Le Sirocco</li>
-    <li>Le Levant</li>
-    <li>Le Mistral</li>
-    <li>Le Marin</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="0" data-feedback="Buys-Ballot : dos au vent, l'anticyclone est à droite et la dépression à gauche dans l'hémisphère nord.">
-  <p><strong>Q2.</strong> Selon la loi de Buys-Ballot (hémisphère nord), si vous tournez le dos au vent, où se trouve l'anticyclone ?</p>
-  <ul class="quiz-options">
-    <li>À droite</li>
-    <li>À gauche</li>
-    <li>Derrière</li>
-    <li>Devant</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="1" data-feedback="Le Levant est un vent d'est (➡️) qui apporte de l'humidité et de la pluie.">
-  <p><strong>Q3.</strong> Quel vent méditerranéen vient de l'Est et apporte généralement de la pluie ?</p>
-  <ul class="quiz-options">
-    <li>Le Mistral</li>
-    <li>Le Levant</li>
-    <li>La Tramontane</li>
-    <li>Le Libeccio</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="0" data-feedback="L'échelle Beaufort va de 0 (calme) à 12 (ouragan). Au-delà de force 6, la mer est déjà formée avec des lames et crêtes écumeuses.">
-  <p><strong>Q4.</strong> À partir de quelle force Beaufort considère-t-on que le vent est « frais » et que la mer commence à devenir difficile pour un petit bateau ?</p>
-  <ul class="quiz-options">
-    <li>Force 6</li>
-    <li>Force 4</li>
-    <li>Force 8</li>
-    <li>Force 3</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="3" data-feedback="Le cumulonimbus est un nuage d'orage qui peut provoquer des rafales violentes, de la pluie intense, et des changements de vent soudains.">
-  <p><strong>Q5.</strong> Quel nuage annonce un danger immédiat en Méditerranée avec risque d'orage et de rafales violentes ?</p>
-  <ul class="quiz-options">
-    <li>Cirrus</li>
-    <li>Stratus</li>
-    <li>Cumulus</li>
-    <li>Cumulonimbus</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="2" data-feedback="Le Sirocco vient du sud-est. Il est très chaud, peut transporter du sable du Sahara, et se charge d'humidité en traversant la mer.">
-  <p><strong>Q6.</strong> Un vent du sud-est, chaud, parfois chargé de sable, qui traverse la Méditerranée — c'est :</p>
-  <ul class="quiz-options">
-    <li>Le Marin</li>
-    <li>La Tramontane</li>
-    <li>Le Sirocco</li>
-    <li>Le Levant</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="1" data-feedback="En Méditerranée, le vent du nord (mistral, tramontane) est généralement sec et dégage le ciel. Le vent du sud apporte l'humidité.">
-  <p><strong>Q7.</strong> Vrai ou faux : en Méditerranée, un vent de secteur nord apporte généralement de la pluie.</p>
-  <ul class="quiz-options">
-    <li>Vrai</li>
-    <li>Faux</li>
-  </ul>
-</div>
-
-<div class="quiz-question" data-correct="0" data-feedback="Plus les isobares sont serrées (proches les unes des autres), plus le gradient de pression est fort, donc plus le vent est violent.">
-  <p><strong>Q8.</strong> Sur une carte météo, comment reconnaître une zone de vent fort ?</p>
-  <ul class="quiz-options">
-    <li>Isobares très serrées</li>
-    <li>Isobares très espacées</li>
-    <li>Un grand anticyclone</li>
-    <li>Un chiffre de pression élevé</li>
-  </ul>
-</div>
-
-<hr>
-
-<h2>📌 Ce qu'il faut retenir</h2>
-
-<ul>
-  <li><strong>Vents méditerranéens :</strong> Mistral (NO, froid/sec), Tramontane (NO), Levant (E, humide), Sirocco (SE, chaud/sable), Marin (SE, doux/humide)</li>
-  <li><strong>Nord = beau temps, Sud = pluie</strong> — règle simple en Méditerranée</li>
-  <li><strong>Buys-Ballot :</strong> dos au vent, A à droite, D à gauche</li>
-  <li><strong>Beaufort :</strong> force 3-4 idéal, force 6+ agité, force 8+ coup de vent</li>
-  <li><strong>Nuages :</strong> cumulonimbus = ⛈️ danger immédiat</li>
-  <li><strong>Bulletin météo :</strong> toujours avant de partir. Vérifiez vent, visibilité, état de mer</li>
-</ul>
-
-<div class="card card--warning">
-  <h4>⚠️ Pour cet été en Méditerranée</h4>
-  <p>Le <strong>mistral</strong> est le vent le plus fréquent en été sur la Côte d'Azur. Il se lève souvent en milieu de matinée et tombe au coucher du soleil. Si vous naviguez entre les îles d'Hyères ou vers Porquerolles, prévoyez de rentrer <strong>avant 16h</strong> en été, quand le vent forcit. Ne sous-estimez jamais la mer : un mistral force 6 soulève des vagues de 2-3 mètres en rade de Marseille.</p>
-</div>
-
-<div class="card card--tip">
-  <h4>📄 Fiche à imprimer</h4>
-  <p>Toute la météo en une page : <a href="../reference/meteo.html">fiche météo &amp; vents</a> (vents méditerranéens, Beaufort, pression, nuages).</p>
-</div>
-
-<hr>
-
-<div class="lesson-nav">
-  <a href="0004-balisage-maritime.html">← Leçon 4 : Balisage maritime</a>
-  <a href="0006-securite-equipements.html">Leçon 6 : Sécurité →</a>
-</div>
-
-<p class="meta" style="text-align:center; margin-top:2rem;">
-  <em>Sources : <a href="https://meteofrance.com" target="_blank">Météo-France</a> · 
-  <a href="https://www.mer.gouv.fr/permis-plaisance" target="_blank">Ministère de la Mer</a> · 
-  Échelle Beaufort / SHOM</em>
-</p>
-
-</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leçon 5 — Météo et Vents Méditerranéens</title>
+    <link rel="stylesheet" href="../assets/permis.css" />
+    <script src="../assets/quiz.js"></script>
+    <style>
+      .wind-table {
+        width: 100%;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .wind-table th {
+        background: #1a5276;
+      }
+      .wind-table .mistral-row {
+        background: #e8f4f8;
+      }
+      .wind-table td {
+        vertical-align: middle;
+      }
+
+      .wind-svg {
+        text-align: center;
+        margin: 1.5rem 0;
+      }
+      .wind-svg svg {
+        max-width: 100%;
+      }
+
+      .beaufort-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+      .beaufort-card {
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        padding: 0.5rem 0.75rem;
+        text-align: center;
+        background: white;
+      }
+      .beaufort-card h5 {
+        margin: 0.2rem 0;
+        font-size: 0.9rem;
+      }
+      .beaufort-card p {
+        font-size: 0.75rem;
+        margin: 0;
+      }
+      .beaufort-card .force-num {
+        font-size: 1.4rem;
+        font-weight: bold;
+        font-family: var(--font-sans);
+      }
+      .bf-calm {
+        background: #f0f0ea;
+      }
+      .bf-light {
+        background: #d5e8d0;
+      }
+      .bf-moderate {
+        background: #fff3cd;
+      }
+      .bf-rough {
+        background: #fde8e8;
+      }
+      .bf-storm {
+        background: #e8d0d0;
+      }
+
+      .mer-table {
+        width: 100%;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      .mer-table th {
+        background: #1a5276;
+      }
+
+      .two-cols {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+      }
+      .two-cols > div {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .pressure-diagram {
+        text-align: center;
+        margin: 1.5rem 0;
+      }
+
+      .buys-ballot {
+        text-align: center;
+        margin: 1.5rem 0;
+      }
+      .buys-ballot svg {
+        max-width: 100%;
+      }
+
+      .nav-map {
+        text-align: center;
+        margin: 1.5rem 0;
+      }
+      .nav-map svg {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="meta">
+        Leçon 5 · ⏱ 25 minutes · <span class="tag tag--côtier">Côtier</span>
+        <span class="tag tag--important">Important</span>
+      </p>
+
+      <h1>Météo et Vents Méditerranéens</h1>
+
+      <div class="card card--info">
+        <h4>🎯 Objectif de cette leçon</h4>
+        <p>
+          Savoir lire le ciel, anticiper le temps et comprendre les vents en
+          Méditerranée. Le mistral peut passer de 0 à 50 nœuds en une heure — si
+          vous ne savez pas le lire, vous pouvez vous retrouver en difficulté
+          très vite.
+        </p>
+      </div>
+
+      <h2>Pourquoi la météo en mer ?</h2>
+
+      <p>
+        En Méditerranée, la météo change vite. Contrairement à l'Atlantique où
+        les dépressions arrivent avec préavis, les vents méditerranéens peuvent
+        se lever <strong>en moins d'une heure</strong>.
+      </p>
+
+      <div class="card card--warning">
+        <h4>⚠️ Exemple concret : Mistral d'été</h4>
+        <p>
+          Un skippeur part de Marseille par <strong>force 2</strong> (brise
+          légère). Une heure plus tard, le mistral se lève :
+          <strong>force 6-7</strong> (vent fort), mer formée en rade de
+          Marseille. Sans connaissance météo, impossible d'anticiper.
+        </p>
+      </div>
+
+      <hr />
+
+      <h2>1. Les vents méditerranéens</h2>
+
+      <p>
+        La Méditerranée a ses propres vents régionaux, avec des noms qui
+        viennent de l'italien, du grec, de l'arabe. Les connaître, c'est
+        comprendre d'où vient le vent et quel temps il amène.
+      </p>
+
+      <div class="wind-svg">
+        <svg
+          width="560"
+          height="440"
+          viewBox="0 0 560 440"
+          role="img"
+          aria-label="Carte des vents de Méditerranée nord-occidentale"
+        >
+          <defs>
+            <marker
+              id="arrRed"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="6.5"
+              markerHeight="6.5"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#e74c3c" />
+            </marker>
+            <marker
+              id="arrOrange"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="6.5"
+              markerHeight="6.5"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#e67e22" />
+            </marker>
+            <marker
+              id="arrBlue"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="6.5"
+              markerHeight="6.5"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#2980b9" />
+            </marker>
+            <marker
+              id="arrPurple"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="6.5"
+              markerHeight="6.5"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#8e44ad" />
+            </marker>
+            <marker
+              id="arrGreen"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="6.5"
+              markerHeight="6.5"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#27ae60" />
+            </marker>
+            <marker
+              id="arrSir"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="6.5"
+              markerHeight="6.5"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#d35400" />
+            </marker>
+          </defs>
+
+          <!-- Fond mer -->
+          <rect x="0" y="0" width="560" height="440" fill="#dcecf4" />
+
+          <!-- ============ TERRES (nord en haut) ============ -->
+          <!-- France (nord) -->
+          <path
+            d="M 55 0 L 55 52 Q 120 80 190 78 Q 235 94 282 86 L 302 70 Q 342 90 382 82 L 412 52 L 412 0 Z"
+            fill="#d4e6c3"
+            stroke="#7d9e5a"
+            stroke-width="1"
+          />
+          <text
+            x="205"
+            y="30"
+            font-size="12"
+            fill="#3d6b20"
+            text-anchor="middle"
+            font-weight="bold"
+          >
+            FRANCE
+          </text>
+          <text
+            x="300"
+            y="50"
+            font-size="8"
+            fill="#5a7d3a"
+            text-anchor="middle"
+            font-style="italic"
+          >
+            vallée du Rhône
+          </text>
+
+          <!-- Espagne (sud-ouest) -->
+          <path
+            d="M 0 92 L 55 90 L 90 118 Q 98 162 68 198 L 30 222 L 0 208 Z"
+            fill="#d4e6c3"
+            stroke="#7d9e5a"
+            stroke-width="1"
+          />
+          <text
+            x="42"
+            y="150"
+            font-size="11"
+            fill="#3d6b20"
+            text-anchor="middle"
+            font-weight="bold"
+          >
+            ESPAGNE
+          </text>
+
+          <!-- Italie (est) -->
+          <path
+            d="M 412 44 L 472 30 Q 508 54 500 96 L 470 150 Q 452 196 464 236 L 448 250 L 428 205 Q 438 150 418 112 Q 404 80 412 44 Z"
+            fill="#d4e6c3"
+            stroke="#7d9e5a"
+            stroke-width="1"
+          />
+          <text
+            x="452"
+            y="92"
+            font-size="11"
+            fill="#3d6b20"
+            text-anchor="middle"
+            font-weight="bold"
+          >
+            ITALIE
+          </text>
+
+          <!-- Corse -->
+          <path
+            d="M 356 158 L 384 154 L 389 200 L 366 214 L 351 186 Z"
+            fill="#d4e6c3"
+            stroke="#7d9e5a"
+            stroke-width="1"
+          />
+          <text
+            x="370"
+            y="188"
+            font-size="8"
+            fill="#3d6b20"
+            text-anchor="middle"
+          >
+            Corse
+          </text>
+          <!-- Sardaigne -->
+          <path
+            d="M 351 232 L 382 230 L 387 280 L 358 294 L 345 262 Z"
+            fill="#d4e6c3"
+            stroke="#7d9e5a"
+            stroke-width="1"
+          />
+          <text
+            x="366"
+            y="264"
+            font-size="8"
+            fill="#3d6b20"
+            text-anchor="middle"
+          >
+            Sardaigne
+          </text>
+
+          <!-- Afrique du Nord (sud) -->
+          <path
+            d="M 0 402 Q 150 380 300 392 Q 440 404 560 382 L 560 440 L 0 440 Z"
+            fill="#e8d8b8"
+            stroke="#b8a078"
+            stroke-width="1"
+          />
+          <text
+            x="285"
+            y="426"
+            font-size="10"
+            fill="#7d6b40"
+            text-anchor="middle"
+          >
+            Afrique du Nord — Sahara
+          </text>
+
+          <!-- Noms de mer -->
+          <text
+            x="150"
+            y="145"
+            font-size="10"
+            fill="#2980b9"
+            text-anchor="middle"
+            font-style="italic"
+            opacity="0.7"
+          >
+            Golfe du Lion
+          </text>
+          <text
+            x="300"
+            y="345"
+            font-size="12"
+            fill="#2980b9"
+            text-anchor="middle"
+            font-style="italic"
+            opacity="0.55"
+          >
+            Mer Méditerranée
+          </text>
+
+          <!-- Villes repères -->
+          <circle cx="298" cy="96" r="3" fill="#333" />
+          <text x="304" y="93" font-size="9" fill="#333" text-anchor="start">
+            Marseille
+          </text>
+          <circle cx="102" cy="108" r="3" fill="#333" />
+          <text x="108" y="105" font-size="9" fill="#333" text-anchor="start">
+            Perpignan
+          </text>
+
+          <!-- Rose des vents -->
+          <g
+            transform="translate(505,315)"
+            font-size="10"
+            fill="#555"
+            font-weight="bold"
+            text-anchor="middle"
+            font-family="sans-serif"
+          >
+            <line x1="0" y1="-20" x2="0" y2="20" stroke="#9bb0b8" />
+            <line x1="-20" y1="0" x2="20" y2="0" stroke="#9bb0b8" />
+            <path d="M 0 -28 L -5 -18 L 5 -18 Z" fill="#c0392b" />
+            <text x="0" y="-30">N</text>
+            <text x="0" y="37">S</text>
+            <text x="30" y="4">E</text>
+            <text x="-30" y="4">O</text>
+          </g>
+
+          <!-- ============ VENTS (la flèche indique OÙ souffle le vent) ============ -->
+          <!-- Mistral : vient du N/NO (Rhône), souffle vers le S/SE -->
+          <g>
+            <line
+              x1="300"
+              y1="46"
+              x2="264"
+              y2="188"
+              stroke="#e74c3c"
+              stroke-width="3.5"
+              marker-end="url(#arrRed)"
+            />
+            <text
+              x="322"
+              y="120"
+              font-size="12"
+              fill="#e74c3c"
+              text-anchor="start"
+              font-weight="bold"
+            >
+              Mistral
+            </text>
+            <text
+              x="322"
+              y="133"
+              font-size="9"
+              fill="#c0392b"
+              text-anchor="start"
+            >
+              🍃 fort, sec, froid
+            </text>
+          </g>
+
+          <!-- Tramontane : vient du NO (Pyrénées), souffle vers le SE -->
+          <g>
+            <line
+              x1="112"
+              y1="58"
+              x2="190"
+              y2="168"
+              stroke="#e67e22"
+              stroke-width="3.5"
+              marker-end="url(#arrOrange)"
+            />
+            <text
+              x="60"
+              y="92"
+              font-size="11"
+              fill="#e67e22"
+              text-anchor="start"
+              font-weight="bold"
+            >
+              Tramontane
+            </text>
+          </g>
+
+          <!-- Levant : vient de l'E, souffle vers l'O -->
+          <g>
+            <line
+              x1="500"
+              y1="128"
+              x2="398"
+              y2="134"
+              stroke="#2980b9"
+              stroke-width="3.5"
+              marker-end="url(#arrBlue)"
+            />
+            <text
+              x="452"
+              y="112"
+              font-size="12"
+              fill="#2980b9"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              Levant
+            </text>
+            <text
+              x="452"
+              y="124"
+              font-size="9"
+              fill="#1a5276"
+              text-anchor="middle"
+            >
+              ☔ humide
+            </text>
+          </g>
+
+          <!-- Marin : vient du SE, souffle vers le NO (côte du Languedoc) -->
+          <g>
+            <line
+              x1="322"
+              y1="298"
+              x2="224"
+              y2="196"
+              stroke="#8e44ad"
+              stroke-width="3.5"
+              marker-end="url(#arrPurple)"
+            />
+            <text
+              x="238"
+              y="250"
+              font-size="12"
+              fill="#8e44ad"
+              text-anchor="end"
+              font-weight="bold"
+            >
+              Marin
+            </text>
+            <text
+              x="238"
+              y="263"
+              font-size="9"
+              fill="#6c3483"
+              text-anchor="end"
+            >
+              💧 doux, humide
+            </text>
+          </g>
+
+          <!-- Sirocco : vient du S/SE (Sahara), souffle vers le NO -->
+          <g>
+            <line
+              x1="410"
+              y1="360"
+              x2="338"
+              y2="252"
+              stroke="#d35400"
+              stroke-width="3.5"
+              marker-end="url(#arrSir)"
+            />
+            <text
+              x="420"
+              y="352"
+              font-size="12"
+              fill="#d35400"
+              text-anchor="start"
+              font-weight="bold"
+            >
+              Sirocco
+            </text>
+            <text
+              x="420"
+              y="365"
+              font-size="9"
+              fill="#a04000"
+              text-anchor="start"
+            >
+              🌡️ chaud, sable
+            </text>
+          </g>
+
+          <!-- Libeccio : vient du SO, souffle vers le NE (Corse, golfe de Gênes) -->
+          <g>
+            <line
+              x1="212"
+              y1="306"
+              x2="312"
+              y2="222"
+              stroke="#27ae60"
+              stroke-width="3.5"
+              marker-end="url(#arrGreen)"
+            />
+            <text
+              x="176"
+              y="318"
+              font-size="11"
+              fill="#27ae60"
+              text-anchor="start"
+              font-weight="bold"
+            >
+              Libeccio
+            </text>
+          </g>
+        </svg>
+        <p class="meta">
+          Vents de Méditerranée nord-occidentale.
+          <strong>La flèche indique le sens dans lequel souffle le vent</strong>
+          — rappel : un vent porte le nom de la direction
+          <em>d'où il vient</em> (le Mistral vient du N-O et souffle vers le
+          S-E). Vents <strong>au programme de l'examen côtier</strong>.
+        </p>
+      </div>
+
+      <table class="wind-table">
+        <thead>
+          <tr>
+            <th>Vent</th>
+            <th>Direction</th>
+            <th>Caractère</th>
+            <th>Zone</th>
+            <th>☀️/☔</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="mistral-row">
+            <td><strong>Mistral</strong></td>
+            <td>Nord-Ouest ↖️</td>
+            <td>Fort, froid, sec, rafales &gt; 100 km/h</td>
+            <td>Vallée du Rhône → Marseille → Golfe du Lion</td>
+            <td>☀️ Ciel dégagé</td>
+          </tr>
+          <tr>
+            <td><strong>Tramontane</strong></td>
+            <td>Nord-Ouest ↖️</td>
+            <td>Fort, sec, même famille que le mistral</td>
+            <td>Pyrénées → Golfe du Lion (Perpignan)</td>
+            <td>☀️ Ciel dégagé</td>
+          </tr>
+          <tr>
+            <td><strong>Levant</strong></td>
+            <td>Est ➡️</td>
+            <td>Humide, couvert</td>
+            <td>Toute la côte méditerranéenne</td>
+            <td>☔ Pluie, nuages</td>
+          </tr>
+          <tr>
+            <td><strong>Sirocco</strong></td>
+            <td>Sud-Est ↘️</td>
+            <td>Chaud, sec en Afrique, humide en mer, parfois sableux</td>
+            <td>Afrique du Nord → côte française</td>
+            <td>🌡️ Chaud, pluie possible</td>
+          </tr>
+          <tr>
+            <td><strong>Marin</strong></td>
+            <td>Sud-Est à Sud ↘️</td>
+            <td>Doux, humide, apporte la pluie</td>
+            <td>Côte méditerranéenne française</td>
+            <td>☔ Pluie durable</td>
+          </tr>
+          <tr>
+            <td><strong>Libeccio</strong></td>
+            <td>Sud-Ouest ↙️</td>
+            <td>Modéré à fort, souvent humide (mer formée)</td>
+            <td>Corse, golfe de Gênes, Ligurie</td>
+            <td>⛅ Nuages, pluie possible</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card card--tip">
+        <h4>🧠 Mnémotechnique météo</h4>
+        <p>
+          « <strong>Mistral et Tramontane</strong> dégagent le ciel.
+          <strong>Levant, Marin, Sirocco</strong> amènent l'eau. »<br />
+          — Si le vent vient du <strong>secteur nord</strong> (N, NO, NE) → ☀️
+          beau temps.<br />
+          — Si le vent vient du <strong>secteur sud</strong> (S, SE, SO) → 🌧️
+          pluie possible.
+        </p>
+      </div>
+
+      <hr />
+
+      <h2>2. Les bases : Pression et vent</h2>
+
+      <p>
+        Le vent naît des <strong>différences de pression</strong> entre une zone
+        haute (anticyclone) et une zone basse (dépression). Plus les isobares
+        (lignes de pression égale) sont serrées, plus le vent est fort.
+      </p>
+
+      <div class="two-cols">
+        <div class="pressure-diagram">
+          <svg width="280" height="200" viewBox="0 0 280 200">
+            <!-- Anticyclone (A) -->
+            <circle
+              cx="80"
+              cy="100"
+              r="60"
+              fill="none"
+              stroke="#e74c3c"
+              stroke-width="1"
+              stroke-dasharray="4,3"
+            />
+            <circle
+              cx="80"
+              cy="100"
+              r="40"
+              fill="none"
+              stroke="#e74c3c"
+              stroke-width="1.5"
+              stroke-dasharray="4,3"
+            />
+            <circle
+              cx="80"
+              cy="100"
+              r="22"
+              fill="#fde8e8"
+              stroke="#e74c3c"
+              stroke-width="2"
+            />
+            <text
+              x="80"
+              y="105"
+              font-size="20"
+              fill="#e74c3c"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              A
+            </text>
+            <text
+              x="80"
+              y="15"
+              font-size="10"
+              fill="#e74c3c"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              ANTICYCLONE
+            </text>
+            <text x="80" y="175" font-size="9" fill="#666" text-anchor="middle">
+              Haut pression ≥ 1013 hPa
+            </text>
+            <text x="80" y="188" font-size="9" fill="#666" text-anchor="middle">
+              Beau temps, vent faible
+            </text>
+          </svg>
+        </div>
+        <div class="pressure-diagram">
+          <svg width="280" height="200" viewBox="0 0 280 200">
+            <!-- Dépression (D) -->
+            <circle
+              cx="80"
+              cy="100"
+              r="60"
+              fill="none"
+              stroke="#2980b9"
+              stroke-width="1"
+              stroke-dasharray="4,3"
+            />
+            <circle
+              cx="80"
+              cy="100"
+              r="40"
+              fill="none"
+              stroke="#2980b9"
+              stroke-width="1.5"
+              stroke-dasharray="4,3"
+            />
+            <circle
+              cx="80"
+              cy="100"
+              r="22"
+              fill="#e8f4f8"
+              stroke="#2980b9"
+              stroke-width="2"
+            />
+            <text
+              x="80"
+              y="105"
+              font-size="20"
+              fill="#2980b9"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              D
+            </text>
+            <text
+              x="80"
+              y="15"
+              font-size="10"
+              fill="#2980b9"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              DÉPRESSION
+            </text>
+            <text x="80" y="175" font-size="9" fill="#666" text-anchor="middle">
+              Basse pression &lt; 1013 hPa
+            </text>
+            <text x="80" y="188" font-size="9" fill="#666" text-anchor="middle">
+              Mauvais temps, vent fort
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <h3>⚡ La Loi de Buys-Ballot</h3>
+
+      <p>
+        Une règle essentielle pour l'examen : si vous tournez le
+        <strong>dos au vent</strong>, l'anticyclone (basse pression) est
+        <strong>à droite</strong> et la dépression (haute pression) est
+        <strong>à gauche</strong> — dans l'hémisphère nord.
+      </p>
+
+      <div class="buys-ballot">
+        <svg width="350" height="220" viewBox="0 0 350 220">
+          <!-- Fond -->
+          <rect x="0" y="0" width="350" height="220" fill="#f8f8f4" rx="8" />
+
+          <!-- Personnage (vu du haut) -->
+          <circle cx="175" cy="110" r="15" fill="#333" />
+          <text
+            x="175"
+            y="115"
+            font-size="11"
+            fill="white"
+            text-anchor="middle"
+            font-weight="bold"
+          >
+            Moi
+          </text>
+
+          <!-- Dos du personnage (le vent arrive dans le dos) -->
+          <line
+            x1="175"
+            y1="125"
+            x2="175"
+            y2="200"
+            stroke="#e74c3c"
+            stroke-width="2"
+            stroke-dasharray="4,3"
+          />
+          <text x="185" y="195" font-size="10" fill="#e74c3c">
+            ← Vent (dans le dos)
+          </text>
+
+          <!-- Anticyclone à droite -->
+          <g transform="translate(260,70)">
+            <circle
+              cx="0"
+              cy="0"
+              r="20"
+              fill="#fde8e8"
+              stroke="#e74c3c"
+              stroke-width="2"
+            />
+            <text
+              x="0"
+              y="4"
+              font-size="14"
+              fill="#e74c3c"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              A
+            </text>
+            <text
+              x="0"
+              y="30"
+              font-size="10"
+              fill="#e74c3c"
+              text-anchor="middle"
+            >
+              Anticyclone
+            </text>
+            <text x="0" y="42" font-size="8" fill="#666" text-anchor="middle">
+              Haute pression → droite
+            </text>
+          </g>
+
+          <!-- Dépression à gauche -->
+          <g transform="translate(90,70)">
+            <circle
+              cx="0"
+              cy="0"
+              r="20"
+              fill="#e8f4f8"
+              stroke="#2980b9"
+              stroke-width="2"
+            />
+            <text
+              x="0"
+              y="4"
+              font-size="14"
+              fill="#2980b9"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              D
+            </text>
+            <text
+              x="0"
+              y="30"
+              font-size="10"
+              fill="#2980b9"
+              text-anchor="middle"
+            >
+              Dépression
+            </text>
+            <text x="0" y="42" font-size="8" fill="#666" text-anchor="middle">
+              Basse pression → gauche
+            </text>
+          </g>
+
+          <!-- Flèches indiquant -->
+          <path
+            d="M 190 110 Q 220 80 240 70"
+            fill="none"
+            stroke="#e74c3c"
+            stroke-width="1.5"
+            marker-end="url(#arrR)"
+          />
+          <path
+            d="M 160 110 Q 130 80 110 70"
+            fill="none"
+            stroke="#2980b9"
+            stroke-width="1.5"
+            marker-end="url(#arrB)"
+          />
+
+          <defs>
+            <marker
+              id="arrR"
+              viewBox="0 0 10 10"
+              refX="10"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#e74c3c" />
+            </marker>
+            <marker
+              id="arrB"
+              viewBox="0 0 10 10"
+              refX="10"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 Z" fill="#2980b9" />
+            </marker>
+          </defs>
+        </svg>
+        <p class="meta">
+          <strong>Buys-Ballot :</strong> dos au vent, A à droite, D à gauche
+          (hémisphère nord).
+        </p>
+      </div>
+
+      <hr />
+
+      <h2>3. L'échelle Beaufort</h2>
+
+      <p>
+        La force du vent se mesure en <strong>ne buds</strong> (kt) sur
+        l'échelle Beaufort (0 à 12). Au permis, on vous demande de connaître les
+        forces jusqu'à 7-8.
+      </p>
+
+      <div class="beaufort-grid">
+        <div class="beaufort-card bf-calm">
+          <p class="force-num">0</p>
+          <h5>Calme</h5>
+          <p>&lt; 1 kt<br />Mer d'huile</p>
+        </div>
+        <div class="beaufort-card bf-light">
+          <p class="force-num">1</p>
+          <h5>Très légère</h5>
+          <p>1-3 kt<br />Rides</p>
+        </div>
+        <div class="beaufort-card bf-light">
+          <p class="force-num">2</p>
+          <h5>Légère brise</h5>
+          <p>4-6 kt<br />Vaguelettes</p>
+        </div>
+        <div class="beaufort-card bf-moderate">
+          <p class="force-num">3</p>
+          <h5>Petite brise</h5>
+          <p>7-10 kt<br />Petites vagues</p>
+        </div>
+        <div class="beaufort-card bf-moderate">
+          <p class="force-num">4</p>
+          <h5>Jolie brise</h5>
+          <p>11-16 kt<br />Moutons nombreux</p>
+        </div>
+        <div class="beaufort-card bf-moderate">
+          <p class="force-num">5</p>
+          <h5>Bonne brise</h5>
+          <p>17-21 kt<br />Embruns, crêtes</p>
+        </div>
+        <div class="beaufort-card bf-rough">
+          <p class="force-num">6</p>
+          <h5>Vent frais</h5>
+          <p>22-27 kt<br />Lames, crêtes écumeuses</p>
+        </div>
+        <div class="beaufort-card bf-rough">
+          <p class="force-num">7</p>
+          <h5>Grand frais</h5>
+          <p>28-33 kt<br />Mer grosse, embruns</p>
+        </div>
+        <div class="beaufort-card bf-rough">
+          <p class="force-num">8</p>
+          <h5>Coup de vent</h5>
+          <p>34-40 kt<br />Lames déferlantes</p>
+        </div>
+        <div class="beaufort-card bf-storm">
+          <p class="force-num">9</p>
+          <h5>Fort coup de vent</h5>
+          <p>41-47 kt<br />Visibilité réduite</p>
+        </div>
+        <div class="beaufort-card bf-storm">
+          <p class="force-num">10</p>
+          <h5>Tempête</h5>
+          <p>48-55 kt<br />Gros rouleaux</p>
+        </div>
+      </div>
+
+      <div class="card card--tip">
+        <h4>🧠 Repères pour la Méditerranée</h4>
+        <p>
+          • <strong>Force 3-4</strong> : conditions idéales pour débuter (11-16
+          kt) — navigation agréable.<br />
+          • <strong>Force 5</strong> : limite pour les petits bateaux &lt; 6 m.
+          Prudence.<br />
+          • <strong>Force 6-7</strong> : mer formée, réservé aux bateaux solides
+          et équipages expérimentés.<br />
+          • <strong>Force 8+</strong> : coup de vent. Restez au port.
+        </p>
+      </div>
+
+      <hr />
+
+      <h2>4. Les nuages et le temps</h2>
+
+      <p>
+        Les nuages sont des indicateurs météo fiables. Savoir les lire, c'est
+        pouvoir anticiper le changement de temps avant même d'avoir consulté un
+        bulletin.
+      </p>
+
+      <table class="wind-table">
+        <thead>
+          <tr>
+            <th>Nuage</th>
+            <th>Aspect</th>
+            <th>Signification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cumulus</strong> ☁️</td>
+            <td>Blanc, cotonneux, base plate</td>
+            <td>
+              Beau temps. Se développe en cumulonimbus si l'air est instable.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Stratus</strong> 🌫️</td>
+            <td>Gris, en couche uniforme (brouillard)</td>
+            <td>Temps calme mais couvert. Visibilité réduite.</td>
+          </tr>
+          <tr>
+            <td><strong>Cirrus</strong> 🌤️</td>
+            <td>Filaments blancs, haute altitude</td>
+            <td>Temps sec. Peuvent annoncer l'arrivée d'une perturbation.</td>
+          </tr>
+          <tr>
+            <td><strong>Cumulonimbus</strong> ⛈️</td>
+            <td>Grand, dense, en forme d'enclume</td>
+            <td>
+              <strong>⚠️ DANGER</strong> Orages, rafales, pluie violente. Peut
+              donner des <strong>mistrals</strong> soudains.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Altocumulus</strong> 🌥️</td>
+            <td>Vagues ou rouleaux gris/blanc</td>
+            <td>Temps changeant, perturbation à venir.</td>
+          </tr>
+          <tr>
+            <td><strong>Nimbostratus</strong> ☁️</td>
+            <td>Gris sombre, épais, uniforme</td>
+            <td>Pluie continue et durable.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card card--warning">
+        <h4>⚠️ Nuages d'orage en Méditerranée</h4>
+        <p>
+          En été, les <strong>cumulonimbus</strong> se forment rapidement
+          au-dessus des reliefs (Alpes, Corse, Pyrénées). Si vous en voyez un se
+          développer, surveillez le vent : le <strong>mistral</strong> ou la
+          <strong>tramontane</strong> peuvent se lever brutalement. La règle :
+          si le ciel est noir dans une direction,
+          <strong>ne prenez pas la mer</strong>.
+        </p>
+      </div>
+
+      <hr />
+
+      <h2>5. Les bulletins météo</h2>
+
+      <p>
+        Avant toute sortie en mer, vous devez consulter un
+        <strong>bulletin météorologique maritime</strong>. Depuis un smartphone
+        :
+      </p>
+
+      <ul>
+        <li>
+          <strong>Météo-France</strong> : site web et app — bulletin pour les
+          zones côtières Méditerranée
+        </li>
+        <li>
+          <strong>Marine Weather & Co</strong> : app spécialisée plaisance
+          (Windy, PredictWind)
+        </li>
+        <li>
+          <strong>VHF</strong> : émissions météo régulières par les CROSS (canal
+          16 puis canal info)
+        </li>
+        <li>
+          <strong>SHOM</strong> : prévisions de courants, coefficients de marée
+          (utile pour les sorties de port)
+        </li>
+      </ul>
+
+      <div class="card card--info">
+        <h4>📡 Les infos clés d'un bulletin</h4>
+        <p>
+          • <strong>Force et direction du vent</strong> (ex: Mistral force
+          5-6)<br />
+          • <strong>Visibilité</strong> : bonne / moyenne / mauvaise / brume<br />
+          • <strong>État de la mer</strong> : calme / peu agitée / agitée /
+          forte / grosse<br />
+          • <strong>Pression</strong> : tendance (hausse → beau temps, baisse →
+          dégradation)<br />
+          • <strong>Prévisions à 24h / 48h</strong><br />
+          • <strong>Zones concernées</strong> : Golfe du Lion, Corse, Côte
+          d'Azur, etc.
+        </p>
+      </div>
+
+      <div class="card card--warning">
+        <h4>⚠️ Les avis de vent officiels — terminologie d'examen</h4>
+        <p>
+          Les bulletins Météo-France utilisent une terminologie
+          <strong>exacte</strong> pour les avis de vent : c'est celle que
+          l'examen attend. Un <strong>avis</strong> (ou <strong>BMS</strong> —
+          Bulletin Météorologique Spécial) est émis dès que le vent atteint ou
+          dépasse la <strong>force 7</strong> :
+        </p>
+        <table class="wind-table">
+          <thead>
+            <tr>
+              <th>Terminologie du bulletin</th>
+              <th>Force Beaufort</th>
+              <th>Conséquence pour vous</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bf-rough">
+              <td><strong>Avis de grand frais</strong></td>
+              <td>Force 7</td>
+              <td>
+                Mer grosse — seulement pour bateaux solides et équipages
+                expérimentés
+              </td>
+            </tr>
+            <tr class="bf-rough">
+              <td><strong>Avis de coup de vent</strong></td>
+              <td>Force 8</td>
+              <td>⚠️ Restez au port</td>
+            </tr>
+            <tr class="bf-rough">
+              <td><strong>Avis de fort coup de vent</strong></td>
+              <td>Force 9</td>
+              <td>⚠️ Restez au port</td>
+            </tr>
+            <tr class="bf-storm">
+              <td><strong>Avis de tempête</strong></td>
+              <td>Force 10</td>
+              <td>⛔ Ne prenez pas la mer</td>
+            </tr>
+            <tr class="bf-storm">
+              <td><strong>Avis de violent tempête</strong></td>
+              <td>Force 11</td>
+              <td>⛔ Ne prenez pas la mer</td>
+            </tr>
+            <tr class="bf-storm">
+              <td><strong>Avis d'ouragan</strong></td>
+              <td>Force 12</td>
+              <td>⛔ Défense de sortir</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Chaque avis est <strong>numéroté</strong> (<em
+            >« N° X sur la zone Y »</em
+          >
+          : Xᵉ avis de l'année sur cette zone) et précise sa
+          <strong>fin de validité</strong>. Attention aux heures : les bulletins
+          sont en <strong>UTC</strong> (+1 h en hiver, +2 h en été).
+        </p>
+      </div>
+
+      <hr />
+
+      <h2>6. Quiz — Testez vos connaissances</h2>
+
+      <div
+        class="quiz-question"
+        data-correct="2"
+        data-feedback="Le mistral est un vent du nord-ouest, froid et sec, typique de la vallée du Rhône. Il dégage le ciel et peut être violent."
+      >
+        <p>
+          <strong>Q1.</strong> Quel vent méditerranéen est caractérisé par sa
+          violence, sa fraîcheur, sa sécheresse et un ciel dégagé ?
+        </p>
+        <ul class="quiz-options">
+          <li>Le Sirocco</li>
+          <li>Le Levant</li>
+          <li>Le Mistral</li>
+          <li>Le Marin</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="0"
+        data-feedback="Buys-Ballot : dos au vent, l'anticyclone est à droite et la dépression à gauche dans l'hémisphère nord."
+      >
+        <p>
+          <strong>Q2.</strong> Selon la loi de Buys-Ballot (hémisphère nord), si
+          vous tournez le dos au vent, où se trouve l'anticyclone ?
+        </p>
+        <ul class="quiz-options">
+          <li>À droite</li>
+          <li>À gauche</li>
+          <li>Derrière</li>
+          <li>Devant</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="1"
+        data-feedback="Le Levant est un vent d'est (➡️) qui apporte de l'humidité et de la pluie."
+      >
+        <p>
+          <strong>Q3.</strong> Quel vent méditerranéen vient de l'Est et apporte
+          généralement de la pluie ?
+        </p>
+        <ul class="quiz-options">
+          <li>Le Mistral</li>
+          <li>Le Levant</li>
+          <li>La Tramontane</li>
+          <li>Le Libeccio</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="0"
+        data-feedback="L'échelle Beaufort va de 0 (calme) à 12 (ouragan). Au-delà de force 6, la mer est déjà formée avec des lames et crêtes écumeuses."
+      >
+        <p>
+          <strong>Q4.</strong> À partir de quelle force Beaufort considère-t-on
+          que le vent est « frais » et que la mer commence à devenir difficile
+          pour un petit bateau ?
+        </p>
+        <ul class="quiz-options">
+          <li>Force 6</li>
+          <li>Force 4</li>
+          <li>Force 8</li>
+          <li>Force 3</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="3"
+        data-feedback="Le cumulonimbus est un nuage d'orage qui peut provoquer des rafales violentes, de la pluie intense, et des changements de vent soudains."
+      >
+        <p>
+          <strong>Q5.</strong> Quel nuage annonce un danger immédiat en
+          Méditerranée avec risque d'orage et de rafales violentes ?
+        </p>
+        <ul class="quiz-options">
+          <li>Cirrus</li>
+          <li>Stratus</li>
+          <li>Cumulus</li>
+          <li>Cumulonimbus</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="2"
+        data-feedback="Le Sirocco vient du sud-est. Il est très chaud, peut transporter du sable du Sahara, et se charge d'humidité en traversant la mer."
+      >
+        <p>
+          <strong>Q6.</strong> Un vent du sud-est, chaud, parfois chargé de
+          sable, qui traverse la Méditerranée — c'est :
+        </p>
+        <ul class="quiz-options">
+          <li>Le Marin</li>
+          <li>La Tramontane</li>
+          <li>Le Sirocco</li>
+          <li>Le Levant</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="1"
+        data-feedback="En Méditerranée, le vent du nord (mistral, tramontane) est généralement sec et dégage le ciel. Le vent du sud apporte l'humidité."
+      >
+        <p>
+          <strong>Q7.</strong> Vrai ou faux : en Méditerranée, un vent de
+          secteur nord apporte généralement de la pluie.
+        </p>
+        <ul class="quiz-options">
+          <li>Vrai</li>
+          <li>Faux</li>
+        </ul>
+      </div>
+
+      <div
+        class="quiz-question"
+        data-correct="0"
+        data-feedback="Plus les isobares sont serrées (proches les unes des autres), plus le gradient de pression est fort, donc plus le vent est violent."
+      >
+        <p>
+          <strong>Q8.</strong> Sur une carte météo, comment reconnaître une zone
+          de vent fort ?
+        </p>
+        <ul class="quiz-options">
+          <li>Isobares très serrées</li>
+          <li>Isobares très espacées</li>
+          <li>Un grand anticyclone</li>
+          <li>Un chiffre de pression élevé</li>
+        </ul>
+      </div>
+
+      <hr />
+
+      <h2>📌 Ce qu'il faut retenir</h2>
+
+      <ul>
+        <li>
+          <strong>Vents méditerranéens :</strong> Mistral (NO, froid/sec),
+          Tramontane (NO), Levant (E, humide), Sirocco (SE, chaud/sable), Marin
+          (SE, doux/humide)
+        </li>
+        <li>
+          <strong>Nord = beau temps, Sud = pluie</strong> — règle simple en
+          Méditerranée
+        </li>
+        <li>
+          <strong>Buys-Ballot :</strong> dos au vent, A à droite, D à gauche
+        </li>
+        <li>
+          <strong>Beaufort :</strong> force 3-4 idéal, force 6+ agité, force 8+
+          coup de vent
+        </li>
+        <li><strong>Nuages :</strong> cumulonimbus = ⛈️ danger immédiat</li>
+        <li>
+          <strong>Bulletin météo :</strong> toujours avant de partir. Vérifiez
+          vent, visibilité, état de mer
+        </li>
+      </ul>
+
+      <div class="card card--warning">
+        <h4>⚠️ Pour cet été en Méditerranée</h4>
+        <p>
+          Le <strong>mistral</strong> est le vent le plus fréquent en été sur la
+          Côte d'Azur. Il se lève souvent en milieu de matinée et tombe au
+          coucher du soleil. Si vous naviguez entre les îles d'Hyères ou vers
+          Porquerolles, prévoyez de rentrer <strong>avant 16h</strong> en été,
+          quand le vent forcit. Ne sous-estimez jamais la mer : un mistral force
+          6 soulève des vagues de 2-3 mètres en rade de Marseille.
+        </p>
+      </div>
+
+      <div class="card card--tip">
+        <h4>📄 Fiche à imprimer</h4>
+        <p>
+          Toute la météo en une page :
+          <a href="../reference/meteo.html">fiche météo &amp; vents</a> (vents
+          méditerranéens, Beaufort, pression, nuages).
+        </p>
+      </div>
+
+      <hr />
+
+      <div class="lesson-nav">
+        <a href="0004-balisage-maritime.html">← Leçon 4 : Balisage maritime</a>
+        <a href="0006-securite-equipements.html">Leçon 6 : Sécurité →</a>
+      </div>
+
+      <p class="meta" style="text-align: center; margin-top: 2rem">
+        <em
+          >Sources :
+          <a href="https://meteofrance.com" target="_blank">Météo-France</a> ·
+          <a href="https://www.mer.gouv.fr/permis-plaisance" target="_blank"
+            >Ministère de la Mer</a
+          >
+          · Échelle Beaufort / SHOM</em
+        >
+      </p>
+    </div>
+  </body>
 </html>
