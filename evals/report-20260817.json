@@ -5,41 +5,41 @@
   "coverage": {
     "classic": {
       "top1": {
-        "n": 29,
-        "pct": 48.3
+        "n": 48,
+        "pct": 80.0
       },
       "top3": {
-        "n": 38,
-        "pct": 63.3
+        "n": 54,
+        "pct": 90.0
       },
       "top5": {
-        "n": 40,
-        "pct": 66.7
+        "n": 56,
+        "pct": 93.3
       }
     },
     "graph": {
       "top1": {
-        "n": 30,
-        "pct": 50.0
+        "n": 49,
+        "pct": 81.7
       },
       "top3": {
-        "n": 39,
-        "pct": 65.0
+        "n": 55,
+        "pct": 91.7
       },
       "top5": {
-        "n": 41,
-        "pct": 68.3
+        "n": 56,
+        "pct": 93.3
       }
     }
   },
   "pertinence": {
-    "avg_pct": 63.2,
-    "full": 9,
+    "avg_pct": 65.6,
+    "full": 7,
     "total": 60
   },
   "refus_hors_domaine": {
-    "refused": 9,
+    "refused": 10,
     "total": 10,
-    "pct": 90.0
+    "pct": 100.0
   }
 }

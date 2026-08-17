@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carte Marine — Aide-mémoire exhaustif</title>
+    <link rel="stylesheet" href="../assets/permis.css" />
+    <style>
+      .ref-table {
+        width: 100%;
+        font-size: 0.86rem;
+      }
+      .ref-table th {
+        background: #1a5276;
+      }
+      .ref-table td:first-child {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .note {
+        font-size: 0.8rem;
+        color: var(--color-muted);
+      }
+      .big {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        color: #1a5276;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Carte Marine — Lire et exploiter</h1>
+      <p class="meta">
+        Sondes, profondeurs, cap, route et distances (SHOM / cours de navigation
+        côtière). <strong>Fiche exhaustive à imprimer.</strong>
+      </p>
+
+      <h2>1. 🎯 La sonde : lire la profondeur</h2>
+      <p style="font-size: 0.9rem">
+        Les <strong>sondes</strong> sont les chiffres imprimés sur la carte
+        marine : ils indiquent une
+        <strong
+          >hauteur d'eau par rapport au zéro hydrographique de la carte</strong
+        >
+        (le « zéro des cartes »).
+      </p>
+      <table class="ref-table">
+        <tr>
+          <th>Graphie</th>
+          <th>Signification</th>
+        </tr>
+        <tr>
+          <td>Chiffre normal, ex. <strong>4</strong></td>
+          <td>
+            <strong>Sonde positive</strong> : profondeur sous le zéro
+            hydrographique — il y a au moins 4 m d'eau à marée basse théorique.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Chiffre <strong>souligné</strong>, ex. <strong><u>4</u></strong>
+          </td>
+          <td>
+            <strong>Sonde négative (découvrante)</strong> : le fond est
+            <strong>au-dessus</strong> du zéro hydrographique → une zone qui
+            découvre à marée basse (elle émerge à basse mer). Le chiffre indique
+            la hauteur du terrain <strong>au-dessus</strong> du zéro.
+          </td>
+        </tr>
+        <tr>
+          <td>Chiffre décalé (en parenthèses)</td>
+          <td>
+            <strong>Sonde décalée</strong> : chiffre déplacé pour une lecture
+            claire de la carte (la position réelle est légèrement différente).
+          </td>
+        </tr>
+      </table>
+      <p class="note">
+        <strong>Zéro hydrographique (zéro des cartes)</strong> = niveau des plus
+        basses mers astronomiques théoriques (coefficient ≈ 120). Presque toutes
+        les hauteurs de marée sont donc au-dessus de ce zéro. Une
+        <strong>sonde soulignée</strong> se compte en négatif : c'est une zone
+        qui découvre à marée basse.
+      </p>
+
+      <h2>2. 🧮 Profondeur réelle = sonde + hauteur de marée</h2>
+      <p style="font-size: 0.9rem">
+        La sonde donne la profondeur au zéro des cartes. À l'heure de
+        navigation, la <strong>hauteur d'eau réelle</strong> se calcule en
+        ajoutant la <strong>hauteur de marée</strong> (donnée par l'annuaire des
+        marées / le SHOM, comptée au-dessus du zéro) :
+      </p>
+      <p class="big" style="font-size: 1.05rem">
+        Hauteur d'eau = Sonde + Hauteur de marée
+      </p>
+      <div class="card card--tip">
+        <h4>Exemple</h4>
+        <p style="font-size: 0.9rem">
+          En un point marqué d'une sonde <strong>4</strong> (mètres), à une
+          heure où la hauteur de marée est de <strong>1 m</strong> : hauteur
+          d'eau = <strong>4 + 1 = 5 m</strong>. Il y a donc 5 mètres d'eau à cet
+          endroit à ce moment-là.
+        </p>
+      </div>
+      <p class="note">
+        Piège d'examen : avec une sonde soulignée, la valeur se porte en
+        négatif. Sonde <u>1</u> + hauteur de marée 1,5 m → hauteur d'eau = −1 +
+        1,5 = <strong>0,5 m</strong> : la zone ne découvre que si la somme
+        devient négative (ex. marée basse).
+      </p>
+
+      <h2>3. 🧭 Cap et route : ne pas confondre</h2>
+      <table class="ref-table">
+        <tr>
+          <th>Notion</th>
+          <th>Définition</th>
+        </tr>
+        <tr>
+          <td><strong>Cap</strong></td>
+          <td>
+            La direction <strong>visée</strong> : direction vers laquelle pointe
+            l'axe du bateau, mesurée au compas (en degrés).
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Route</strong></td>
+          <td>
+            Le chemin <strong>réellement suivi</strong> sur le fond : la « trace
+            » effective du bateau par rapport au fond marin.
+          </td>
+        </tr>
+      </table>
+      <p style="font-size: 0.9rem">
+        Cap et route ne coïncident que s'il n'y a ni courant ni dérive. Le
+        <strong>courant</strong>, la <strong>dérive</strong> et le vent poussent
+        le bateau : la route suivie diffère alors du cap.
+        <strong>Cap = direction visée, route = trajet réel sur le fond.</strong>
+        Pour compenser courant et dérive, on corrige le cap (cap à tenir).
+      </p>
+
+      <h2>4. 📏 Le mille nautique et les distances</h2>
+      <ul style="font-size: 0.9rem">
+        <li>
+          <strong
+            >1 mille nautique (mille marin) = 1 852 mètres (1 852 m)</strong
+          >
+          = 1 minute (1′) d'arc de <strong>latitude</strong> : 40 000 km ÷ 360°
+          ÷ 60′ = 1,852 km.
+        </li>
+        <li>
+          Les échelles de <strong>latitude</strong> sont portées sur les
+          <strong>bords latéraux</strong> de la carte (gauche et droite) ; les
+          échelles de <strong>longitude</strong> sur les bords
+          <strong>supérieur et inférieur</strong> (haut et bas).
+        </li>
+        <li>
+          <strong>On mesure les distances sur l'échelle des latitudes</strong> :
+          la graduation des minutes y vaut directement les milles (1′ = 1
+          mille). On relève l'écart entre deux points (au compas / à la règle)
+          et on le reporte sur l'échelle des latitudes.
+        </li>
+      </ul>
+      <p class="note">
+        Pourquoi pas sur l'échelle des longitudes ? Les parallèles rétrécissent
+        quand on se rapproche des pôles : seule l'échelle des latitudes
+        (méridiens = circonférence constante ≈ 40 000 km) mesure les distances
+        de façon juste sur la carte.
+      </p>
+
+      <hr />
+      <p class="meta" style="text-align: center">
+        Voir aussi :
+        <a href="../lessons/0009-carte-navigation.html"
+          >Leçon 9 — Carte et navigation</a
+        >
+        · <a href="reglementation.html">Réglementation côtière</a> ·
+        <a href="regles-route.html">Règles de route</a> ·
+        <a href="signaux-detresse.html">Signaux de détresse</a> · Sources : SHOM
+        · annuaire des marées · cours de navigation (lavoilepourlesnuls.com,
+        loisirs-nautic.fr)
+      </p>
+    </div>
+  </body>
+</html>
