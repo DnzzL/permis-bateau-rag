@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs / divers
+*.log
+node_modules/
+*.zip
+
+# Python / RAG
+.venv/
+__pycache__/
+*.pyc
+.env
+rag/permis.duckdb
+rag/data/*.jsonl
+rag/data/*.json
+rag/data/*.log

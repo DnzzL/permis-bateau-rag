@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 11 — Navigation Fluviale (Eaux Intérieures)</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    .schema { text-align: center; margin: 1.5rem 0; }
+    .schema p.meta { margin-top: 0.4rem; }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.8rem;
+      margin: 1rem 0;
+    }
+    .panel-card {
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 0.8rem;
+      background: white;
+      text-align: center;
+    }
+    .panel-card h5 { margin: 0.5rem 0 0.2rem; font-size: 0.9rem; }
+    .panel-card p { font-size: 0.77rem; margin: 0; color: var(--color-muted); }
+    .fl-panel {
+      width: 50px; height: 50px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; border-radius: 3px;
+    }
+    .fl-int, .fl-obl, .fl-res { background: #fff; border: 4px solid #c0392b; }
+    .fl-ind { background: #1a5276; color: #fff; }
+    .fl-rec {
+      background: linear-gradient(135deg, #27ae60 0 50%, #fff 50% 100%);
+      border: 1px solid #999;
+    }
+
+    .ecluse-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+    .ecluse-card {
+      flex: 1; min-width: 200px;
+      border: 1px solid var(--color-border); border-radius: 8px;
+      padding: 0.9rem; background: white;
+    }
+    .ecluse-card .lights { font-size: 1.6rem; letter-spacing: 0.2rem; }
+    .ecluse-card h5 { margin: 0.3rem 0; }
+    .ecluse-card p { font-size: 0.83rem; margin: 0; color: var(--color-muted); }
+
+    .two-cols { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+    .two-cols > div { flex: 1; min-width: 220px; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 11 · ⏱ 25 minutes · <span class="tag tag--fluvial">Fluvial</span> <span class="tag tag--important">Eaux intérieures</span></p>
+
+<h1>Navigation Fluviale (Eaux Intérieures)</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>Découvrir l'<strong>option « eaux intérieures »</strong> du permis : ce qu'elle autorise, et les spécificités qui la distinguent du côtier — <strong>rive droite/gauche</strong>, <strong>balisage fluvial</strong>, <strong>panneaux</strong>, <strong>règles de croisement</strong> et <strong>passage d'écluse</strong>. C'est l'objectif secondaire de votre projet : pouvoir aussi naviguer sur le Rhône, la Saône ou les canaux.</p>
+</div>
+
+<h2>Côtier ou fluvial ?</h2>
+
+<p>Le <strong>permis plaisance</strong> a deux options qui partagent un <strong>tronc commun</strong> (sécurité, conduite, environnement) :</p>
+<ul>
+  <li><strong>Option côtière</strong> : la mer, jusqu'à 6 milles d'un abri (Leçons 1 à 10).</li>
+  <li><strong>Option eaux intérieures (fluvial)</strong> : rivières, fleuves, canaux et lacs, pour des bateaux jusqu'à <strong>20 m</strong>. Dès <strong>16 ans</strong>.</li>
+</ul>
+<p>La grande différence : en mer, c'est le <strong>RIPAM</strong> ; en eaux intérieures, c'est le <strong>RGP / CEVNI</strong> (règlement de la navigation intérieure), avec sa propre signalisation. Bonne nouvelle : beaucoup de réflexes de sécurité (Leçon 6) restent valables.</p>
+
+<hr>
+
+<h2>1. Rive droite, rive gauche : la règle de base</h2>
+
+<div class="card card--warning">
+  <h4>⚠️ Le repère qui change tout</h4>
+  <p>« Rive droite » et « rive gauche » se définissent <strong>toujours pour un observateur tourné vers l'aval</strong> (dans le sens du courant, vers la mer). Ce n'est pas votre droite à vous : c'est la droite <em>quand on regarde descendre l'eau</em>.</p>
+</div>
+
+<div class="schema">
+  <svg width="320" height="245" viewBox="0 0 320 245">
+    <defs>
+      <marker id="flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2980b9"/>
+      </marker>
+    </defs>
+    <!-- terres -->
+    <rect x="0" y="0" width="95" height="245" fill="#e6dcc3"/>
+    <rect x="225" y="0" width="95" height="245" fill="#e6dcc3"/>
+    <!-- eau -->
+    <rect x="95" y="0" width="130" height="245" fill="#bfe0f2"/>
+    <!-- AVAL vers le haut -->
+    <text x="160" y="16" font-size="10" fill="#2980b9" text-anchor="middle" font-weight="bold">↑ AVAL (sens du courant)</text>
+    <!-- courant vers le haut -->
+    <line x1="160" y1="185" x2="160" y2="38" stroke="#2980b9" stroke-width="2" stroke-dasharray="5" marker-end="url(#flow)"/>
+    <text x="166" y="118" font-size="9" fill="#2980b9">courant</text>
+    <!-- observateur (bateau) en bas, regarde vers l'aval (pointe vers le haut) -->
+    <polygon points="160,184 151,206 169,206" fill="#34495e"/>
+    <text x="160" y="224" font-size="9" fill="#34495e" text-anchor="middle">on regarde vers l'aval ↑</text>
+    <!-- marque rive GAUCHE (verte) — à gauche -->
+    <rect x="100" y="92" width="13" height="22" fill="#27ae60"/>
+    <text x="106" y="130" font-size="9" fill="#1e8449" text-anchor="middle">RIVE</text>
+    <text x="106" y="141" font-size="9" fill="#1e8449" text-anchor="middle">GAUCHE</text>
+    <text x="106" y="152" font-size="9" fill="#1e8449" text-anchor="middle">(verte)</text>
+    <!-- marque rive DROITE (rouge) — à droite -->
+    <rect x="207" y="92" width="13" height="22" fill="#e74c3c"/>
+    <text x="214" y="130" font-size="9" fill="#c0392b" text-anchor="middle">RIVE</text>
+    <text x="214" y="141" font-size="9" fill="#c0392b" text-anchor="middle">DROITE</text>
+    <text x="214" y="152" font-size="9" fill="#c0392b" text-anchor="middle">(rouge)</text>
+  </svg>
+  <p class="meta">On regarde vers l'aval (ici, vers le haut) : la <strong>main droite</strong> pointe la <strong>rive droite</strong>, balisée en <strong>rouge</strong> ; la rive gauche est en <strong>vert</strong>.</p>
+</div>
+
+<div class="card card--tip">
+  <h4>🧠 Le balisage du chenal</h4>
+  <ul>
+    <li><strong>Marques rouges</strong> = côté <strong>rive droite</strong> (panneau/espar, feu rouge).</li>
+    <li><strong>Marques vertes</strong> = côté <strong>rive gauche</strong> (feu vert).</li>
+    <li>Une marque <strong>jaune</strong> à bande signale que le chenal <strong>traverse</strong> d'une rive à l'autre.</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>2. Les panneaux de signalisation fluviale</h2>
+
+<p>Au total, 94 panneaux balisent les voies navigables. Ils sont <strong>carrés ou rectangulaires</strong> (pour ne pas les confondre avec la route) et se classent en 5 familles :</p>
+
+<div class="panel-grid">
+  <div class="panel-card">
+    <div class="fl-panel fl-int">🚫</div>
+    <h5>Interdiction</h5>
+    <p>Fond blanc, <strong>bordure rouge</strong> (souvent barre rouge). Ex : interdit de dépasser, de mouiller, de faire demi-tour.</p>
+  </div>
+  <div class="panel-card">
+    <div class="fl-panel fl-obl">➡️</div>
+    <h5>Obligation</h5>
+    <p>Bordure rouge, picto noir. Flèche = direction obligatoire ; chiffre = vitesse (km/h) ; point = signal sonore.</p>
+  </div>
+  <div class="panel-card">
+    <div class="fl-panel fl-res">↔️</div>
+    <h5>Restriction</h5>
+    <p>Bordure rouge, picto noir. Indique une limite : hauteur, largeur ou profondeur du chenal.</p>
+  </div>
+  <div class="panel-card">
+    <div class="fl-panel fl-rec"></div>
+    <h5>Recommandation</h5>
+    <p>Losanges vert/blanc. Deux losanges = il est conseillé de naviguer <strong>entre</strong> eux.</p>
+  </div>
+  <div class="panel-card">
+    <div class="fl-panel fl-ind">ℹ️</div>
+    <h5>Indication</h5>
+    <p><strong>Bleu</strong>, picto blanc. Donne une information ou une autorisation (stationnement, point d'eau…).</p>
+  </div>
+</div>
+
+<div class="card card--tip">
+  <h4>🧠 Le code couleur</h4>
+  <p><strong>Bordure rouge = un ordre</strong> (interdiction, obligation, restriction) à respecter strictement. <strong>Bleu = une information.</strong> Et attention : sur les rivières, les <strong>vitesses sont en km/h</strong>, pas en nœuds !</p>
+</div>
+
+<hr>
+
+<h2>3. Règles de navigation en rivière</h2>
+
+<div class="two-cols">
+  <div>
+    <h4>Croisement &amp; dépassement</h4>
+    <ul>
+      <li><strong>On tient sa droite</strong> : le croisement se fait normalement <strong>bâbord contre bâbord</strong>.</li>
+      <li>Le dépassement se fait en principe par <strong>bâbord</strong> du bateau rattrapé, après s'être annoncé.</li>
+      <li>Dans un chenal étroit, on serre le <strong>côté tribord</strong> (sa droite).</li>
+    </ul>
+  </div>
+  <div>
+    <h4>Priorités</h4>
+    <ul>
+      <li>Les <strong>menus bateaux</strong> (la plaisance) doivent <strong>s'écarter</strong> des bâtiments de commerce (péniches) et des convois.</li>
+      <li>Les <strong>bacs</strong> (ferries traversant le fleuve) sont <strong>prioritaires</strong>.</li>
+      <li>Un bateau qui <strong>monte</strong> (vers l'amont) facilite le passage de celui qui <strong>descend</strong> (moins manœuvrant avec le courant).</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Signaux sonores essentiels</h3>
+<table>
+  <tr><th>Signal</th><th>Signification</th></tr>
+  <tr><td>🔊 <strong>1 son bref</strong></td><td>« Je viens sur tribord » (à droite)</td></tr>
+  <tr><td>🔊🔊 <strong>2 sons brefs</strong></td><td>« Je viens sur bâbord » (à gauche)</td></tr>
+  <tr><td>🔊🔊🔊 <strong>3 sons brefs</strong></td><td>« Je bats en arrière » (marche arrière)</td></tr>
+  <tr><td>📢 <strong>1 son prolongé</strong></td><td>Signal d'avertissement (approche d'un passage masqué)</td></tr>
+  <tr><td>🔊🔊🔊🔊… <strong>série de sons très brefs</strong></td><td>Risque d'abordage / danger</td></tr>
+</table>
+
+<hr>
+
+<h2>4. Le passage d'écluse 🔒</h2>
+
+<p>L'écluse fait monter ou descendre le bateau d'un bief à l'autre. C'est <strong>la</strong> manœuvre emblématique du fluvial. On la pilote à la <strong>signalisation lumineuse</strong> :</p>
+
+<div class="ecluse-row">
+  <div class="ecluse-card">
+    <div class="lights">🔴🔴</div>
+    <h5>Deux rouges (ou 1 rouge)</h5>
+    <p>Écluse fermée ou hors service. <strong>On n'entre pas, on attend.</strong></p>
+  </div>
+  <div class="ecluse-card">
+    <div class="lights">🔴🟢</div>
+    <h5>Rouge + vert</h5>
+    <p>Écluse en <strong>préparation</strong>. Elle va s'ouvrir : <strong>on se tient prêt, sans entrer encore.</strong></p>
+  </div>
+  <div class="ecluse-card">
+    <div class="lights">🟢</div>
+    <h5>Vert</h5>
+    <p><strong>Entrée autorisée.</strong> On entre lentement, on s'amarre, on coupe le moteur.</p>
+  </div>
+</div>
+
+<div class="card card--tip">
+  <h4>🪢 Dans le sas</h4>
+  <ul>
+    <li>Entrez <strong>au ralenti</strong>, pare-battages en place (Leçon 8), dans l'ordre indiqué.</li>
+    <li><strong>Amarrez</strong> avec un tour au bollard <strong>tenu à la main</strong> (jamais frappé !) : le niveau va monter ou descendre, il faut filer ou reprendre du mou.</li>
+    <li>Restez à bord, gilet porté (en France, le moteur peut rester au ralenti). Ne sortez que sur signal. <a href="0014-passage-ecluse.html">Voir la leçon 14 — passage d'écluse en détail →</a></li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>5. Quiz — Testez votre fluvial</h2>
+
+<div class="quiz-question" data-correct="1" data-feedback="« Rive droite » et « rive gauche » se définissent toujours pour un observateur tourné vers l'aval (dans le sens du courant).">
+  <p><strong>1.</strong> Comment définit-on la rive droite d'un fleuve ?</p>
+  <ul class="quiz-options">
+    <li>En regardant vers l'amont</li>
+    <li>En regardant vers l'aval</li>
+    <li>Selon le sens de navigation</li>
+    <li>Toujours le côté nord</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Tourné vers l'aval, la rive droite est balisée en rouge et la rive gauche en vert.">
+  <p><strong>2.</strong> De quelle couleur est le balisage du côté de la rive droite ?</p>
+  <ul class="quiz-options">
+    <li>Vert</li>
+    <li>Jaune</li>
+    <li>Rouge</li>
+    <li>Bleu</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="Un panneau bleu à pictogramme blanc est un panneau d'indication : il donne une information ou une autorisation.">
+  <p><strong>3.</strong> Que signifie un panneau fluvial bleu à pictogramme blanc ?</p>
+  <ul class="quiz-options">
+    <li>Une interdiction</li>
+    <li>une obligation</li>
+    <li>un danger</li>
+    <li>une indication</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="Sur les voies intérieures, on tient sa droite : le croisement se fait normalement bâbord contre bâbord.">
+  <p><strong>4.</strong> En rivière, de quel côté tient-on normalement ?</p>
+  <ul class="quiz-options">
+    <li>Sa droite (tribord)</li>
+    <li>Sa gauche (bâbord)</li>
+    <li>Le milieu du chenal</li>
+    <li>Le côté le plus profond</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="À l'écluse, le feu vert seul autorise l'entrée. Rouge = on attend ; rouge + vert = préparation, on ne rentre pas encore.">
+  <p><strong>5.</strong> Quel feu d'écluse autorise l'entrée dans le sas ?</p>
+  <ul class="quiz-options">
+    <li>Deux feux rouges</li>
+    <li>Un feu vert</li>
+    <li>Rouge et vert ensemble</li>
+    <li>Aucun feu</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Les menus bateaux (la plaisance) doivent s'écarter des bâtiments de commerce et des convois, et laisser la priorité aux bacs.">
+  <p><strong>6.</strong> Face à une grande péniche de commerce, le bateau de plaisance doit…</p>
+  <ul class="quiz-options">
+    <li>Garder son cap</li>
+    <li>Accélérer pour passer</li>
+    <li>S'écarter et lui laisser le passage</li>
+    <li>Klaxonner et continuer</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="Sur les rivières et canaux, les vitesses sont exprimées en km/h (et non en nœuds comme en mer).">
+  <p><strong>7.</strong> En quelle unité sont indiquées les vitesses sur les voies fluviales ?</p>
+  <ul class="quiz-options">
+    <li>En nœuds</li>
+    <li>En milles/heure</li>
+    <li>En m/s</li>
+    <li>En km/h</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📌 Ce qu'il faut retenir</h2>
+<ul>
+  <li><strong>Fluvial = option eaux intérieures</strong> : rivières/canaux/lacs, bateau ≤ 20 m, dès 16 ans. Règlement : RGP/CEVNI.</li>
+  <li><strong>Rive droite / gauche : vu vers l'aval.</strong> Rive droite = <strong>rouge</strong>, rive gauche = <strong>verte</strong>.</li>
+  <li><strong>Panneaux :</strong> bordure rouge = ordre (interdiction/obligation/restriction) · bleu = indication · losanges vert/blanc = recommandation.</li>
+  <li><strong>Règles :</strong> tenir sa droite (croisement bâbord-bâbord) · la plaisance s'écarte du commerce · les bacs sont prioritaires.</li>
+  <li><strong>Écluse :</strong> rouge = attendre · rouge+vert = préparation · vert = entrer. On s'amarre et on tient les amarres à la main.</li>
+  <li><strong>Vitesses en km/h</strong>, pas en nœuds.</li>
+</ul>
+
+<div class="card card--info">
+  <h4>📖 À consulter</h4>
+  <p>Le guide officiel : <a href="https://www.ecologie.gouv.fr/sites/default/files/documents/Guide_sur_la_signalisation_pour_la_navigation_int%C3%A9rieure.pdf" target="_blank">Signalisation pour la navigation intérieure (Cerema/Ministère)</a>. Entraînez-vous aux panneaux : <a href="https://www.loisirs-nautic.fr/test_permis_fluvial_signalisation2.php" target="_blank">tests signalisation fluviale</a>.</p>
+  <p>📄 Pour réviser : imprimez la <a href="../reference/fluvial.html">fiche fluvial</a> (rive droite/gauche, panneaux, écluse, signaux sonores).</p>
+</div>
+
+<div class="card card--tip">
+  <h4>💡 Une question ?</h4>
+  <p>Vous voulez qu'on détaille un type de panneau, ou la chronologie exacte d'un passage d'écluse montante ? Demandez-moi — je suis votre professeur.</p>
+</div>
+
+<hr>
+
+<div class="lesson-nav">
+  <a href="0010-revision-examen-blanc.html">← Leçon 10 : Examen blanc côtier</a>
+  <a href="0012-fluvial-reglementation-securite.html">Leçon 12 : Réglementation &amp; sécurité →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.ecologie.gouv.fr/sites/default/files/documents/Guide_sur_la_signalisation_pour_la_navigation_int%C3%A9rieure.pdf" target="_blank">Cerema — Signalisation navigation intérieure</a> ·
+  CEVNI / RGP · <a href="https://public.codesrousseau.fr/permis-de-conduire/permis-bateau/permis-fluvial/" target="_blank">Codes Rousseau — permis fluvial</a></em>
+</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 3 — Feux de Navigation</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    .light-swatch {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin: 0 2px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+    }
+    .lr { background: #e74c3c; }
+    .lg { background: #27ae60; }
+    .lw { background: #f5f5f5; border: 1px solid #ccc; }
+    .ly { background: #f1c40f; }
+
+    .scan-card {
+      background: #1a2a3a;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+      color: white;
+    }
+    .scan-card .lights { font-size: 1.8rem; margin: 0.5rem 0; }
+    .scan-card h4 { color: #f0f0ea; margin-top: 0; }
+
+    .vignette {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 0.1rem;
+    }
+    .vignette-red { background: #fde8e8; color: #c0392b; }
+    .vignette-green { background: #e8f8e8; color: #1e8449; }
+    .vignette-white { background: #f0f0ea; color: #555; }
+
+    .secteur-viz { text-align: center; margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 3 · ⏱ 20 minutes · <span class="tag tag--côtier">Côtier</span> <span class="tag tag--important">Fondamental</span></p>
+
+<h1>Feux de Navigation</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>Savoir <strong>lire les lumières d'un bateau la nuit</strong> : reconnaître son type, sa direction, et son activité. En Méditerranée, vous naviguerez peut-être de nuit ou au coucher du soleil — ces règles sont vitales.</p>
+</div>
+
+<h2>Pourquoi les feux ?</h2>
+
+<p>La nuit ou par visibilité réduite, les feux sont le seul langage visuel entre les bateaux. Ils disent : <strong>« Je suis là, je suis un X, je vais dans cette direction »</strong>. C'est le complément direct de la Leçon 2 (règles de route) — sans connaître les feux, vous ne pouvez pas appliquer les priorités la nuit.</p>
+
+<p>Les feux sont définis par les règles <strong>RIPAM 20 à 31</strong>.</p>
+
+<hr>
+
+<h2>Les 3 feux fondamentaux</h2>
+
+<table>
+  <tr>
+    <th>Feu</th>
+    <th>Couleur</th>
+    <th>Angle</th>
+    <th>Position sur le bateau</th>
+  </tr>
+  <tr>
+    <td><span class="light-swatch lr"></span> Bâbord</td>
+    <td><span class="vignette vignette-red">Rouge</span></td>
+    <td>112,5° (avant → arrière côté gauche)</td>
+    <td>Côté gauche (bâbord)</td>
+  </tr>
+  <tr>
+    <td><span class="light-swatch lg"></span> Tribord</td>
+    <td><span class="vignette vignette-green">Vert</span></td>
+    <td>112,5° (avant → arrière côté droit)</td>
+    <td>Côté droit (tribord)</td>
+  </tr>
+  <tr>
+    <td><span class="light-swatch lw"></span> Poupe</td>
+    <td><span class="vignette vignette-white">Blanc</span></td>
+    <td>135° (secteur arrière)</td>
+    <td>À l'arrière (poupe)</td>
+  </tr>
+  <tr>
+    <td><span class="light-swatch lw"></span> Tête de mât</td>
+    <td><span class="vignette vignette-white">Blanc</span></td>
+    <td>225° (avant + côtés)</td>
+    <td>En haut du mât (bateaux à moteur)</td>
+  </tr>
+</table>
+
+<div class="secteur-viz">
+  <svg width="300" height="240" viewBox="0 0 300 240">
+    <!-- Bateau vu de dessus (pointe vers le haut = avant) -->
+    <rect x="130" y="98" width="40" height="34" rx="3" fill="#333" />
+    <text x="137" y="118" font-size="10" fill="white">⛵</text>
+    <!-- Secteur rouge (bâbord/gauche) : de l'avant (270°) CCW 112,5° → 157,5° -->
+    <path d="M 150 115 L 150 15 A 100 100 0 0 0 57.6 153.3 Z" fill="#e74c3c" opacity="0.12"/>
+    <text x="62" y="135" font-size="12" fill="#e74c3c" font-weight="bold">ROUGE</text>
+    <text x="65" y="150" font-size="10" fill="#e74c3c">112,5°</text>
+    <!-- Secteur vert (tribord/droite) : de l'avant (270°) CW 112,5° → 22,5° -->
+    <path d="M 150 115 L 150 15 A 100 100 0 0 1 242.4 153.3 Z" fill="#27ae60" opacity="0.12"/>
+    <text x="205" y="135" font-size="12" fill="#27ae60" font-weight="bold">VERT</text>
+    <text x="208" y="150" font-size="10" fill="#27ae60">112,5°</text>
+    <!-- Secteur arrière (blanc) : de 22,5° CW à 157,5° → 135° -->
+    <path d="M 150 115 L 242.4 153.3 A 100 100 0 0 1 57.6 153.3 Z" fill="#ddd" opacity="0.3"/>
+    <text x="130" y="210" font-size="12" fill="#888" font-weight="bold">BLANC</text>
+    <text x="133" y="225" font-size="10" fill="#888">135°</text>
+    <!-- Légende -->
+    <text x="145" y="9" font-size="11" fill="#666" text-anchor="middle">▲ AVANT (proue)</text>
+    <text x="145" y="238" font-size="11" fill="#666" text-anchor="middle">▼ ARRIÈRE (poupe)</text>
+  </svg>
+  <p class="meta">Vue du dessus : le bateau pointe vers le haut. Chaque feu éclaire un secteur précis. On ne voit jamais le feu de l'autre côté.</p>
+</div>
+
+<hr>
+
+<h2>Lire les combinaisons de feux</h2>
+
+<p>Voici les configurations que vous devez connaître pour l'examen. Imaginez la scène de nuit en Méditerranée : vous voyez ces lumières au loin. Que voyez-vous ?</p>
+
+<div class="scan-card">
+  <h4>Scénario 1 : 🚤 Bateau à moteur (&lt; 50 m) faisant route</h4>
+  <div class="lights">
+    <span class="light-swatch lr"></span>
+    <span class="light-swatch lg"></span>
+    <span class="light-swatch lw"></span>
+    <span class="light-swatch lw"></span>
+  </div>
+  <p><strong>Feux :</strong> côtés (rouge + vert) + tête de mât (blanc) + poupe (blanc).<br>
+  <strong>Variante :</strong> si vous ne voyez que le blanc de tête de mât et le vert, vous voyez le côté tribord (le bateau va de gauche à droite devant vous).</p>
+</div>
+
+<div class="scan-card">
+  <h4>Scénario 2 : ⛵ Voilier faisant route (à la voile)</h4>
+  <div class="lights">
+    <span class="light-swatch lr"></span>
+    <span class="light-swatch lg"></span>
+    <span class="light-swatch lw"></span>
+  </div>
+  <p><strong>Feux :</strong> côtés (rouge + vert) + poupe (blanc). <strong>Pas</strong> de feu de tête de mât. Optionnel : 2 feux superposés au mât (rouge sur vert).<br>
+  <strong>À savoir :</strong> un voilier de <strong>moins de 7 m</strong> peut, à défaut des feux ci-dessus, tenir prête une <strong>lampe torche étanche</strong> à feu blanc, à montrer à temps pour éviter l'abordage.</p>
+</div>
+
+<div class="scan-card">
+  <h4>Scénario 3 : ⚓ Au mouillage (&lt; 50 m)</h4>
+  <div class="lights">
+    <span class="light-swatch lw"></span>
+  </div>
+  <p><strong>Feu :</strong> 1 <strong>feu blanc tout autour</strong> (visible 360°), à l'avant du bateau. Pas de feux de côté.<br>
+  <strong>Piège :</strong> un feu blanc tout seul peut aussi être l'arrière d'un bateau qui s'éloigne !</p>
+</div>
+
+<div class="scan-card">
+  <h4>Scénario 4 : 🎣 Bateau de pêche (chalutier ou autre)</h4>
+  <div class="lights">
+    <span class="light-swatch lg"></span>
+    <span class="light-swatch lw"></span>
+  </div>
+  <p><strong>Feux :</strong> 2 feux superposés (vert sur blanc). + feux de côté s'il fait route.<br>
+  <strong>Chalutier :</strong> vert sur blanc. <strong>Pêche autre :</strong> rouge sur blanc.</p>
+</div>
+
+<div class="scan-card">
+  <h4>Scénario 5 : 🚫 Navire non maître de sa manœuvre</h4>
+  <div class="lights">
+    <span class="light-swatch lr"></span>
+    <span class="light-swatch lr"></span>
+    <span class="light-swatch lw"></span>
+  </div>
+  <p><strong>Feux :</strong> 2 feux rouges superposés (jour et nuit) + feux de côté s'il fait route. Indique un navire qui ne peut pas manœuvrer (ex: sonde, câble sous-marin, etc.).<br>
+  <strong>Navire à capacité restreinte :</strong> rouge-blanc-rouge superposés.</p>
+</div>
+
+<hr>
+
+<h2>Comment les feux vous aident à appliquer le RIPAM</h2>
+
+<p>Les feux de navigation sont directement liés aux règles de priorité de la Leçon 2 :</p>
+<ul>
+  <li><strong>Si vous voyez</strong> <span class="light-swatch lr"></span> <span class="light-swatch lw"></span> <strong>(rouge + blanc)</strong> → vous voyez le côté bâbord d'un bateau qui croise votre route. En croisement, c'est en général <strong>vous qui déroutez</strong> (l'autre est prioritaire). Pense-bête : « voir du rouge = stop ».</li>
+  <li><strong>Si vous voyez</strong> <span class="light-swatch lg"></span> <span class="light-swatch lw"></span> <strong>(vert + blanc)</strong> → vous voyez le côté tribord d'un bateau qui croise votre route. En croisement, c'est en général <strong>vous qui êtes prioritaire</strong> (l'autre déroute). Pense-bête : « voir du vert = je passe ».</li>
+  <li><strong>Si vous voyez</strong> <span class="light-swatch lr"></span> <span class="light-swatch lg"></span> <span class="light-swatch lw"></span> <strong>(rouge + vert + blanc)</strong> → il vient droit sur vous ! Action immédiate (face à face).</li>
+  <li><strong>Si vous voyez</strong> <span class="light-swatch lw"></span> <strong>seul (blanc)</strong> → vous voyez l'arrière. Vous le rattrapez ou il s'éloigne.</li>
+</ul>
+
+<div class="card card--tip">
+  <h4>💡 La phrase magique</h4>
+  <p>« <strong>Un peu de rouge à droite, ça m'inquiète</strong> » — si vous voyez un feu rouge sur votre droite (tribord), vous êtes en position de dérouter. L'autre bateau est prioritaire.</p>
+</div>
+
+<hr>
+
+<h2>🧪 Quiz — Testez votre œil nocturne</h2>
+
+<div class="quiz-question" data-correct="0" data-feedback="Le feu rouge est à bâbord (côté gauche), le vert à tribord (côté droit). Astuce : R = Rouge = Bâbord = Gauche (mots courts).">
+  <p><strong>1.</strong> De quelle couleur est le feu de navigation à bâbord (côté gauche) ?</p>
+  <ul class="quiz-options">
+    <li>Rouge</li>
+    <li>Vert</li>
+    <li>Blanc</li>
+    <li>Jaune</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Un feu blanc tout seul, visible sur 360°, indique un bateau au mouillage. Attention piège : un feu blanc peut aussi être l'arrière d'un bateau qui s'éloigne !">
+  <p><strong>2.</strong> Vous voyez un seul feu blanc la nuit. Que peut-ce être ?</p>
+  <ul class="quiz-options">
+    <li>Un bateau à moteur s'approchant</li>
+    <li>Un voilier de nuit</li>
+    <li>Un bateau au mouillage</li>
+    <li>Un bateau de pêche</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="Le voilier à la voile n'a pas de feu de tête de mât (contrairement au moteur). Il a les feux de côté + poupe, et optionnellement 2 feux superposés (rouge sur vert) au mât.">
+  <p><strong>3.</strong> Quel feu n'est PAS présent sur un voilier naviguant à la voile ?</p>
+  <ul class="quiz-options">
+    <li>Feu de poupe blanc</li>
+    <li>Feu de tête de mât blanc</li>
+    <li>Feu de bâbord rouge</li>
+    <li>Feu de tribord vert</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="Si vous voyez rouge + vert + blanc, le bateau est de face. C'est un face à face (Règle 14) : chacun vire à tribord.">
+  <p><strong>4.</strong> Vous voyez simultanément un feu rouge, un feu vert et un feu blanc. Quelle est la situation ?</p>
+  <ul class="quiz-options">
+    <li>Le bateau est au mouillage</li>
+    <li>Le bateau s'éloigne de vous</li>
+    <li>Le bateau croise votre route par la gauche</li>
+    <li>Le bateau vient droit sur vous</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Les 2 feux rouges superposés (jour et nuit) signalent un navire non maître de sa manœuvre. Il est prioritaire sur tous !">
+  <p><strong>5.</strong> Que signifient 2 feux rouges superposés ?</p>
+  <ul class="quiz-options">
+    <li>Bateau au mouillage</li>
+    <li>Bateau de pêche</li>
+    <li>Navire non maître de sa manœuvre</li>
+    <li>Bateau en avarie de moteur</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📖 À faire après cette leçon</h2>
+
+<div class="card card--tip">
+  <h4>Révisions recommandées</h4>
+  <ul>
+    <li>Imprimez la fiche <a href="../reference/feux.html">reference/feux.html</a> — elle résume toutes les combinaisons.</li>
+    <li>Regardez votre fiche <code>feux.png</code> (que vous avez déjà téléchargée) — comparez avec ce que vous venez d'apprendre.</li>
+    <li>Entraînez-vous : pour chaque configuration, dites si le bateau va vers vous, s'éloigne, ou croise — et qui est prioritaire.</li>
+  </ul>
+</div>
+
+<p>Quand vous êtes prêt, dites-moi et on passe à la <strong>Leçon 4 : Balisage maritime</strong> — les bouées et balises qui balisent les chenaux et les dangers.</p>
+
+<hr>
+
+<div class="lesson-nav">
+  <a href="0002-regles-route-priorites.html">← Leçon 2 : Règles de route</a>
+  <a href="0004-balisage-maritime.html">Leçon 4 : Balisage maritime →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.mer.gouv.fr/permis-plaisance" target="_blank">Ministère de la Mer</a> · RIPAM Règles 20-31</em>
+</p>
+
+</div>
+</body>
+</html>

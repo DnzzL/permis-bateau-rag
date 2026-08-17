@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 10 — Examen Blanc (Permis Côtier)</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/exam.js"></script>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 10 · ⏱ 30 minutes · <span class="tag tag--côtier">Côtier</span> <span class="tag tag--important">Examen blanc</span></p>
+
+<h1>Examen Blanc — Permis Côtier</h1>
+
+<div class="card card--info">
+  <h4>🎯 Le but de cette leçon</h4>
+  <p>Vous testez en <strong>conditions réelles</strong> : <strong>40 questions</strong>, tous chapitres mélangés (<em>interleaving</em>), <strong>5 erreurs maximum</strong> pour être admis. Pas de feedback immédiat : vous répondez à tout, puis vous cliquez sur <strong>« Corriger »</strong>. À la fin, un bilan par thème vous montre vos points faibles.</p>
+</div>
+
+<div class="card card--tip">
+  <h4>📋 Règles du jeu (comme le vrai examen)</h4>
+  <ul>
+    <li><strong>40 questions</strong> à choix unique · <strong>il faut 35 bonnes réponses</strong> (5 erreurs tolérées).</li>
+    <li>Au vrai examen : 30 minutes, ~20 secondes par question. Essayez de ne pas traîner.</li>
+    <li>Répondez de mémoire, <strong>sans relire les leçons</strong> — c'est l'effort de récupération qui ancre les connaissances.</li>
+    <li>En cas de doute, répondez quand même : une question sans réponse compte comme fausse.</li>
+  </ul>
+</div>
+
+<div id="exam" data-max-errors="5">
+
+<div class="exam-bar" id="exam-progress">
+  <span>📝 <strong>Examen blanc</strong> — 40 questions</span>
+  <span class="count">0 / 40 répondues</span>
+</div>
+
+<!-- 1 -->
+<div class="exam-question" data-topic="Priorités" data-correct="1" data-feedback="Règle 15 : celui qui a l'autre bateau sur son côté tribord (droite) doit s'écarter ; l'autre garde son cap et sa vitesse.">
+  <span class="topic-chip">Priorités</span>
+  <p><strong>1.</strong> Deux bateaux à moteur se croisent avec risque d'abordage. Qui doit s'écarter ?</p>
+  <ul class="quiz-options">
+    <li>Celui qui a l'autre à bâbord</li>
+    <li>Celui qui a l'autre à tribord</li>
+    <li>Le plus rapide des deux</li>
+    <li>Le plus grand des deux</li>
+  </ul>
+</div>
+
+<!-- 2 -->
+<div class="exam-question" data-topic="Feux" data-correct="0" data-feedback="Le feu de bâbord (côté gauche) est rouge ; le feu de tribord (côté droit) est vert.">
+  <span class="topic-chip">Feux</span>
+  <p><strong>2.</strong> De quelle couleur est le feu de navigation à bâbord ?</p>
+  <ul class="quiz-options">
+    <li>Rouge</li>
+    <li>Vert</li>
+    <li>Blanc</li>
+    <li>Jaune</li>
+  </ul>
+</div>
+
+<!-- 3 -->
+<div class="exam-question" data-topic="Balisage" data-correct="2" data-feedback="En venant du large (sens entrant), le rouge se tient à bâbord (gauche). « Rouge à gauche en entrant ».">
+  <span class="topic-chip">Balisage</span>
+  <p><strong>3.</strong> En entrant dans un port, de quel côté laissez-vous la bouée rouge ?</p>
+  <ul class="quiz-options">
+    <li>À tribord (droite)</li>
+    <li>Au milieu du chenal</li>
+    <li>À bâbord (gauche)</li>
+    <li>Peu importe</li>
+  </ul>
+</div>
+
+<!-- 4 -->
+<div class="exam-question" data-topic="Météo" data-correct="1" data-feedback="Le mistral est un vent de secteur nord-ouest, froid, sec et souvent violent, qui descend la vallée du Rhône.">
+  <span class="topic-chip">Météo</span>
+  <p><strong>4.</strong> Le mistral est un vent…</p>
+  <ul class="quiz-options">
+    <li>D'est, chaud et humide</li>
+    <li>De nord-ouest, froid et violent</li>
+    <li>De sud, chargé de sable</li>
+    <li>Faible et régulier</li>
+  </ul>
+</div>
+
+<!-- 5 -->
+<div class="exam-question" data-topic="Sécurité" data-correct="3" data-feedback="Le canal 16 est le canal international de détresse, d'urgence et d'appel. Il s'écoute en permanence quand la VHF est allumée.">
+  <span class="topic-chip">Sécurité</span>
+  <p><strong>5.</strong> Sur quel canal VHF lance-t-on un appel de détresse ?</p>
+  <ul class="quiz-options">
+    <li>Canal 6</li>
+    <li>Canal 9</li>
+    <li>Canal 72</li>
+    <li>Canal 16</li>
+  </ul>
+</div>
+
+<!-- 6 -->
+<div class="exam-question" data-topic="Réglementation" data-correct="0" data-feedback="Dans la bande des 300 mètres, la vitesse est limitée à 5 nœuds, sans dérogation.">
+  <span class="topic-chip">Réglementation</span>
+  <p><strong>6.</strong> Quelle est la vitesse maximale dans la bande des 300 mètres ?</p>
+  <ul class="quiz-options">
+    <li>5 nœuds</li>
+    <li>10 nœuds</li>
+    <li>3 nœuds</li>
+    <li>Pas de limite</li>
+  </ul>
+</div>
+
+<!-- 7 -->
+<div class="exam-question" data-topic="Carte & navigation" data-correct="2" data-feedback="1 mille nautique = 1 852 mètres, soit 1 minute d'arc de latitude. Le nœud est un mille par heure.">
+  <span class="topic-chip">Carte &amp; navigation</span>
+  <p><strong>7.</strong> Combien vaut un mille nautique ?</p>
+  <ul class="quiz-options">
+    <li>1 000 mètres</li>
+    <li>1 609 mètres</li>
+    <li>1 852 mètres</li>
+    <li>2 000 mètres</li>
+  </ul>
+</div>
+
+<!-- 8 -->
+<div class="exam-question" data-topic="Mouillage & manœuvres" data-correct="2" data-feedback="Par temps calme, on file environ 3 fois la profondeur en chaîne (≈ 5 fois en cordage) pour que l'ancre croche.">
+  <span class="topic-chip">Mouillage &amp; manœuvres</span>
+  <p><strong>8.</strong> Quelle longueur de chaîne filer par temps calme ?</p>
+  <ul class="quiz-options">
+    <li>La profondeur exacte</li>
+    <li>2 fois la profondeur</li>
+    <li>Environ 3 fois la profondeur</li>
+    <li>10 fois la profondeur</li>
+  </ul>
+</div>
+
+<!-- 9 -->
+<div class="exam-question" data-topic="Priorités" data-correct="1" data-feedback="Face à face entre deux bateaux à moteur : chacun modifie sa route vers tribord pour passer bâbord contre bâbord.">
+  <span class="topic-chip">Priorités</span>
+  <p><strong>9.</strong> Deux bateaux à moteur arrivent face à face. Que fait chacun ?</p>
+  <ul class="quiz-options">
+    <li>Il vire à bâbord</li>
+    <li>Il vire à tribord</li>
+    <li>Il stoppe son moteur</li>
+    <li>Il accélère</li>
+  </ul>
+</div>
+
+<!-- 10 -->
+<div class="exam-question" data-topic="Feux" data-correct="3" data-feedback="Voir simultanément rouge + vert + blanc, c'est voir le bateau de face : il vient droit sur vous (situation de face à face).">
+  <span class="topic-chip">Feux</span>
+  <p><strong>10.</strong> La nuit, vous voyez un feu rouge, un feu vert et un feu blanc ensemble. Le bateau…</p>
+  <ul class="quiz-options">
+    <li>Est au mouillage</li>
+    <li>S'éloigne de vous</li>
+    <li>Croise par la gauche</li>
+    <li>Vient droit sur vous</li>
+  </ul>
+</div>
+
+<!-- 11 -->
+<div class="exam-question" data-topic="Balisage" data-correct="0" data-feedback="La marque tribord a une forme conique (cône). La marque bâbord est cylindrique (« boîte », sommet plat).">
+  <span class="topic-chip">Balisage</span>
+  <p><strong>11.</strong> Quelle est la forme d'une marque latérale de tribord ?</p>
+  <ul class="quiz-options">
+    <li>Un cône (sommet pointu)</li>
+    <li>Un cylindre (sommet plat)</li>
+    <li>Une sphère</li>
+    <li>Une croix</li>
+  </ul>
+</div>
+
+<!-- 12 -->
+<div class="exam-question" data-topic="Météo" data-correct="2" data-feedback="Un anticyclone est une zone de haute pression (≥ 1013 hPa) associée au beau temps. Une dépression (basse pression) annonce le mauvais temps.">
+  <span class="topic-chip">Météo</span>
+  <p><strong>12.</strong> Un anticyclone est associé à…</p>
+  <ul class="quiz-options">
+    <li>De la pluie</li>
+    <li>Une basse pression</li>
+    <li>Du beau temps</li>
+    <li>Un coup de vent</li>
+  </ul>
+</div>
+
+<!-- 13 -->
+<div class="exam-question" data-topic="Sécurité" data-correct="1" data-feedback="Le signal de détresse universel se fait par séries de 3 : 3 fusées, 3 feux à main, 3 sons (origine du SOS en morse).">
+  <span class="topic-chip">Sécurité</span>
+  <p><strong>13.</strong> Les signaux de détresse se font par séries de…</p>
+  <ul class="quiz-options">
+    <li>2</li>
+    <li>3</li>
+    <li>5</li>
+    <li>10</li>
+  </ul>
+</div>
+
+<!-- 14 -->
+<div class="exam-question" data-topic="Réglementation" data-correct="3" data-feedback="On traverse la bande des 300 m par un chenal balisé, perpendiculairement au rivage, toujours à 5 nœuds.">
+  <span class="topic-chip">Réglementation</span>
+  <p><strong>14.</strong> Comment traverse-t-on la bande des 300 m pour rejoindre le large ?</p>
+  <ul class="quiz-options">
+    <li>En longeant la plage</li>
+    <li>N'importe où, vite</li>
+    <li>En diagonale</li>
+    <li>Par un chenal, perpendiculairement</li>
+  </ul>
+</div>
+
+<!-- 15 -->
+<div class="exam-question" data-topic="Carte & navigation" data-correct="0" data-feedback="Une distance se mesure TOUJOURS sur l'échelle des latitudes (bords verticaux) : 1 minute de latitude = 1 mille nautique.">
+  <span class="topic-chip">Carte &amp; navigation</span>
+  <p><strong>15.</strong> Sur quelle échelle mesure-t-on une distance sur la carte ?</p>
+  <ul class="quiz-options">
+    <li>L'échelle des latitudes (côtés)</li>
+    <li>L'échelle des longitudes (haut/bas)</li>
+    <li>La rose des vents</li>
+    <li>N'importe laquelle</li>
+  </ul>
+</div>
+
+<!-- 16 -->
+<div class="exam-question" data-topic="Mouillage & manœuvres" data-correct="1" data-feedback="On aborde toujours contre le vent (ou le courant) et au ralenti : le vent freine le bateau et vous garde le contrôle.">
+  <span class="topic-chip">Mouillage &amp; manœuvres</span>
+  <p><strong>16.</strong> Comment aborder un quai en sécurité ?</p>
+  <ul class="quiz-options">
+    <li>Vent arrière, rapidement</li>
+    <li>Contre le vent, au ralenti</li>
+    <li>Perpendiculaire, plein gaz</li>
+    <li>En marche arrière</li>
+  </ul>
+</div>
+
+<!-- 17 -->
+<div class="exam-question" data-topic="Priorités" data-correct="2" data-feedback="Règle 13 : le bateau qui rattrape (dépasseur) doit s'écarter, même s'il est un voilier et que le rattrapé est un moteur.">
+  <span class="topic-chip">Priorités</span>
+  <p><strong>17.</strong> Lors d'un dépassement, qui doit s'écarter ?</p>
+  <ul class="quiz-options">
+    <li>Le bateau rattrapé</li>
+    <li>Le plus grand</li>
+    <li>Le bateau qui rattrape</li>
+    <li>Les deux</li>
+  </ul>
+</div>
+
+<!-- 18 -->
+<div class="exam-question" data-topic="Feux" data-correct="2" data-feedback="Un feu blanc seul, visible sur 360°, indique un bateau au mouillage (attention : ce peut aussi être l'arrière d'un bateau qui s'éloigne).">
+  <span class="topic-chip">Feux</span>
+  <p><strong>18.</strong> Un seul feu blanc visible tout autour (360°) signale le plus souvent…</p>
+  <ul class="quiz-options">
+    <li>Un bateau de pêche</li>
+    <li>Un voilier faisant route</li>
+    <li>Un bateau au mouillage</li>
+    <li>Un navire en détresse</li>
+  </ul>
+</div>
+
+<!-- 19 -->
+<div class="exam-question" data-topic="Balisage" data-correct="1" data-feedback="Une cardinale Sud a le danger au nord : on passe donc au sud de la bouée.">
+  <span class="topic-chip">Balisage</span>
+  <p><strong>19.</strong> De quel côté passe-t-on une marque cardinale Sud ?</p>
+  <ul class="quiz-options">
+    <li>Au nord</li>
+    <li>Au sud</li>
+    <li>À l'est</li>
+    <li>À l'ouest</li>
+  </ul>
+</div>
+
+<!-- 20 -->
+<div class="exam-question" data-topic="Météo" data-correct="3" data-feedback="Le cumulonimbus est le nuage d'orage : grains violents, fortes rafales. Il faut s'en écarter et rejoindre un abri.">
+  <span class="topic-chip">Météo</span>
+  <p><strong>20.</strong> Quel nuage annonce un orage ?</p>
+  <ul class="quiz-options">
+    <li>Le cumulus</li>
+    <li>Le cirrus</li>
+    <li>Le stratus</li>
+    <li>Le cumulonimbus</li>
+  </ul>
+</div>
+
+<!-- 21 -->
+<div class="exam-question" data-topic="Sécurité" data-correct="0" data-feedback="MAYDAY = détresse immédiate (voie d'eau, incendie, homme à la mer). PAN PAN = urgence grave mais sans danger immédiat (panne moteur).">
+  <span class="topic-chip">Sécurité</span>
+  <p><strong>21.</strong> Que signifie l'appel « MAYDAY » ?</p>
+  <ul class="quiz-options">
+    <li>Détresse, danger immédiat</li>
+    <li>Urgence sans danger immédiat</li>
+    <li>Demande de météo</li>
+    <li>Message de routine</li>
+  </ul>
+</div>
+
+<!-- 22 -->
+<div class="exam-question" data-topic="Réglementation" data-correct="2" data-feedback="La navigation est interdite dans un rayon de 100 m autour d'une marque signalant un plongeur ; à proximité, 5 nœuds maximum.">
+  <span class="topic-chip">Réglementation</span>
+  <p><strong>22.</strong> Quelle distance respecter autour d'une marque de plongeur ?</p>
+  <ul class="quiz-options">
+    <li>10 mètres</li>
+    <li>50 mètres</li>
+    <li>100 mètres</li>
+    <li>500 mètres</li>
+  </ul>
+</div>
+
+<!-- 23 -->
+<div class="exam-question" data-topic="Carte & navigation" data-correct="3" data-feedback="Hauteur d'eau réelle = sonde (profondeur au zéro hydrographique) + hauteur de la marée à l'instant T.">
+  <span class="topic-chip">Carte &amp; navigation</span>
+  <p><strong>23.</strong> Comment obtient-on la hauteur d'eau réelle à un instant donné ?</p>
+  <ul class="quiz-options">
+    <li>La sonde seule</li>
+    <li>La sonde moins la marée</li>
+    <li>La marée seule</li>
+    <li>La sonde plus la marée</li>
+  </ul>
+</div>
+
+<!-- 24 -->
+<div class="exam-question" data-topic="Mouillage & manœuvres" data-correct="1" data-feedback="Les pare-battages (défenses) se placent entre la coque et le quai pour amortir les chocs. On n'amortit jamais à la main ou au pied.">
+  <span class="topic-chip">Mouillage &amp; manœuvres</span>
+  <p><strong>24.</strong> À quoi servent les pare-battages ?</p>
+  <ul class="quiz-options">
+    <li>À ralentir le bateau</li>
+    <li>À protéger la coque au quai</li>
+    <li>À signaler une avarie</li>
+    <li>À remplacer une amarre</li>
+  </ul>
+</div>
+
+<!-- 25 -->
+<div class="exam-question" data-topic="Priorités" data-correct="0" data-feedback="Règle 12 : entre deux voiliers d'amures différentes, celui qui reçoit le vent de tribord est prioritaire ; l'autre (bâbord amure) s'écarte.">
+  <span class="topic-chip">Priorités</span>
+  <p><strong>25.</strong> Un voilier tribord amure croise un voilier bâbord amure. Qui est prioritaire ?</p>
+  <ul class="quiz-options">
+    <li>Le voilier tribord amure</li>
+    <li>Le voilier bâbord amure</li>
+    <li>Le plus rapide</li>
+    <li>Le plus sous le vent</li>
+  </ul>
+</div>
+
+<!-- 26 -->
+<div class="exam-question" data-topic="Feux" data-correct="2" data-feedback="Deux feux rouges superposés (jour et nuit) signalent un navire « non maître de sa manœuvre » : il ne peut pas s'écarter, il est prioritaire.">
+  <span class="topic-chip">Feux</span>
+  <p><strong>26.</strong> Que signifient deux feux rouges superposés ?</p>
+  <ul class="quiz-options">
+    <li>Bateau au mouillage</li>
+    <li>Bateau de pêche</li>
+    <li>Navire non maître de sa manœuvre</li>
+    <li>Bateau en feu</li>
+  </ul>
+</div>
+
+<!-- 27 -->
+<div class="exam-question" data-topic="Balisage" data-correct="3" data-feedback="La séquence horaire N-E-S-O donne 0-3-6-9 éclats groupés : la cardinale Ouest a 9 éclats.">
+  <span class="topic-chip">Balisage</span>
+  <p><strong>27.</strong> Combien d'éclats groupés pour une cardinale Ouest ?</p>
+  <ul class="quiz-options">
+    <li>3</li>
+    <li>6</li>
+    <li>12</li>
+    <li>9</li>
+  </ul>
+</div>
+
+<!-- 28 -->
+<div class="exam-question" data-topic="Météo" data-correct="1" data-feedback="Pour un petit bateau, la force 5 Beaufort est la limite raisonnable. À partir de force 6, c'est dangereux : on reste au port.">
+  <span class="topic-chip">Météo</span>
+  <p><strong>28.</strong> Quelle est la limite Beaufort raisonnable pour un petit bateau ?</p>
+  <ul class="quiz-options">
+    <li>Force 2</li>
+    <li>Force 5</li>
+    <li>Force 8</li>
+    <li>Force 10</li>
+  </ul>
+</div>
+
+<!-- 29 -->
+<div class="exam-question" data-topic="Sécurité" data-correct="2" data-feedback="Priorité absolue : ne jamais quitter la victime des yeux. On désigne immédiatement une personne pour la pointer du doigt.">
+  <span class="topic-chip">Sécurité</span>
+  <p><strong>29.</strong> Homme à la mer : quelle est la toute première action ?</p>
+  <ul class="quiz-options">
+    <li>Couper le moteur</li>
+    <li>Sauter à l'eau</li>
+    <li>Garder la victime à vue</li>
+    <li>Appeler le CROSS d'abord</li>
+  </ul>
+</div>
+
+<!-- 30 -->
+<div class="exam-question" data-topic="Réglementation" data-correct="0" data-feedback="Le permis plaisance est obligatoire dès que le moteur dépasse 4,5 kW, soit 6 chevaux.">
+  <span class="topic-chip">Réglementation</span>
+  <p><strong>30.</strong> À partir de quelle puissance le permis est-il obligatoire ?</p>
+  <ul class="quiz-options">
+    <li>4,5 kW (6 CV)</li>
+    <li>1,5 kW (2 CV)</li>
+    <li>15 kW (20 CV)</li>
+    <li>Toujours</li>
+  </ul>
+</div>
+
+<!-- 31 -->
+<div class="exam-question" data-topic="Carte & navigation" data-correct="3" data-feedback="Une sonde dont le chiffre est souligné est « découvrante » : la zone émerge à marée basse. C'est un danger.">
+  <span class="topic-chip">Carte &amp; navigation</span>
+  <p><strong>31.</strong> Que signifie une sonde soulignée sur la carte ?</p>
+  <ul class="quiz-options">
+    <li>Une grande profondeur</li>
+    <li>Une zone de mouillage</li>
+    <li>Une erreur d'impression</li>
+    <li>Une zone qui découvre à marée basse</li>
+  </ul>
+</div>
+
+<!-- 32 -->
+<div class="exam-question" data-topic="Priorités" data-correct="1" data-feedback="Règle 12, même amure : le voilier sous le vent (le plus « bas ») est prioritaire ; celui au vent doit s'écarter.">
+  <span class="topic-chip">Priorités</span>
+  <p><strong>32.</strong> Deux voiliers de même amure : lequel est prioritaire ?</p>
+  <ul class="quiz-options">
+    <li>Celui au vent</li>
+    <li>Celui sous le vent</li>
+    <li>Le plus grand</li>
+    <li>Le plus rapide</li>
+  </ul>
+</div>
+
+<!-- 33 -->
+<div class="exam-question" data-topic="Feux" data-correct="0" data-feedback="Un voilier à la voile ne porte PAS de feu de tête de mât (feu de route blanc), contrairement au bateau à moteur. Il a feux de côté + feu de poupe.">
+  <span class="topic-chip">Feux</span>
+  <p><strong>33.</strong> Quel feu un voilier à la voile ne porte-t-il PAS ?</p>
+  <ul class="quiz-options">
+    <li>Le feu de tête de mât</li>
+    <li>Le feu de poupe</li>
+    <li>Le feu de bâbord</li>
+    <li>Le feu de tribord</li>
+  </ul>
+</div>
+
+<!-- 34 -->
+<div class="exam-question" data-topic="Balisage" data-correct="2" data-feedback="Bandes verticales rouges et blanches + sphère rouge au sommet = marque d'eau saine (eau libre de tout danger, milieu de chenal).">
+  <span class="topic-chip">Balisage</span>
+  <p><strong>34.</strong> Une bouée à bandes verticales rouges et blanches surmontée d'une sphère rouge indique…</p>
+  <ul class="quiz-options">
+    <li>Un danger isolé</li>
+    <li>Une zone spéciale</li>
+    <li>Une eau saine</li>
+    <li>Un chenal latéral</li>
+  </ul>
+</div>
+
+<!-- 35 -->
+<div class="exam-question" data-topic="Météo" data-correct="1" data-feedback="Loi de Buys-Ballot (hémisphère nord) : dos au vent, la dépression (basses pressions) est à votre gauche.">
+  <span class="topic-chip">Météo</span>
+  <p><strong>35.</strong> Dos au vent dans l'hémisphère nord, où se trouve la dépression ?</p>
+  <ul class="quiz-options">
+    <li>Devant vous</li>
+    <li>À votre gauche</li>
+    <li>À votre droite</li>
+    <li>Derrière vous</li>
+  </ul>
+</div>
+
+<!-- 36 -->
+<div class="exam-question" data-topic="Sécurité" data-correct="2" data-feedback="Le fumigène produit une fumée orange dense, surtout visible de jour (la couleur contraste avec la mer). La fusée parachute est plus utile de nuit.">
+  <span class="topic-chip">Sécurité</span>
+  <p><strong>36.</strong> Quel signal de détresse est le plus adapté de jour ?</p>
+  <ul class="quiz-options">
+    <li>La fusée parachute</li>
+    <li>Le feu à main</li>
+    <li>Le fumigène orange</li>
+    <li>Le projecteur</li>
+  </ul>
+</div>
+
+<!-- 37 -->
+<div class="exam-question" data-topic="Réglementation" data-correct="1" data-feedback="En Méditerranée, il est interdit de mouiller sur les herbiers de posidonie (milieu protégé). On vise un fond de sable clair ou une bouée d'amarrage.">
+  <span class="topic-chip">Réglementation</span>
+  <p><strong>37.</strong> Sur quel fond est-il interdit de mouiller en Méditerranée ?</p>
+  <ul class="quiz-options">
+    <li>Le sable</li>
+    <li>L'herbier de posidonie</li>
+    <li>La vase</li>
+    <li>Le gravier</li>
+  </ul>
+</div>
+
+<!-- 38 -->
+<div class="exam-question" data-topic="Priorités" data-correct="0" data-feedback="Un coup de sirène court (≈ 1 s) signifie « Je viens sur tribord ». Deux courts = « je viens sur bâbord ».">
+  <span class="topic-chip">Priorités</span>
+  <p><strong>38.</strong> Que signifie un seul coup de sirène court ?</p>
+  <ul class="quiz-options">
+    <li>« Je viens sur tribord »</li>
+    <li>« Je viens sur bâbord »</li>
+    <li>« Je fais marche arrière »</li>
+    <li>« Je ne comprends pas »</li>
+  </ul>
+</div>
+
+<!-- 39 -->
+<div class="exam-question" data-topic="Priorités" data-correct="2" data-feedback="Règle 18 : un bateau à moteur faisant route doit s'écarter d'un voilier — sauf s'il est en train d'être rattrapé par ce voilier.">
+  <span class="topic-chip">Priorités</span>
+  <p><strong>39.</strong> Un bateau à moteur et un voilier se croisent (hors dépassement). Qui s'écarte ?</p>
+  <ul class="quiz-options">
+    <li>Le voilier</li>
+    <li>Aucun des deux</li>
+    <li>Le bateau à moteur</li>
+    <li>Le plus rapide</li>
+  </ul>
+</div>
+
+<!-- 40 -->
+<div class="exam-question" data-topic="Priorités" data-correct="3" data-feedback="Règle 5 : tout navire doit assurer en permanence une veille visuelle et auditive pour apprécier le risque d'abordage.">
+  <span class="topic-chip">Priorités</span>
+  <p><strong>40.</strong> Quelle obligation s'impose en permanence à tout navire ?</p>
+  <ul class="quiz-options">
+    <li>Naviguer au moteur</li>
+    <li>Garder le cap au nord</li>
+    <li>Allumer ses feux</li>
+    <li>Assurer une veille visuelle et auditive</li>
+  </ul>
+</div>
+
+<p style="text-align:center; margin:2rem 0;">
+  <button class="exam-btn" id="exam-submit">✅ Corriger l'examen</button>
+</p>
+
+<div id="exam-results"></div>
+
+</div><!-- /#exam -->
+
+<hr>
+
+<div class="card card--tip">
+  <h4>💡 Comment progresser</h4>
+  <p>Visez <strong>plusieurs sessions espacées</strong> (espacement) plutôt qu'un seul passage : refaites cet examen dans 2–3 jours, puis une semaine plus tard. Le bilan par thème vous dit quelle leçon relire. C'est en vous trompant <em>puis</em> en corrigeant que vous retenez durablement.</p>
+</div>
+
+<div class="card card--info">
+  <h4>📖 S'entraîner davantage</h4>
+  <p>Complétez avec des QCM officiels en conditions réelles : <a href="https://www.permisibateau.com/" target="_blank">examens blancs en ligne</a>. Et révisez vos fiches : <a href="../reference/regles-route.html">règles de route</a> · <a href="../reference/feux.html">feux</a> · <a href="../reference/balisage.html">balisage</a> · <a href="../reference/meteo.html">météo</a> · <a href="../reference/reglementation.html">réglementation</a> · <a href="../reference/glossaire.html">glossaire</a>.</p>
+</div>
+
+<div class="lesson-nav">
+  <a href="0009-carte-navigation.html">← Leçon 9 : Carte et navigation</a>
+  <a href="0011-navigation-fluviale.html">Leçon 11 : Navigation fluviale →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Questions élaborées d'après les Leçons 1 à 9 · Format officiel : 40 questions, 5 erreurs max (réforme du 1ᵉʳ juin 2022) ·
+  <a href="https://www.mer.gouv.fr/le-permis-plaisance-permis-de-conduire-les-bateaux-de-plaisance-moteur" target="_blank">Ministère de la Mer</a></em>
+</p>
+
+</div>
+</body>
+</html>

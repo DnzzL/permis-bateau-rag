@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radio VHF (Eaux Intérieures) — Aide-mémoire exhaustif</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <style>
+    .ref-table { width: 100%; font-size: 0.86rem; }
+    .ref-table th { background: #1a5276; }
+    .ref-table td:first-child { font-weight: 600; white-space: nowrap; }
+    .note { font-size: 0.8rem; color: var(--color-muted); }
+    .big { font-family: var(--font-sans); font-weight: 700; color: #1a5276; }
+    .cmp { width: 100%; font-size: 0.86rem; }
+    .cmp th { background: #1a5276; }
+    .cmp th.flu { background: #1e8449; }
+    .cmp th.mer { background: #2074a8; }
+    .cmp td:first-child { font-weight: 600; background: #f5f5ee; white-space: nowrap; }
+    .cmp .flu-c { background: #eafaf0; }
+    .cmp .mer-c { background: #eaf2f8; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<h1>Radio VHF — Eaux Intérieures</h1>
+<p class="meta">Radiotéléphonie fluviale (RAINWAT / RGPNI). <strong>Fiche exhaustive à imprimer.</strong></p>
+
+<h2>0. 🛶 Fluvial vs 🌊 Maritime — la différence essentielle</h2>
+<p style="font-size:0.9rem;">La VHF fluviale n'est <strong>pas</strong> la VHF maritime avec d'autres canaux : c'est une organisation différente (réseaux dédiés, identification ATIS, pas de canal 16). Ce que le côtier fait sur le 16 + ASN, le fluvial le fait sur la <strong>voie 10</strong> + le <strong>réseau informations nautiques</strong>.</p>
+<table class="cmp">
+  <tr><th>&nbsp;</th><th class="flu">🛶 Eaux intérieures (fluvial)</th><th class="mer">🌊 Mer (côtier)</th></tr>
+  <tr><td>Texte / procédure</td><td class="flu-c"><strong>RAINWAT</strong> (arrangement régional)</td><td class="mer-c">Règlement des radiocom. UIT (maritime)</td></tr>
+  <tr><td>Identification</td><td class="flu-c"><strong>ATIS</strong> — code auto en fin d'émission (MID France <strong>227</strong>). Pas de MMSI.</td><td class="mer-c"><strong>ASN / DSC</strong> avec <strong>MMSI</strong> (appel sélectif numérique)</td></tr>
+  <tr><td>Canal d'appel / veille</td><td class="flu-c"><strong>Voie 10</strong> (bateau-bateau)</td><td class="mer-c"><strong>Canal 16</strong></td></tr>
+  <tr><td>Détresse</td><td class="flu-c">Voisinage → <strong>voie 10</strong> ; station terrestre → <strong>réseau informations nautiques</strong></td><td class="mer-c"><strong>Canal 16</strong> (voix) + <strong>canal 70</strong> (alerte ASN)</td></tr>
+  <tr><td>Mots-clés détresse</td><td class="flu-c" colspan="2" style="text-align:center;">Identiques : <strong>MAYDAY</strong> · <strong>PAN PAN</strong> · <strong>SÉCURITÉ</strong></td></tr>
+  <tr><td>Puissance</td><td class="flu-c">Réduite auto à <strong>≈ 1 W</strong> (sauf informations nautiques : 25 W)</td><td class="mer-c">Jusqu'à <strong>25 W</strong> (1 W en port)</td></tr>
+  <tr><td>Canal 16 &amp; voie 70</td><td class="flu-c"><strong>Interdits / inutilisés</strong></td><td class="mer-c">Canaux de base (appel + ASN)</td></tr>
+</table>
+<p class="note">En résumé : en fluvial on bascule la VHF en <strong>mode ATIS</strong> et on veille la <strong>voie 10</strong> ; en mer on est en <strong>mode ASN</strong> et on veille le <strong>16</strong>. Utiliser le 16 ou la voie 70 en rivière est une faute.</p>
+
+<h2>1. Le texte qui régit la radio fluviale</h2>
+<table class="ref-table">
+  <tr><th>Texte</th><th>Rôle</th></tr>
+  <tr><td><strong>RAINWAT</strong></td><td><strong>Arrangement régional relatif au service radiotéléphonique sur les voies de navigation intérieure</strong> — c'est lui qui régit la <strong>procédure d'exploitation radio</strong> en fluvial.</td></tr>
+  <tr><td>Règlement des radiocom. de l'UIT</td><td>Cadre mondial (maritime surtout) ; pas de chapitre fluvial dédié.</td></tr>
+  <tr><td>RGPNI</td><td>Impose l'<strong>embarquement</strong> de la VHF (pas la procédure radio).</td></tr>
+</table>
+<p class="note">Question type : « Quel document traite de la procédure d'exploitation radiotéléphonique sur les voies intérieures ? » → <strong>l'Arrangement régional (RAINWAT)</strong>.</p>
+
+<h2>2. Les réseaux du service mobile fluvial</h2>
+<p>Tous limités à la <strong>sécurité des personnes, de la navigation et des bateaux</strong> (sauf voies 72/77, voir note).</p>
+<table class="ref-table">
+  <tr><th>Réseau</th><th>Entre qui / objet</th><th>Puissance</th></tr>
+  <tr><td>Bateau – bateau</td><td>Entre bateaux (route, sécurité). Appel sur <strong>voie 10</strong>.</td><td>1 W max</td></tr>
+  <tr><td>Informations nautiques</td><td>Bateau ↔ autorités de la voie d'eau (état des voies, trafic). <strong>Sécurité/navigation uniquement, pas de correspondance privée.</strong></td><td>25 W max</td></tr>
+  <tr><td>Bateau – autorités portuaires</td><td>Bateau ↔ port (stationnement, manœuvres portuaires).</td><td>1 W max</td></tr>
+  <tr><td>Communications de bord</td><td>À bord d'un bateau/convoi (amarrage). Voies <strong>15 et 17</strong>.</td><td>1 W max</td></tr>
+  <tr><td>Correspondance publique</td><td>Liaison téléphonique publique — <strong>service supprimé</strong> (obsolète).</td><td>—</td></tr>
+</table>
+<p class="note">Le réseau <strong>informations nautiques</strong> transmet les messages relatifs à la <strong>sécurité et à la navigation</strong> — jamais la correspondance privée. Communications privées tolérées seulement sur les <strong>voies 72 et 77</strong> (bateau-bateau).</p>
+
+<h2>3. ATIS &amp; réduction de puissance</h2>
+<ul style="font-size:0.9rem;">
+  <li><strong>ATIS</strong> (système d'identification automatique de l'émetteur) : transmet automatiquement l'identité du bateau <strong>à la fin de chaque émission</strong>. <strong>Obligatoire</strong> sur toute VHF fluviale (fixe ou portative).</li>
+  <li><strong>Réduction de puissance : VRAI.</strong> La VHF doit réduire automatiquement sa puissance à <strong>≈ 1 W</strong> sur les réseaux bateau-bateau, bateau-autorités portuaires et communications de bord (mode « ATIS »). Seul le réseau <strong>informations nautiques</strong> autorise 25 W.</li>
+</ul>
+<p class="note">En eaux intérieures, on sélectionne le mode <strong>ATIS</strong> ; en mer, le mode <strong>ASN</strong> (voie 70 + MMSI). La voie 70 / ASN est <strong>interdite</strong> en intérieur.</p>
+
+<h2>4. Détresse, urgence, sécurité</h2>
+<table class="ref-table">
+  <tr><th>Niveau</th><th>Signal</th><th>Quand</th></tr>
+  <tr><td>Détresse</td><td class="big">MAYDAY</td><td>Danger grave et imminent, besoin de secours immédiat.</td></tr>
+  <tr><td>Urgence</td><td class="big">PAN PAN</td><td>Sécurité du bateau ou d'une personne, sans danger immédiat.</td></tr>
+  <tr><td>Sécurité</td><td class="big">SÉCURITÉ</td><td>Danger pour la navigation, message météo.</td></tr>
+</table>
+<p style="font-size:0.9rem;"><strong>Veille fluviale = voie 10</strong> (≠ canal 16, qui est la veille maritime). Détresse adressée à une station terrestre (réseau informations nautiques) ou aux bateaux du voisinage sur la voie 10.</p>
+
+<div class="card card--warning">
+  <h4>⚠️ Accusé de réception d'un appel de détresse</h4>
+  <p>Sur le réseau bateau-autorités portuaires : on attend l'accusé de réception de l'autorité. <strong>Si aucun accusé n'est transmis dans l'intervalle d'une minute, une station de bateau doit prendre la communication de détresse.</strong> Sur le réseau bateau-bateau, toute station du voisinage accuse réception.</p>
+</div>
+
+<h2>5. Certificat &amp; usage</h2>
+<ul style="font-size:0.9rem;">
+  <li><strong>VHF portative sans ASN, ≤ 6 W :</strong> aucune qualification exigée en eaux intérieures françaises.</li>
+  <li><strong>VHF fixe (ou &gt; 6 W) :</strong> le <strong>permis plaisance option eaux intérieures</strong> suffit (les questions VHF sont dans l'examen), <em>ou</em> le <strong>CRR</strong> (Certificat Restreint de Radiotéléphoniste) pour les non-titulaires.</li>
+  <li>Le <strong>CRR maritime est accepté en fluvial</strong> ; l'inverse n'est pas vrai. La <strong>licence</strong> (ANFR) — droit d'exploiter, porte l'indicatif/ATIS — est à conserver à bord.</li>
+  <li>La VHF est une <strong>station de bateau</strong> : usage embarqué. Les portatives sont souvent limitées aux voies de bord (15/17). Puissance portative : 0,1 à 1 W.</li>
+</ul>
+
+<h2>6. Canaux utiles</h2>
+<table class="ref-table">
+  <tr><th>Voie</th><th>Usage</th></tr>
+  <tr><td>Voie 10</td><td>Appel bateau-bateau &amp; <strong>veille</strong> fluviale</td></tr>
+  <tr><td>6, 8, 13, 72, 77</td><td>Voies de travail bateau-bateau (privé : 72/77)</td></tr>
+  <tr><td>15, 17</td><td>Communications de bord</td></tr>
+  <tr><td>Écluses / ports</td><td>Voie propre à chaque station terrestre (pas de canal national unique)</td></tr>
+  <tr><td>Voie 70 / canal 16</td><td><strong>Maritime uniquement — interdits/inutilisés en fluvial</strong></td></tr>
+</table>
+
+<hr>
+<p class="meta" style="text-align:center;">
+  Voir aussi : <a href="fluvial.html">Fiche fluvial</a> ·
+  <a href="signaux-bateaux-fluviaux.html">Signaux des bateaux</a> ·
+  <a href="reglementation.html">Réglementation côtière</a> ·
+  Sources : Manuel CRR Fluvial (ANFR) · RAINWAT · mer.gouv.fr
+</p>
+
+</div>
+</body>
+</html>

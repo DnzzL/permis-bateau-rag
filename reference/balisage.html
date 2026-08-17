@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balisage Maritime (IALA région A) — Aide-mémoire exhaustif</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <style>
+    .ref-table { width: 100%; font-size: 0.85rem; }
+    .ref-table th { background: #1a5276; }
+    .ref-table td:first-child { font-weight: 600; }
+    .sw { display:inline-block; width:14px; height:14px; vertical-align:middle; margin:0 1px; border:1px solid #888; border-radius:2px; }
+    .sw-r{background:#e74c3c;} .sw-g{background:#27ae60;} .sw-y{background:#f1c40f;} .sw-k{background:#111;} .sw-w{background:#fafafa;} .sw-b{background:#2563a8;}
+    .note{font-size:0.8rem;color:var(--color-muted);}
+    code{font-size:0.82em;}
+  </style>
+</head>
+<body>
+<div class="container">
+
+<h1>Balisage Maritime — IALA Région A</h1>
+<p class="meta">Système de la France (en région A, le <strong>rouge est à bâbord</strong>). <strong>Fiche exhaustive à imprimer.</strong></p>
+
+<div class="card card--tip">
+  <h4>🧭 Sens conventionnel &amp; codes des feux</h4>
+  <p><strong>Sens conventionnel</strong> = celui d'un navire <strong>venant du large</strong> vers le port / l'amont (sinon précisé sur la carte). Dans ce sens : <strong>rouge à bâbord (gauche), vert à tribord (droite)</strong>.<br>
+  <strong>Codes :</strong> <code>Fl</code> à éclats · <code>LFl</code> éclat long (~2 s) · <code>Q</code> scintillant (50-60/min) · <code>VQ</code> scintillant rapide (100-120/min) · <code>Iso</code> isophase · <code>Oc</code> à occultations · <code>Mo(A)</code> Morse « A » (·—).</p>
+</div>
+
+<h2>1. Marques latérales</h2>
+<table class="ref-table">
+  <tr><th></th><th>Bâbord</th><th>Tribord</th></tr>
+  <tr><td>Couleur</td><td><span class="sw sw-r"></span> rouge</td><td><span class="sw sw-g"></span> verte</td></tr>
+  <tr><td>Forme</td><td>cylindrique (« boîte »)</td><td>conique (pointe en haut)</td></tr>
+  <tr><td>Voyant</td><td>cylindre rouge</td><td>cône vert</td></tr>
+  <tr><td>Feu</td><td>rouge (rythme quelconque)</td><td>vert (rythme quelconque)</td></tr>
+</table>
+<p class="note"><strong>Chenal préféré (bifurcation) :</strong> chenal préféré à tribord = marque rouge <strong>à bande verte</strong>, feu <code>Fl(2+1)R</code> · chenal préféré à bâbord = marque verte <strong>à bande rouge</strong>, feu <code>Fl(2+1)G</code>.</p>
+
+<h2>2. Marques cardinales</h2>
+<p class="note">Corps <span class="sw sw-k"></span> noir &amp; <span class="sw sw-y"></span> jaune · voyant = 2 cônes noirs · feu <strong>blanc</strong>. On passe <strong>du côté du nom</strong> ; le danger est à l'opposé.</p>
+<table class="ref-table">
+  <tr><th>Cardinale</th><th>Bandes</th><th>Voyant (2 cônes)</th><th>Feu blanc</th></tr>
+  <tr><td>Nord</td><td>noir en haut</td><td>pointes en haut ↑↑</td><td><code>VQ</code> ou <code>Q</code> (continu)</td></tr>
+  <tr><td>Est</td><td>noir-jaune-noir</td><td>base à base (◇)</td><td><code>VQ(3)5s</code> / <code>Q(3)10s</code></td></tr>
+  <tr><td>Sud</td><td>jaune en haut</td><td>pointes en bas ↓↓</td><td><code>VQ(6)+LFl 10s</code> / <code>Q(6)+LFl 15s</code></td></tr>
+  <tr><td>Ouest</td><td>jaune-noir-jaune</td><td>pointe à pointe (⧖)</td><td><code>VQ(9)10s</code> / <code>Q(9)15s</code></td></tr>
+</table>
+<p class="note">Mémo horloge : E = 3 (3 h) · S = 6 (6 h) + éclat long · O = 9 (9 h) · N = continu (12 h).</p>
+
+<h2>3. Autres marques</h2>
+<table class="ref-table">
+  <tr><th>Marque</th><th>Couleur</th><th>Voyant</th><th>Feu</th></tr>
+  <tr><td><strong>Danger isolé</strong></td><td><span class="sw sw-k"></span> noir à bande(s) <span class="sw sw-r"></span> rouge(s) horizontale(s)</td><td>2 boules noires</td><td>blanc <code>Fl(2)</code></td></tr>
+  <tr><td><strong>Eaux saines</strong></td><td>bandes <strong>verticales</strong> <span class="sw sw-r"></span> rouges &amp; <span class="sw sw-w"></span> blanches</td><td>1 boule rouge</td><td>blanc <code>Iso</code>, <code>Oc</code>, <code>LFl 10s</code> ou <code>Mo(A)</code></td></tr>
+  <tr><td><strong>Spéciale</strong></td><td><span class="sw sw-y"></span> jaune</td><td>croix jaune (X)</td><td>jaune (rythme distinct)</td></tr>
+  <tr><td><strong>Danger nouveau</strong> (épave)</td><td>bandes verticales <span class="sw sw-b"></span> bleues &amp; <span class="sw sw-y"></span> jaunes</td><td>croix jaune verticale</td><td>alterné bleu/jaune (1 s + 0,5 s)</td></tr>
+</table>
+
+<h2>4. Près des plages (côtier)</h2>
+<ul style="font-size:0.9rem;">
+  <li><strong>Zone de baignade :</strong> petites bouées <strong>sphériques jaunes</strong>.</li>
+  <li><strong>Bande des 300 m / zone interdite aux engins à moteur :</strong> grosses bouées sphériques jaunes — <strong>5 nœuds max</strong> dans la bande.</li>
+  <li><strong>Chenal traversier</strong> (accès depuis la plage) : balisé bâbord (cylindre rouge) / tribord (cône vert), interdit à la baignade, 5 nœuds max.</li>
+</ul>
+
+<hr>
+<p class="meta" style="text-align:center;">
+  Voir aussi : <a href="feux.html">Feux des navires</a> ·
+  <a href="regles-route.html">Règles de route</a> ·
+  <a href="../lessons/0004-balisage-maritime.html">Leçon 4</a> ·
+  <a href="glossaire.html">Glossaire</a> · Sources : IALA E-110 · SHOM · arrêté du 30/11/2017
+</p>
+
+</div>
+</body>
+</html>

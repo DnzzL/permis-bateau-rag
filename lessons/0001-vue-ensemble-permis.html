@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 1 — Vue d'ensemble du Permis Bateau</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .topic-card {
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1rem;
+      background: white;
+      transition: box-shadow 0.2s;
+    }
+    .topic-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .topic-card h4 { margin-top: 0; font-size: 1rem; }
+    .topic-card p { font-size: 0.9rem; margin-bottom: 0; color: #444; }
+    .topic-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 1 · ⏱ 15 minutes · <span class="tag tag--commun">Tronc commun</span></p>
+
+<h1>Vue d'ensemble du Permis Bateau</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>Comprendre la structure du permis bateau français, ce que chaque option permet de faire, et comment se déroule l'examen. À la fin, vous saurez exactement <strong>ce que vous devez apprendre</strong> et dans quel ordre.</p>
+</div>
+
+<h2>Les trois catégories de permis</h2>
+
+<p>Le permis bateau de plaisance français se décline en trois grandes catégories :</p>
+
+<table>
+  <tr>
+    <th>Permis</th>
+    <th>Zone de navigation</th>
+    <th>Ce qu'il permet</th>
+  </tr>
+  <tr>
+    <td><strong>Côtier</strong></td>
+    <td>Jusqu'à <strong>6 milles</strong> d'un abri</td>
+    <td>Naviguer en mer près des côtes (Méditerranée, Atlantique, Manche)</td>
+  </tr>
+  <tr>
+    <td><strong>Fluvial</strong></td>
+    <td>Eaux intérieures (rivières, canaux, lacs)</td>
+    <td>Naviguer sur les voies navigables françaises</td>
+  </tr>
+  <tr>
+    <td><strong>Hauturier</strong></td>
+    <td>Au-delà de 6 milles d'un abri</td>
+    <td>Navigation hauturière, grandes traversées — <em>hors scope pour l'instant</em></td>
+  </tr>
+</table>
+
+<div class="card card--warning">
+  <h4>⚠️ Important — La notion d'« abri »</h4>
+  <p>Un <strong>abri</strong> est un port, une crique ou tout endroit où un bateau peut trouver refuge. La distance se mesure <em>en milles marins</em> (1 mille = 1 852 m). Le permis côtier vous autorise à vous éloigner jusqu'à <strong>11 km</strong> d'un abri.</p>
+  <p>En Méditerranée, avec ses criques et ses ports nombreux, c'est suffisant pour la plupart des sorties à la journée.</p>
+</div>
+
+<h2>Le permis côtier en détail</h2>
+
+<p>Puisque votre objectif est la Méditerranée cet été, c'est le permis côtier qui sera votre focus principal. Voici ce que vous devez savoir.</p>
+
+<h3>Conditions pour passer l'examen</h3>
+<ul>
+  <li><strong>Âge minimum</strong> : 16 ans</li>
+  <li><strong>Certificat médical</strong> : délivré par un médecin généraliste (visite simple, environ 30€)</li>
+  <li><strong>Puissance moteur</strong> : le permis est nécessaire pour tout moteur de plus de 6 CV (4,5 kW)</li>
+</ul>
+
+<h3>L'examen théorique (le « code »)</h3>
+<p>Le <strong>QCM</strong> (Questionnaire à Choix Multiples) dure 30 minutes et comporte <strong>40 questions</strong> sur les 7 thèmes suivants :</p>
+
+<div class="topic-grid">
+  <div class="topic-card">
+    <span class="topic-icon">🗺️</span>
+    <h4>1. Navigation</h4>
+    <p>Règles de route, priorités, feux, signaux. Le code de la route de la mer.</p>
+  </div>
+  <div class="topic-card">
+    <span class="topic-icon">🛟</span>
+    <h4>2. Sécurité</h4>
+    <p>Équipements obligatoires, procédures d'urgence, VHF, signaux de détresse.</p>
+  </div>
+  <div class="topic-card">
+    <span class="topic-icon">🌤️</span>
+    <h4>3. Météo</h4>
+    <p>Lecture des bulletins météo, vents locaux, force du vent (échelle Beaufort), houle.</p>
+  </div>
+  <div class="topic-card">
+    <span class="topic-icon">🎨</span>
+    <h4>4. Balisage</h4>
+    <p>Bouées, balises, feux. Système de balisage maritime (latéral, cardinal, spécial).</p>
+  </div>
+  <div class="topic-card">
+    <span class="topic-icon">💡</span>
+    <h4>5. Feux & Signaux</h4>
+    <p>Feux de navigation des navires, feux des phares, signaux sonores.</p>
+  </div>
+  <div class="topic-card">
+    <span class="topic-icon">📜</span>
+    <h4>6. Réglementation</h4>
+    <p>Permis, assurances, pavillons, pollution, zones protégées.</p>
+  </div>
+  <div class="topic-card">
+    <span class="topic-icon">⚓</span>
+    <h4>7. Manœuvre</h4>
+    <p>Amarrage, mouillage, nœuds, vitesse, conduite.</p>
+  </div>
+</div>
+
+<p>Le seuil de réussite est de <strong>35/40</strong> (87,5%). C'est exigeant, mais tout à fait atteignable avec une préparation structurée.</p>
+
+<h3>L'examen pratique</h3>
+<p>La partie pratique dure environ 40 minutes et se déroule sur l'eau. L'inspecteur évalue :</p>
+<ul>
+  <li>Vos vérifications avant départ (check-list sécurité)</li>
+  <li>La manœuvre de départ du ponton</li>
+  <li>La navigation (cap, vitesse, respect des règles)</li>
+  <li>La manœuvre d'accostage</li>
+  <li>Les manœuvres de sécurité (homme à la mer, arrêt d'urgence)</li>
+</ul>
+
+<h2>Le permis fluvial</h2>
+<p>Le fluvial est distinct du côtier. Vous pouvez le passer séparément ou après le côtier. Les règles sont différentes : priorité au bateau descendant (sens du courant), limitation de vitesse (6-12 km/h selon les voies), balisage différent, etc.</p>
+<p>Pour votre objectif Méditerranée, le côtier est la priorité. Nous aborderons le fluvial dans une leçon dédiée.</p>
+
+<hr>
+
+<h2>Quiz — Testez votre compréhension</h2>
+
+<p>Vérifions que les bases sont acquises. C'est un <strong>auto-test</strong> — essayez de répondre sans regarder plus haut.</p>
+
+<div class="quiz-question" data-correct="2" data-feedback="Le permis côtier autorise la navigation jusqu'à 6 milles (environ 11 km) d'un abri. Le hauturier va au-delà, le fluvial concerne les eaux intérieures.">
+  <p><strong>1.</strong> Jusqu'à quelle distance d'un abri le permis côtier permet-il de naviguer ?</p>
+  <ul class="quiz-options">
+    <li>2 milles</li>
+    <li>4 milles</li>
+    <li>6 milles</li>
+    <li>12 milles</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="L'examen théorique comporte 40 questions. Il faut 35 bonnes réponses (87,5%) pour être admis.">
+  <p><strong>2.</strong> Combien de questions comporte le QCM théorique du permis côtier ?</p>
+  <ul class="quiz-options">
+    <li>30 questions</li>
+    <li>40 questions</li>
+    <li>50 questions</li>
+    <li>60 questions</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="La navigation est le thème n°1 : règles de route, priorités, feux. C'est le plus gros morceau de l'examen.">
+  <p><strong>3.</strong> Quel est le thème le plus important du programme du permis côtier ?</p>
+  <ul class="quiz-options">
+    <li>Navigation (règles de route, priorités)</li>
+    <li>Sécurité (équipements)</li>
+    <li>Météo (vents, houle)</li>
+    <li>Réglementation (permis, assurances)</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="L'âge minimum pour passer le permis bateau est 16 ans. Il faut aussi un certificat médical.">
+  <p><strong>4.</strong> À partir de quel âge peut-on passer le permis bateau côtier ?</p>
+  <ul class="quiz-options">
+    <li>14 ans</li>
+    <li>16 ans</li>
+    <li>18 ans</li>
+    <li>21 ans</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>Et maintenant ?</h2>
+
+<p>Vous avez maintenant une vision claire de ce qu'est le permis bateau. Voici vos <strong>prochaines étapes</strong> :</p>
+
+<ol>
+  <li><strong>Obtenez votre certificat médical</strong> — Prenez rendez-vous chez votre médecin. C'est rapide et simple.</li>
+  <li><strong>Consultez le programme officiel</strong> — Lisez la page <a href="https://www.service-public.fr/particuliers/vosdroits/F1698" target="_blank">Service-Public.fr sur le permis plaisance</a>.</li>
+  <li><strong>Révisez le glossaire</strong> — La <a href="../reference/glossaire.html">page de glossaire</a> vous donne les termes de base à connaître.</li>
+  <li><strong>Continuez avec la Leçon 2</strong> — Nous plongerons dans les <strong>règles de navigation et priorités</strong> (le RIPAM/COLREG), le cœur du permis côtier.</li>
+</ol>
+
+<div class="card card--tip">
+  <h4>💡 Une question ?</h4>
+  <p>Quelque chose n'est pas clair ? Vous voulez qu'on approfondisse un point particulier ? Demandez-moi — je suis votre professeur.</p>
+</div>
+
+<hr>
+
+<div class="lesson-nav">
+  <span></span>
+  <a href="0002-regles-route-priorites.html">Leçon 2 : Règles de route et priorités →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.service-public.fr/particuliers/vosdroits/F1698" target="_blank">Service-Public.fr</a> · Programme officiel du permis plaisance</em>
+</p>
+
+</div>
+</body>
+</html>

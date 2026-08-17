@@ -1,0 +1,10 @@
+# Déploiement statique — aucun build nécessaire, on publie le dossier tel quel.
+[build]
+  publish = "."
+  command = ""
+
+# Page d'erreur personnalisée
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

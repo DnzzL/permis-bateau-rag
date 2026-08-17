@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 8 — Mouillage et Manœuvres de Port</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    .schema { text-align: center; margin: 1.5rem 0; }
+    .schema p.meta { margin-top: 0.4rem; }
+
+    .step-list { counter-reset: step; list-style: none; padding-left: 0; }
+    .step-list li {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 2.6rem;
+      margin: 0.3rem 0;
+      border-bottom: 1px dashed var(--color-border);
+    }
+    .step-list li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute; left: 0; top: 0.45rem;
+      width: 1.8rem; height: 1.8rem;
+      background: #1a5276; color: white;
+      border-radius: 50%; text-align: center; line-height: 1.8rem;
+      font-weight: bold; font-size: 0.9rem;
+    }
+
+    .knot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .knot-card {
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 0.75rem;
+      text-align: center;
+      background: white;
+    }
+    .knot-card h5 { margin: 0.3rem 0; font-size: 0.9rem; }
+    .knot-card p { font-size: 0.78rem; margin: 0; color: var(--color-muted); }
+    .knot-card .ico { font-size: 1.8rem; }
+
+    .two-cols { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+    .two-cols > div { flex: 1; min-width: 220px; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 8 · ⏱ 25 minutes · <span class="tag tag--côtier">Côtier</span> <span class="tag tag--important">Pratique</span></p>
+
+<h1>Mouillage et Manœuvres de Port</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>Savoir <strong>jeter l'ancre et tenir au mouillage</strong>, <strong>accoster</strong> et <strong>appareiller</strong> proprement. C'est le savoir-faire qui fait la différence entre un capitaine serein et un débutant stressé — exactement ce qu'il vous faut pour louer un bateau cet été et profiter d'une calanque en confiance.</p>
+</div>
+
+<h2>Pourquoi ça compte</h2>
+
+<p>Mouiller pour déjeuner dans une crique, revenir au ponton sans abîmer la coque, repartir sans s'emmêler dans les amarres : ce sont les gestes du quotidien en plaisance. Un mouillage mal fait, c'est le bateau qui <strong>dérape</strong> (chasse sur son ancre) pendant la sieste et finit sur les rochers. Une approche trop rapide, c'est la collision contre le quai.</p>
+
+<div class="card card--warning">
+  <h4>⚠️ Le maître-mot : la lenteur</h4>
+  <p>Toutes les manœuvres de port et de mouillage se font <strong>au ralenti</strong>. « <strong>On n'aborde jamais un quai plus vite qu'on n'accepte de le percuter.</strong> » Mieux vaut recommencer une approche que forcer.</p>
+</div>
+
+<hr>
+
+<h2>1. Le mouillage (jeter l'ancre)</h2>
+
+<h3>1.1 Choisir l'endroit</h3>
+<ul>
+  <li><strong>Abrité du vent</strong> et de la houle (derrière une pointe, dans une calanque).</li>
+  <li><strong>Fond de sable clair</strong> — l'ancre y croche bien. <strong>Jamais sur la posidonie</strong> (herbier sombre, interdit, voir <a href="../reference/reglementation.html">fiche réglementation</a>).</li>
+  <li><strong>Profondeur raisonnable</strong> et marée prise en compte (faible en Méditerranée, mais réelle).</li>
+  <li>De la <strong>place pour éviter</strong> : le bateau tourne autour de son ancre selon le vent.</li>
+</ul>
+
+<h3>1.2 La longueur à filer</h3>
+
+<div class="schema">
+  <svg width="380" height="200" viewBox="0 0 380 200">
+    <!-- Ciel / mer -->
+    <rect x="0" y="0" width="380" height="55" fill="#eaf4fb"/>
+    <rect x="0" y="55" width="380" height="125" fill="#bfe0f2"/>
+    <rect x="0" y="180" width="380" height="20" fill="#e4cfa3"/>
+    <text x="8" y="195" font-size="10" fill="#9c640c">Fond (sable)</text>
+    <!-- Ligne d'eau -->
+    <line x1="0" y1="55" x2="380" y2="55" stroke="#7fb9d9" stroke-width="1"/>
+    <!-- Bateau en surface -->
+    <polygon points="60,55 110,55 100,68 70,68" fill="#34495e"/>
+    <rect x="80" y="44" width="4" height="12" fill="#34495e"/>
+    <!-- Chaîne tendue de l'étrave vers l'ancre (oblique) -->
+    <line x1="62" y1="58" x2="300" y2="178" stroke="#7f8c8d" stroke-width="2.5" stroke-dasharray="3"/>
+    <!-- Ancre -->
+    <text x="296" y="190" font-size="18">⚓</text>
+    <!-- Profondeur (vertical) -->
+    <line x1="320" y1="55" x2="320" y2="180" stroke="#e67e22" stroke-width="1.5"/>
+    <line x1="315" y1="55" x2="325" y2="55" stroke="#e67e22" stroke-width="1.5"/>
+    <line x1="315" y1="180" x2="325" y2="180" stroke="#e67e22" stroke-width="1.5"/>
+    <text x="328" y="120" font-size="11" fill="#e67e22" font-weight="bold">profondeur</text>
+    <text x="328" y="134" font-size="11" fill="#e67e22">= h</text>
+    <!-- Longueur filée (le long de la chaîne) -->
+    <text x="120" y="130" font-size="12" fill="#34495e" font-weight="bold" transform="rotate(27 120 130)">longueur filée ≈ 3 × h</text>
+  </svg>
+  <p class="meta">La chaîne doit travailler <strong>à plat</strong> sur le fond pour que l'ancre croche : on file plusieurs fois la profondeur.</p>
+</div>
+
+<div class="card card--tip">
+  <h4>🧠 La règle de la longueur</h4>
+  <ul>
+    <li><strong>Chaîne :</strong> filer environ <strong>3 fois la profondeur</strong> (par temps calme).</li>
+    <li><strong>Cordage (câblot) :</strong> environ <strong>5 fois la profondeur</strong> (plus léger, il faut plus de longueur).</li>
+    <li><strong>Mémo « vent » :</strong> force 3 → 3× la hauteur d'eau · force 5 → 5× · force 7 → 8×. Plus ça souffle, plus on file.</li>
+  </ul>
+  <p class="meta">Exemple : 5 m de fond, chaîne, beau temps → filer ≈ 15 m.</p>
+</div>
+
+<h3>1.3 La manœuvre, pas à pas</h3>
+<ol class="step-list">
+  <li>Arriver <strong>face au vent</strong> (ou au courant), <strong>au ralenti</strong>, sur le point choisi.</li>
+  <li><strong>Stopper</strong> l'erre du bateau (vitesse nulle) au-dessus du point de mouillage.</li>
+  <li><strong>Descendre l'ancre</strong> doucement (ne pas la jeter en tas) pendant que le bateau recule légèrement.</li>
+  <li><strong>Filer la longueur</strong> voulue (3× la profondeur) en reculant.</li>
+  <li><strong>Crocher :</strong> petite marche arrière pour tendre la chaîne et planter l'ancre.</li>
+  <li><strong>Vérifier la tenue :</strong> prendre des amers (deux points à terre alignés) — s'ils bougent, l'ancre <strong>dérape</strong> → on recommence.</li>
+</ol>
+
+<hr>
+
+<h2>2. Les amarres et nœuds essentiels</h2>
+
+<p>Quatre nœuds couvrent 95 % des besoins en plaisance :</p>
+
+<div class="knot-grid">
+  <div class="knot-card">
+    <div class="ico">🪢</div>
+    <h5>Nœud de taquet</h5>
+    <p>Amarrer le bateau au taquet du ponton. En 8, puis une clé.</p>
+  </div>
+  <div class="knot-card">
+    <div class="ico">🔗</div>
+    <h5>Tour mort + 2 demi-clés</h5>
+    <p>Amarrer à un anneau ou une bitte. Solide et facile à défaire.</p>
+  </div>
+  <div class="knot-card">
+    <div class="ico">⭕</div>
+    <h5>Nœud de chaise</h5>
+    <p>Une boucle qui ne se serre pas. « Le roi des nœuds ». Pour passer un cordage autour d'un point.</p>
+  </div>
+  <div class="knot-card">
+    <div class="ico">➰</div>
+    <h5>Nœud plat</h5>
+    <p>Relier deux cordages de même diamètre.</p>
+  </div>
+</div>
+
+<div class="card card--info">
+  <h4>🛟 Les pare-battages (défenses)</h4>
+  <p>Avant d'accoster, on suspend les <strong>pare-battages</strong> (boudins) le long de la coque, du côté du quai. Ils protègent la coque des chocs contre le ponton ou un autre bateau.</p>
+</div>
+
+<hr>
+
+<h2>3. Accoster (arriver au quai)</h2>
+
+<div class="schema">
+  <svg width="380" height="180" viewBox="0 0 380 180">
+    <!-- Quai en haut -->
+    <rect x="0" y="0" width="380" height="34" fill="#cbb994"/>
+    <text x="10" y="22" font-size="12" fill="#6e5b2e" font-weight="bold">QUAI / PONTON</text>
+    <!-- Eau -->
+    <rect x="0" y="34" width="380" height="146" fill="#bfe0f2"/>
+    <!-- Vent venant de la gauche -->
+    <text x="20" y="120" font-size="16" fill="#2980b9" font-weight="bold">Vent →</text>
+    <line x1="60" y1="128" x2="120" y2="128" stroke="#2980b9" stroke-width="2" marker-end="url(#aWind)"/>
+    <defs>
+      <marker id="aWind" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2980b9"/>
+      </marker>
+      <marker id="aBoat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#27ae60"/>
+      </marker>
+    </defs>
+    <!-- Trajectoire d'approche : on remonte le vent, angle ~30° vers le quai -->
+    <path d="M 300 150 Q 250 110 215 50" fill="none" stroke="#27ae60" stroke-width="2.5" marker-end="url(#aBoat)"/>
+    <!-- Bateau qui aborde, nez vers le quai face au vent -->
+    <polygon points="0,-13 26,0 0,13" fill="#27ae60" transform="translate(206,48) rotate(-55)"/>
+    <text x="250" y="140" font-size="11" fill="#1e8449" font-weight="bold">Approche face au vent,</text>
+    <text x="250" y="154" font-size="11" fill="#1e8449" font-weight="bold">au ralenti, angle ~30°</text>
+  </svg>
+  <p class="meta">On aborde <strong>contre</strong> le vent (ou le courant) : il freine le bateau et donne le contrôle.</p>
+</div>
+
+<ol class="step-list">
+  <li><strong>Préparer</strong> pare-battages et amarres (avant + arrière) avant d'approcher.</li>
+  <li><strong>Approcher au ralenti</strong>, <strong>contre le vent/courant</strong>, sous un angle d'environ 30°.</li>
+  <li><strong>Redresser</strong> parallèlement au quai dans les derniers mètres.</li>
+  <li><strong>Stopper</strong> (voire petite marche arrière) — le bateau s'arrête net.</li>
+  <li><strong>Frapper les amarres</strong> : d'abord l'amarre avant, puis l'arrière.</li>
+</ol>
+
+<div class="card card--warning">
+  <h4>⚠️ Erreurs classiques</h4>
+  <ul>
+    <li>❌ Aborder <strong>vent arrière</strong> (poussé par le vent, on ne s'arrête plus).</li>
+    <li>❌ Arriver <strong>trop vite</strong> « pour avoir du gouvernail ».</li>
+    <li>❌ Mettre la main ou le pied entre la coque et le quai pour amortir (risque d'écrasement) — on utilise les pare-battages.</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>4. Appareiller (quitter le quai)</h2>
+<div class="two-cols">
+  <div>
+    <h4>Vent qui pousse vers le large</h4>
+    <p>Facile : larguez les amarres, le vent écarte le bateau du quai, vous n'avez plus qu'à avancer.</p>
+  </div>
+  <div>
+    <h4>Vent qui plaque contre le quai</h4>
+    <p>Plus délicat : on dégage l'arrière (ou l'avant) en s'appuyant sur une amarre, puis on s'éloigne franchement. Pare-battages en place jusqu'au dégagement.</p>
+  </div>
+</div>
+<p>Dans tous les cas : <strong>regarder autour</strong> (autres bateaux, baigneurs), <strong>vitesse réduite</strong> dans le port, et respecter le <strong>balisage du chenal</strong> (Leçon 4) et la <strong>bande des 300 m</strong> (Leçon 7).</p>
+
+<hr>
+
+<h2>5. Quiz — Testez vos manœuvres</h2>
+
+<div class="quiz-question" data-correct="2" data-feedback="Par temps calme, on file environ 3 fois la profondeur en chaîne (et ~5 fois en cordage). La chaîne doit travailler à plat sur le fond pour que l'ancre croche.">
+  <p><strong>Q1.</strong> Quelle longueur de chaîne filer par temps calme ?</p>
+  <ul class="quiz-options">
+    <li>La profondeur exacte</li>
+    <li>2 fois la profondeur</li>
+    <li>Environ 3 fois la profondeur</li>
+    <li>10 fois la profondeur</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="On approche TOUJOURS face au vent (ou au courant) : il freine le bateau et vous garde le contrôle. Aborder vent arrière, on ne peut plus s'arrêter.">
+  <p><strong>Q2.</strong> Comment aborder un quai en sécurité ?</p>
+  <ul class="quiz-options">
+    <li>Vent arrière, pour aller vite</li>
+    <li>Contre le vent, au ralenti</li>
+    <li>Perpendiculaire au quai, plein gaz</li>
+    <li>En marche arrière uniquement</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="Sur un herbier de posidonie, l'ancre tient mal ET c'est interdit (milieu protégé). On choisit un fond de sable clair ou une bouée d'amarrage.">
+  <p><strong>Q3.</strong> Sur quel fond faut-il éviter de mouiller ?</p>
+  <ul class="quiz-options">
+    <li>Sur l'herbier de posidonie</li>
+    <li>Sur un fond de sable</li>
+    <li>Dans une zone abritée</li>
+    <li>Près d'une bouée libre</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="Pour vérifier que l'ancre tient, on prend des amers (deux points à terre) : s'ils se décalent, le bateau chasse (dérape) et il faut recommencer le mouillage.">
+  <p><strong>Q4.</strong> Comment vérifier que l'ancre tient bien ?</p>
+  <ul class="quiz-options">
+    <li>En coupant le moteur</li>
+    <li>En filant plus de chaîne</li>
+    <li>En regardant la profondeur</li>
+    <li>En prenant des amers à terre</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Les pare-battages (défenses) se placent entre la coque et le quai pour amortir les chocs. On ne met jamais une main ou un pied à la place.">
+  <p><strong>Q5.</strong> À quoi servent les pare-battages ?</p>
+  <ul class="quiz-options">
+    <li>À ralentir le bateau</li>
+    <li>À signaler une avarie</li>
+    <li>À protéger la coque au quai</li>
+    <li>À remplacer une amarre</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="Le nœud de chaise forme une boucle fixe qui ne se serre pas sous tension — idéal et sûr. C'est « le roi des nœuds ».">
+  <p><strong>Q6.</strong> Quel nœud forme une boucle qui ne se serre pas ?</p>
+  <ul class="quiz-options">
+    <li>Le nœud plat</li>
+    <li>Le nœud de chaise</li>
+    <li>Le tour mort</li>
+    <li>Le nœud de taquet</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📌 Ce qu'il faut retenir</h2>
+<ul>
+  <li><strong>Mouillage :</strong> fond de sable (pas la posidonie), face au vent, filer ~3× la profondeur (chaîne), crocher et vérifier sur des amers.</li>
+  <li><strong>Longueur :</strong> chaîne 3× · cordage 5× · plus de vent = plus de longueur.</li>
+  <li><strong>Accostage :</strong> pare-battages + amarres prêts, approche <strong>contre le vent, au ralenti</strong>, angle ~30°.</li>
+  <li><strong>Appareillage :</strong> profiter du vent qui écarte ; sinon dégager sur une amarre.</li>
+  <li><strong>Toujours :</strong> lenteur, veille autour, vitesse réduite dans le port.</li>
+</ul>
+
+<div class="card card--warning">
+  <h4>⚠️ Pour cet été en Méditerranée</h4>
+  <p>Dans une calanque, repérez le <strong>sable clair</strong> (l'herbier est sombre) et filez assez de chaîne pour la profondeur. Surveillez la <strong>bascule du vent</strong> : le mistral peut se lever en milieu de matinée (Leçon 5) et transformer un mouillage tranquille en piège. Au moindre doute sur la tenue, <strong>on relève et on recommence</strong>.</p>
+</div>
+
+<div class="card card--info">
+  <h4>📖 À lire / consulter</h4>
+  <p>Ressource de référence : <a href="https://www.permis-hauturier.info/pages/manoeu1002forain.php" target="_blank">Le mouillage forain</a> (manœuvres détaillées). Pour la réglementation du mouillage (posidonie, zones protégées), voir la <a href="../reference/reglementation.html">fiche réglementation</a>.</p>
+</div>
+
+<div class="card card--tip">
+  <h4>💡 Une question ?</h4>
+  <p>Vous voulez qu'on détaille un nœud précis, ou la manœuvre d'appareillage avec vent de travers ? Demandez-moi — je suis votre professeur.</p>
+</div>
+
+<hr>
+
+<div class="lesson-nav">
+  <a href="0007-reglementation.html">← Leçon 7 : Réglementation</a>
+  <a href="0009-carte-navigation.html">Leçon 9 : Carte marine et navigation →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.mer.gouv.fr/le-permis-plaisance-permis-de-conduire-les-bateaux-de-plaisance-moteur" target="_blank">Ministère de la Mer</a> ·
+  <a href="https://www.permis-hauturier.info/pages/manoeu1002forain.php" target="_blank">Le mouillage forain</a> ·
+  <a href="https://www.svb-marine.fr/fr/guide/cablots-et-chaines-d-ancres.html" target="_blank">SVB — câblots et chaînes</a></em>
+</p>
+
+</div>
+</body>
+</html>

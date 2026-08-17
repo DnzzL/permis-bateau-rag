@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 13 — Les Panneaux de Signalisation Fluviale en Détail</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    .pgrid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
+      gap: 0.8rem; margin: 1rem 0;
+    }
+    .pcard {
+      border: 1px solid var(--color-border); border-radius: 6px;
+      padding: 0.7rem; background: white; text-align: center;
+    }
+    .pcard h5 { margin: 0.45rem 0 0.1rem; font-size: 0.82rem; }
+    .pcard p { margin: 0; font-size: 0.72rem; color: var(--color-muted); }
+
+    .fp {
+      width: 52px; height: 52px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; border-radius: 3px; position: relative; overflow: hidden;
+      font-family: var(--font-sans); font-weight: 700;
+    }
+    /* Interdiction / Obligation / Restriction : bordure rouge */
+    .fp-red { background: #fff; border: 5px solid #c0392b; color: #111; }
+    /* barre rouge diagonale = interdiction */
+    .fp-bar::after {
+      content: ""; position: absolute; left: -10%; top: 45%;
+      width: 120%; height: 5px; background: #c0392b; transform: rotate(-45deg);
+    }
+    /* A.1 interdiction de passer : rouge-blanc-rouge */
+    .fp-a1 { background: linear-gradient(#c0392b 0 36%, #fff 36% 64%, #c0392b 64% 100%); border: 1px solid #999; }
+    /* Indication : bleu, picto blanc */
+    .fp-blue { background: #1a5276; color: #fff; border: 1px solid #14425e; }
+    /* Recommandation : losanges vert/blanc */
+    .fp-rec { background: #fff; border: 1px solid #999; gap: 3px; }
+    .fp-rec .di { width: 14px; height: 14px; background: linear-gradient(135deg, #27ae60 0 50%, #fff 50% 100%); transform: rotate(45deg); border: 1px solid #1e8449; }
+
+    .legend { font-family: var(--font-sans); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 13 · ⏱ 25 minutes · <span class="tag tag--fluvial">Fluvial</span> <span class="tag tag--important">Fondamental</span></p>
+
+<h1>Les Panneaux Fluviaux en Détail</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>La leçon 11 vous a donné les 5 familles de panneaux. Ici, on apprend à <strong>reconnaître les panneaux concrets</strong> que vous croiserez et que l'examen vous montrera : interdiction de dépasser, vitesse limitée, hauteur limitée, bac, chenal recommandé… L'idée n'est pas de tout mémoriser (il y en a 94), mais de <strong>lire un panneau d'après sa couleur et sa forme</strong>.</p>
+</div>
+
+<div class="card card--tip">
+  <h4>🧠 La clé de lecture (à toujours appliquer)</h4>
+  <p class="legend">
+  🟥 <strong>Bordure rouge = un ORDRE</strong> (à respecter) :<br>
+  &nbsp;&nbsp;• avec une <strong>barre rouge en diagonale → interdiction</strong><br>
+  &nbsp;&nbsp;• sans barre, picto noir → <strong>obligation</strong> ou <strong>restriction</strong> (une limite)<br>
+  🟦 <strong>Bleu, picto blanc = une INDICATION</strong> (information / autorisation)<br>
+  🟩 <strong>Losanges vert et blanc = une RECOMMANDATION</strong></p>
+</div>
+
+<div class="card card--info">
+  <h4>📖 Le catalogue complet</h4>
+  <p>Il existe <strong>une centaine de panneaux</strong>. Cette leçon enseigne les plus courants et la méthode de lecture ; pour réviser <strong>tous</strong> les signaux (séries A à E avec leurs codes), gardez sous la main le <a href="../reference/panneaux-fluviaux.html"><strong>catalogue des panneaux fluviaux</strong></a> (à imprimer).</p>
+</div>
+
+<hr>
+
+<h2>1. Panneaux d'interdiction <span style="font-size:0.9rem; color:var(--color-muted);">(bordure rouge + barre)</span></h2>
+
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-a1"></div><h5>Interdiction de passer</h5><p>Accès / passage interdit (rouge-blanc-rouge).</p></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">⇄</div><h5>Interdit de dépasser</h5><p>Dépassement interdit sur cette section.</p></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">P</div><h5>Stationnement interdit</h5><p>Interdiction de stationner (s'arrêter le long).</p></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">⚓</div><h5>Mouillage interdit</h5><p>Interdiction de jeter l'ancre.</p></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🪢</div><h5>Amarrage interdit</h5><p>Interdiction de s'amarrer à la rive.</p></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🌊</div><h5>Pas de remous</h5><p>Interdit de créer des remous / du batillage.</p></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">↩</div><h5>Demi-tour interdit</h5><p>Interdiction de virer (faire demi-tour).</p></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🚤</div><h5>Moteur interdit</h5><p>Interdit aux bateaux à moteur.</p></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🛥️</div><h5>Jet-ski interdit</h5><p>Interdit aux véhicules nautiques à moteur.</p></div>
+</div>
+
+<hr>
+
+<h2>2. Panneaux d'obligation <span style="font-size:0.9rem; color:var(--color-muted);">(bordure rouge, sans barre)</span></h2>
+
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-red">➡️</div><h5>Direction obligatoire</h5><p>Suivre le sens de la flèche.</p></div>
+  <div class="pcard"><div class="fp fp-red">⬅️</div><h5>Tenir le côté bâbord</h5><p>Serrer la rive / le côté bâbord du chenal.</p></div>
+  <div class="pcard"><div class="fp fp-red">➡️</div><h5>Tenir le côté tribord</h5><p>Serrer la rive / le côté tribord du chenal.</p></div>
+  <div class="pcard"><div class="fp fp-red">✋</div><h5>Arrêt obligatoire</h5><p>S'arrêter dans certaines conditions (ex. écluse).</p></div>
+  <div class="pcard"><div class="fp fp-red">6</div><h5>Vitesse limitée</h5><p>Le chiffre = vitesse max en <strong>km/h</strong>.</p></div>
+  <div class="pcard"><div class="fp fp-red">📢</div><h5>Signal sonore</h5><p>Obligation d'émettre un signal sonore (point noir).</p></div>
+  <div class="pcard"><div class="fp fp-red">👀</div><h5>Vigilance accrue</h5><p>Redoubler d'attention (passage délicat).</p></div>
+</div>
+
+<hr>
+
+<h2>3. Panneaux de restriction <span style="font-size:0.9rem; color:var(--color-muted);">(bordure rouge, une limite)</span></h2>
+
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-red">↕</div><h5>Hauteur limitée</h5><p>Tirant d'air maximal (passage sous un pont).</p></div>
+  <div class="pcard"><div class="fp fp-red">↔</div><h5>Largeur limitée</h5><p>Largeur disponible du chenal / passage.</p></div>
+  <div class="pcard"><div class="fp fp-red">▽</div><h5>Profondeur limitée</h5><p>Tirant d'eau maximal (hauteur sous la quille).</p></div>
+</div>
+
+<div class="card card--tip">
+  <h4>🧠 Tirant d'air vs tirant d'eau</h4>
+  <p><strong>Tirant d'air</strong> = hauteur du bateau <em>au-dessus</em> de l'eau (passe-t-il sous le pont ?). <strong>Tirant d'eau</strong> = hauteur <em>sous</em> la flottaison (touche-t-il le fond ?). La restriction de <strong>hauteur</strong> concerne le tirant d'air, celle de <strong>profondeur</strong> le tirant d'eau.</p>
+</div>
+
+<hr>
+
+<h2>4. Recommandation &amp; indication</h2>
+
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-rec"><span class="di"></span><span class="di"></span></div><h5>Chenal recommandé</h5><p>Deux losanges vert/blanc : naviguer <strong>entre</strong> les deux.</p></div>
+  <div class="pcard"><div class="fp fp-blue">⛴</div><h5>Bac</h5><p>Indication : présence d'un bac (prioritaire).</p></div>
+  <div class="pcard"><div class="fp fp-blue">P</div><h5>Stationnement autorisé</h5><p>On peut stationner ici.</p></div>
+  <div class="pcard"><div class="fp fp-blue">〜</div><h5>Câble / ligne aérienne</h5><p>Information : ligne électrique au-dessus.</p></div>
+  <div class="pcard"><div class="fp fp-blue">🛟</div><h5>Poste / services</h5><p>Eau potable, téléphone, point d'assistance…</p></div>
+</div>
+
+<div class="card card--warning">
+  <h4>⚠️ Le piège des couleurs</h4>
+  <p>Un « P » sur fond <strong>bleu</strong> = stationnement <strong>autorisé</strong> (indication). Le même « P » <strong>barré de rouge</strong> = stationnement <strong>interdit</strong>. Toujours regarder <strong>la couleur de fond et la bordure d'abord</strong>, le pictogramme ensuite.</p>
+</div>
+
+<hr>
+
+<h2>5. Quiz — Reconnaître les panneaux</h2>
+
+<div class="quiz-question" data-correct="1" data-feedback="Bordure rouge + barre rouge en diagonale = interdiction. Le pictogramme précise quoi (ici, dépasser).">
+  <p><strong>1.</strong> Un panneau à fond blanc, bordure rouge et barre rouge en diagonale, c'est…</p>
+  <ul class="quiz-options">
+    <li>Une indication</li>
+    <li>Une interdiction</li>
+    <li>une recommandation</li>
+    <li>une information</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="Un panneau bleu à pictogramme blanc est une indication (information ou autorisation), par exemple un stationnement autorisé.">
+  <p><strong>2.</strong> Un panneau bleu avec un « P » blanc signifie…</p>
+  <ul class="quiz-options">
+    <li>Stationnement interdit</li>
+    <li>Port de plaisance fermé</li>
+    <li>Passage de péniches</li>
+    <li>Stationnement autorisé</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Sur un panneau d'obligation, un chiffre indique la vitesse maximale en km/h.">
+  <p><strong>3.</strong> Un panneau à bordure rouge portant le chiffre « 6 » indique…</p>
+  <ul class="quiz-options">
+    <li>6 milles de distance</li>
+    <li>L'écluse n° 6</li>
+    <li>Vitesse maxi 6 km/h</li>
+    <li>6 mètres de profondeur</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="Une restriction de hauteur concerne le tirant d'air : la hauteur du bateau au-dessus de l'eau, pour passer sous un pont.">
+  <p><strong>4.</strong> Un panneau de hauteur limitée concerne…</p>
+  <ul class="quiz-options">
+    <li>Le tirant d'air (passage sous un pont)</li>
+    <li>Le tirant d'eau (sous la quille)</li>
+    <li>La largeur du bateau</li>
+    <li>La vitesse autorisée</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="Deux losanges vert et blanc recommandent de naviguer entre les deux marques (chenal recommandé).">
+  <p><strong>5.</strong> Deux losanges vert et blanc signifient…</p>
+  <ul class="quiz-options">
+    <li>Baignade autorisée</li>
+    <li>Naviguer entre les deux marques</li>
+    <li>Demi-tour interdit</li>
+    <li>Écluse en préparation</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Pour lire un panneau, on regarde d'abord la couleur/bordure (rouge = ordre, bleu = info), puis le pictogramme.">
+  <p><strong>6.</strong> Pour interpréter un panneau fluvial, on regarde d'abord…</p>
+  <ul class="quiz-options">
+    <li>Sa taille</li>
+    <li>Le nom de la rivière</li>
+    <li>Sa couleur et sa bordure</li>
+    <li>Le numéro inscrit</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="Un panneau bleu avec un bac (⛴) indique la présence d'un bac, qui est prioritaire.">
+  <p><strong>7.</strong> Un panneau bleu représentant un bac vous informe que…</p>
+  <ul class="quiz-options">
+    <li>La baignade est autorisée</li>
+    <li>Un port est proche</li>
+    <li>Le mouillage est interdit</li>
+    <li>Un bac (prioritaire) circule ici</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📌 Ce qu'il faut retenir</h2>
+<ul>
+  <li><strong>Bordure rouge = ordre.</strong> Avec barre diagonale → <strong>interdiction</strong> ; sans barre → <strong>obligation/restriction</strong>.</li>
+  <li><strong>Bleu = indication</strong> (info/autorisation) · <strong>losanges vert/blanc = recommandation</strong>.</li>
+  <li>Sur obligation, un <strong>chiffre = vitesse en km/h</strong> ; un <strong>point</strong> = signal sonore.</li>
+  <li>Restrictions : <strong>hauteur (tirant d'air)</strong>, largeur, <strong>profondeur (tirant d'eau)</strong>.</li>
+  <li>Lire dans l'ordre : <strong>couleur / bordure → pictogramme</strong>. Attention au « P » bleu (autorisé) vs « P » barré (interdit).</li>
+</ul>
+
+<div class="card card--info">
+  <h4>📖 S'entraîner</h4>
+  <p>Le <a href="../reference/panneaux-fluviaux.html"><strong>catalogue des panneaux</strong></a> (à imprimer) · des planches de panneaux réels : <a href="https://www.loisirs-nautic.fr/revision_fluvial_panneaux_interdiction.php" target="_blank">tests de signalisation fluviale</a> · le <a href="https://www.ecologie.gouv.fr/sites/default/files/documents/Guide_sur_la_signalisation_pour_la_navigation_int%C3%A9rieure.pdf" target="_blank">guide officiel</a> · la <a href="../reference/fluvial.html">fiche fluvial</a>.</p>
+</div>
+
+<div class="card card--tip">
+  <h4>💡 Une question ?</h4>
+  <p>Vous voulez qu'on passe en revue d'autres panneaux précis, ou qu'on s'entraîne sur des images ? Demandez-moi — je suis votre professeur.</p>
+</div>
+
+<hr>
+
+<div class="lesson-nav">
+  <a href="0012-fluvial-reglementation-securite.html">← Leçon 12 : Réglementation &amp; sécurité</a>
+  <a href="0014-passage-ecluse.html">Leçon 14 : Passage d'écluse →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.ecologie.gouv.fr/sites/default/files/documents/Guide_sur_la_signalisation_pour_la_navigation_int%C3%A9rieure.pdf" target="_blank">Cerema/Ministère — Signalisation pour la navigation intérieure</a> · CEVNI</em>
+</p>
+
+</div>
+</body>
+</html>

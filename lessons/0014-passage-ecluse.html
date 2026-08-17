@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 14 — Le Passage d'Écluse en Pratique</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    .schema { text-align: center; margin: 1.5rem 0; }
+    .schema p.meta { margin-top: 0.4rem; }
+
+    .step-list { counter-reset: step; list-style: none; padding-left: 0; }
+    .step-list li {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 2.6rem;
+      margin: 0.3rem 0;
+      border-bottom: 1px dashed var(--color-border);
+    }
+    .step-list li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute; left: 0; top: 0.45rem;
+      width: 1.8rem; height: 1.8rem;
+      background: #1a5276; color: white;
+      border-radius: 50%; text-align: center; line-height: 1.8rem;
+      font-weight: bold; font-size: 0.9rem;
+    }
+
+    .dir-cols { display: flex; gap: 1.25rem; flex-wrap: wrap; margin: 1.5rem 0; }
+    .dir-card {
+      flex: 1; min-width: 240px;
+      border: 1px solid var(--color-border); border-radius: 10px;
+      padding: 1.1rem; background: white;
+    }
+    .dir-card .big { font-size: 2.2rem; text-align: center; }
+    .dir-card h4 { text-align: center; margin: 0.2rem 0 0.6rem; }
+    .dir-card.up { border-top: 4px solid var(--color-accent-light); }
+    .dir-card.down { border-top: 4px solid var(--color-correct); }
+    .dir-card ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 14 · ⏱ 25 minutes · <span class="tag tag--fluvial">Fluvial</span> <span class="tag tag--important">Pratique</span></p>
+
+<h1>Le Passage d'Écluse en Pratique</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>Approfondir la manœuvre <strong>la plus emblématique du fluvial</strong> : franchir une écluse en sécurité, dans les deux sens (montante et descendante). À la fin, vous saurez quoi faire à l'approche, dans le sas, et à la sortie — et surtout, l'erreur d'amarrage à <strong>ne jamais</strong> commettre. C'est ce qui vous ouvre le Rhône, la Saône et les canaux du Midi.</p>
+</div>
+
+<h2>À quoi sert une écluse ?</h2>
+<p>Une rivière ou un canal n'est pas plat : il descend par paliers. L'<strong>écluse</strong> est un <strong>sas</strong> (une « boîte » fermée par deux portes) qui fait <strong>monter ou descendre</strong> le bateau d'un <strong>bief</strong> (palier) à l'autre, en remplissant ou vidant le sas.</p>
+
+<div class="schema">
+  <svg width="400" height="215" viewBox="0 0 400 215">
+    <!-- fond -->
+    <rect x="0" y="0" width="400" height="215" fill="#f4f8fb"/>
+    <!-- maçonnerie / radier -->
+    <rect x="0" y="185" width="400" height="30" fill="#b5a079"/>
+    <!-- bief amont (gauche, haut) -->
+    <rect x="0" y="70" width="135" height="115" fill="#bfe0f2"/>
+    <rect x="0" y="64" width="135" height="6" fill="#7fb9d9"/>
+    <text x="10" y="58" font-size="10" fill="#2c5d7c" font-weight="bold">Bief amont (haut)</text>
+    <!-- bief aval (droite, bas) -->
+    <rect x="265" y="125" width="135" height="60" fill="#bfe0f2"/>
+    <rect x="265" y="119" width="135" height="6" fill="#7fb9d9"/>
+    <text x="300" y="113" font-size="10" fill="#2c5d7c" font-weight="bold">Bief aval (bas)</text>
+    <!-- sas (milieu) -->
+    <rect x="140" y="100" width="120" height="85" fill="#aed6ef"/>
+    <text x="200" y="205" font-size="10" fill="#34495e" text-anchor="middle" font-weight="bold">SAS</text>
+    <!-- niveau variable -->
+    <line x1="200" y1="92" x2="200" y2="135" stroke="#e67e22" stroke-width="1.6" stroke-dasharray="4"/>
+    <polygon points="200,86 196,96 204,96" fill="#e67e22"/>
+    <polygon points="200,141 196,131 204,131" fill="#e67e22"/>
+    <text x="208" y="118" font-size="9" fill="#e67e22">niveau</text>
+    <text x="208" y="129" font-size="9" fill="#e67e22">variable</text>
+    <!-- portes -->
+    <rect x="135" y="62" width="6" height="123" fill="#34495e"/>
+    <rect x="259" y="98" width="6" height="87" fill="#34495e"/>
+    <text x="138" y="50" font-size="9" fill="#34495e">Porte amont</text>
+    <text x="232" y="92" font-size="9" fill="#34495e">Porte aval</text>
+    <!-- bollards (bittes) sur les bajoyers -->
+    <rect x="150" y="92" width="7" height="8" fill="#555"/>
+    <rect x="243" y="92" width="7" height="8" fill="#555"/>
+    <text x="150" y="88" font-size="8" fill="#555">bollards</text>
+    <!-- bateau dans le sas -->
+    <polygon points="178,100 222,100 214,110 186,110" fill="#7a3b12"/>
+    <rect x="197" y="92" width="3" height="9" fill="#7a3b12"/>
+  </svg>
+  <p class="meta">Le sas se remplit (montante) ou se vide (descendante) pour amener le bateau au niveau du bief suivant.</p>
+</div>
+
+<hr>
+
+<h2>⚠️ La règle de sécurité n°1</h2>
+
+<div class="card card--warning">
+  <h4>On ne frappe JAMAIS l'amarre dans une écluse</h4>
+  <p>Le niveau de l'eau monte ou descend en permanence. Si votre amarre est <strong>fixée</strong> (nouée, tournée mort sur un taquet), le bateau peut rester <strong>suspendu</strong> à la corde ou gîter dangereusement — jusqu'au chavirage.</p>
+  <p><strong>La bonne technique :</strong> passez un <strong>tour</strong> autour d'un bollard / d'une bitte / d'une échelle, et <strong>tenez l'amarre à la main</strong>, prête à filer ou à reprendre à tout instant.</p>
+  <ul>
+    <li>❌ Ne vous placez jamais <strong>entre le bateau et la paroi</strong>.</li>
+    <li>❌ Ne vous <strong>enroulez jamais</strong> la corde autour de la main ou du poignet.</li>
+    <li>✅ Gilet porté, et on reste attentif du début à la fin.</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>Le passage, étape par étape</h2>
+
+<ol class="step-list">
+  <li><strong>Approche au ralenti</strong> : repérez l'écluse tôt, ralentissez, préparez <strong>pare-battages des deux bords</strong> et amarres (avant + arrière).</li>
+  <li><strong>Attendre le feu</strong> : 🔴 = on patiente à l'écart ; 🔴🟢 = préparation (on ne rentre pas) ; 🟢 = entrée autorisée. <strong>Le commerce passe avant la plaisance</strong> ; suivez les consignes de l'éclusier.</li>
+  <li><strong>Entrer doucement</strong> : avancez sans à-coups, placez-vous <strong>le plus en avant possible</strong> dans le sas (sauf consigne contraire), contre le bajoyer indiqué.</li>
+  <li><strong>Tenir les amarres</strong> : un tour autour d'un bollard, <strong>à la main</strong>, jamais frappé. En France, on peut laisser le moteur tourner au ralenti (prêt à corriger).</li>
+  <li><strong>Pendant l'éclusée</strong> : ajustez la longueur d'amarre au fur et à mesure que le niveau change (voir ci-dessous). Restez calme, surveillez l'avant.</li>
+  <li><strong>Sortir sur signal</strong> : portes ouvertes + feu de sortie, larguez, sortez <strong>au ralenti</strong> jusqu'à être totalement dégagé des portes — sans couper la route à un bateau qui attend.</li>
+</ol>
+
+<hr>
+
+<h2>Montante ou descendante : ce qui change</h2>
+
+<div class="dir-cols">
+  <div class="dir-card up">
+    <div class="big">⬆️</div>
+    <h4>Écluse montante</h4>
+    <p style="font-size:0.85rem;">On va vers l'<strong>amont</strong> : on entre par la porte aval, le sas <strong>se remplit</strong>, le bateau <strong>monte</strong>.</p>
+    <ul>
+      <li>L'arrivée d'eau crée des <strong>turbulences</strong> (surtout vers l'avant) → tenez bien l'amarre avant.</li>
+      <li>Le bateau s'élève vers les bollards : on <strong>reprend le mou</strong> au fur et à mesure.</li>
+      <li>Plus mouvementé que la descente.</li>
+    </ul>
+  </div>
+  <div class="dir-card down">
+    <div class="big">⬇️</div>
+    <h4>Écluse descendante</h4>
+    <p style="font-size:0.85rem;">On va vers l'<strong>aval</strong> : on entre par la porte amont, le sas <strong>se vide</strong>, le bateau <strong>descend</strong>.</p>
+    <ul>
+      <li>Le bateau s'abaisse : on <strong>file le mou</strong> progressivement pour que l'amarre ne se tende jamais.</li>
+      <li>Plus doux, mais le courant de vidange peut surprendre — restez attentif.</li>
+      <li>Une amarre fixée = bateau suspendu : danger maximal en descente.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card card--tip">
+  <h4>🧠 Le mémo amarres</h4>
+  <p><strong>Ça monte → je reprends.</strong> &nbsp; <strong>Ça descend → je file.</strong> &nbsp; Et dans les deux cas : <strong>jamais frappé, toujours à la main.</strong></p>
+</div>
+
+<hr>
+
+<h2>Erreurs classiques à éviter</h2>
+<ul>
+  <li>❌ <strong>Frapper l'amarre</strong> sur un taquet « pour être tranquille » → le piège mortel de l'écluse.</li>
+  <li>❌ Entrer <strong>trop vite</strong> ou s'arrêter au mauvais endroit dans le sas.</li>
+  <li>❌ Oublier un <strong>pare-battage</strong> d'un bord (on en met des deux côtés à l'approche).</li>
+  <li>❌ <strong>Passer devant un bateau de commerce</strong> : il est prioritaire à l'écluse.</li>
+  <li>❌ Sortir avant le feu / avant l'ouverture complète des portes.</li>
+</ul>
+
+<hr>
+
+<h2>Quiz — Testez votre passage d'écluse</h2>
+
+<div class="quiz-question" data-correct="3" data-feedback="On ne frappe (ne fixe) JAMAIS l'amarre dans une écluse : avec la variation du niveau, le bateau pourrait rester suspendu ou chavirer. On passe un tour et on tient à la main.">
+  <p><strong>1.</strong> Comment tient-on son amarre dans le sas d'une écluse ?</p>
+  <ul class="quiz-options">
+    <li>On la noue solidement au taquet</li>
+    <li>On l'enroule autour de la main</li>
+    <li>On la fixe à l'avant uniquement</li>
+    <li>Un tour autour du bollard, tenue à la main</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="En écluse montante, le sas se remplit et le bateau s'élève : on reprend le mou au fur et à mesure. « Ça monte → je reprends ».">
+  <p><strong>2.</strong> Dans une écluse montante, que fait-on de l'amarre pendant le remplissage ?</p>
+  <ul class="quiz-options">
+    <li>On la file (on donne du mou)</li>
+    <li>On reprend le mou progressivement</li>
+    <li>On la lâche complètement</li>
+    <li>On la noue puis on attend</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="En écluse descendante, le bateau s'abaisse : on file le mou progressivement pour que l'amarre ne se tende jamais. « Ça descend → je file ».">
+  <p><strong>3.</strong> Dans une écluse descendante, on doit…</p>
+  <ul class="quiz-options">
+    <li>Filer le mou progressivement</li>
+    <li>Reprendre le mou sans cesse</li>
+    <li>Frapper l'amarre au taquet</li>
+    <li>Couper l'amarre avant</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Feu vert = entrée autorisée. Rouge = on attend ; rouge + vert = préparation (ne pas entrer encore).">
+  <p><strong>4.</strong> Quel signal autorise l'entrée dans le sas ?</p>
+  <ul class="quiz-options">
+    <li>Deux feux rouges</li>
+    <li>Rouge et vert ensemble</li>
+    <li>Un feu vert</li>
+    <li>Aucun feu allumé</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="À l'écluse, les bateaux de commerce sont prioritaires : la plaisance attend et passe après.">
+  <p><strong>5.</strong> Une péniche de commerce et vous arrivez à l'écluse. Qui passe en premier ?</p>
+  <ul class="quiz-options">
+    <li>Le premier arrivé</li>
+    <li>Le plus petit</li>
+    <li>Le bateau de plaisance</li>
+    <li>Le bateau de commerce</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="On prépare les pare-battages des DEUX bords à l'approche, car on ne sait pas toujours de quel côté on s'amarrera dans le sas.">
+  <p><strong>6.</strong> Avant d'entrer dans l'écluse, où place-t-on les pare-battages ?</p>
+  <ul class="quiz-options">
+    <li>Seulement à l'avant</li>
+    <li>Des deux bords</li>
+    <li>Seulement à tribord</li>
+    <li>Nulle part, c'est inutile</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📌 Ce qu'il faut retenir</h2>
+<ul>
+  <li><strong>Écluse = sas</strong> entre deux biefs ; elle se remplit (montante) ou se vide (descendante).</li>
+  <li><strong>Règle d'or :</strong> on ne frappe jamais l'amarre — un tour au bollard, tenue à la main, prête à filer.</li>
+  <li><strong>Montante :</strong> turbulences, le bateau monte → <strong>je reprends le mou</strong>.</li>
+  <li><strong>Descendante :</strong> plus doux, le bateau descend → <strong>je file le mou</strong>.</li>
+  <li><strong>Feux :</strong> rouge = attendre · rouge+vert = préparation · vert = entrer. <strong>Commerce prioritaire.</strong></li>
+  <li><strong>Entrée et sortie au ralenti</strong>, pare-battages des deux bords, gilet porté.</li>
+</ul>
+
+<div class="card card--info">
+  <h4>📖 À consulter</h4>
+  <p>Guide pratique pas à pas : <a href="https://www.leboat.com/blog/how-to-go-through-a-boat-lock" target="_blank">passage d'écluses (Le Boat)</a>. Révisez la <a href="../reference/fluvial.html">fiche fluvial</a> (feux d'écluse, panneaux, signaux).</p>
+</div>
+
+<div class="card card--tip">
+  <h4>💡 Une question ?</h4>
+  <p>Vous voulez la chronologie d'une écluse automatique (à télécommande / à perche), ou le cas des grandes écluses du Rhône avec VHF ? Demandez-moi — je suis votre professeur.</p>
+</div>
+
+<hr>
+
+<div class="lesson-nav">
+  <a href="0013-panneaux-fluviaux.html">← Leçon 13 : Les panneaux fluviaux</a>
+  <a href="0015-fluvial-examen-blanc.html">Leçon 15 : Examen blanc fluvial →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.leboat.com/blog/how-to-go-through-a-boat-lock" target="_blank">Le Boat — passage d'écluses</a> ·
+  <a href="https://www.mer.gouv.fr/pratique-de-la-navigation-de-plaisance-et-des-activites-nautiques-en-eau-douce-lacs-rivieres-et" target="_blank">Ministère — navigation en eau douce</a> · CEVNI / RGP</em>
+</p>
+
+</div>
+</body>
+</html>

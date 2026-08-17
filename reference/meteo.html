@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Météo & Vents — Aide-mémoire</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <style>
+    .ref-table { width: 100%; font-size: 0.9rem; }
+    .ref-table td:first-child { font-weight: 600; white-space: nowrap; }
+    .beaufort { width: 100%; font-size: 0.88rem; }
+    .beaufort td:first-child { font-weight: 700; text-align: center; }
+    .bf-ok { background: #eafaf1; }
+    .bf-warn { background: #fef9e7; }
+    .bf-danger { background: #fdecea; }
+    .wind-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.7rem;
+      margin: 1rem 0;
+    }
+    .wind-card {
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      background: white;
+    }
+    .wind-card h5 { margin: 0 0 0.2rem; font-size: 0.95rem; }
+    .wind-card p { margin: 0; font-size: 0.8rem; color: var(--color-muted); }
+    .wind-card .dir { font-weight: 700; color: #1a5276; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<h1>Météo &amp; Vents — Aide-mémoire</h1>
+<p class="meta">Lire le temps avant et pendant la sortie, avec un focus Méditerranée. <strong>Imprimez cette fiche.</strong></p>
+
+<div class="card card--warning">
+  <h4>🌬️ Règle d'or avant chaque sortie</h4>
+  <p>Consultez le <strong>bulletin météo marine</strong> (Météo-France, VHF CROSS, Windy) : <strong>force et direction du vent</strong>, <strong>état de la mer</strong>, <strong>visibilité</strong>, <strong>évolution sur 24–48 h</strong>. En cas de doute, on ne part pas.</p>
+</div>
+
+<h2>Les vents de Méditerranée</h2>
+<div class="wind-grid">
+  <div class="wind-card"><h5>Mistral <span class="dir">NO</span></h5><p>Froid, sec, <strong>violent</strong>. Se lève en milieu de matinée. Vallée du Rhône.</p></div>
+  <div class="wind-card"><h5>Tramontane <span class="dir">NO</span></h5><p>Froid, sec, fort. Languedoc / Roussillon.</p></div>
+  <div class="wind-card"><h5>Levant <span class="dir">E</span></h5><p>Humide, apporte nuages et pluie.</p></div>
+  <div class="wind-card"><h5>Sirocco <span class="dir">SE</span></h5><p>Chaud, charge de sable. Venu du Sahara.</p></div>
+  <div class="wind-card"><h5>Marin <span class="dir">SE</span></h5><p>Doux, humide, mer formée, brume.</p></div>
+  <div class="wind-card"><h5>Libeccio <span class="dir">O / SO</span></h5><p>Modéré à fort. Corse, mer agitée.</p></div>
+</div>
+
+<div class="card card--tip">
+  <h4>🧭 Repères rapides</h4>
+  <ul>
+    <li><strong>Nord = beau temps</strong> (ciel dégagé, air sec) ; <strong>Sud/Est = pluie possible</strong> (air humide).</li>
+    <li><strong>Mistral / Tramontane :</strong> souvent ciel bleu… mais vent fort et mer dure. Beau ≠ sûr.</li>
+    <li><strong>L'été :</strong> le mistral se lève vers le milieu de matinée → <strong>rentrer avant 16 h</strong>.</li>
+  </ul>
+</div>
+
+<h2>Pression &amp; vent</h2>
+<table class="ref-table">
+  <tr><th>Élément</th><th>À retenir</th></tr>
+  <tr><td>Anticyclone (A)</td><td>Pression <strong>haute</strong> (≥ 1013 hPa) → <strong>beau temps</strong></td></tr>
+  <tr><td>Dépression (D)</td><td>Pression <strong>basse</strong> (&lt; 1013 hPa) → <strong>mauvais temps</strong></td></tr>
+  <tr><td>Isobares serrées</td><td><strong>Vent fort</strong> (espacées = vent faible)</td></tr>
+  <tr><td>Loi de Buys-Ballot</td><td>Dos au vent : <strong>dépression à gauche</strong>, anticyclone à droite (hémisphère nord)</td></tr>
+</table>
+
+<h2>Échelle de Beaufort</h2>
+<table class="beaufort">
+  <tr><th>Force</th><th>Vent (nds)</th><th>Mer</th><th>Pour un petit bateau</th></tr>
+  <tr class="bf-ok"><td>0–2</td><td>0–6</td><td>Calme à ridée</td><td>Idéal débutant</td></tr>
+  <tr class="bf-ok"><td>3–4</td><td>7–16</td><td>Vaguelettes / petites vagues</td><td>✅ Conditions agréables</td></tr>
+  <tr class="bf-warn"><td>5</td><td>17–21</td><td>Vagues modérées, moutons</td><td>⚠️ Limite — prudence</td></tr>
+  <tr class="bf-danger"><td>6–7</td><td>22–33</td><td>Lames, embruns</td><td>🚫 Dangereux — rester au port</td></tr>
+  <tr class="bf-danger"><td>8–12</td><td>34+</td><td>Coup de vent → tempête</td><td>🚫 Interdit</td></tr>
+</table>
+<p class="meta">Au permis, on demande surtout les forces jusqu'à 7–8.</p>
+
+<h2>Les nuages, signes du ciel</h2>
+<table class="ref-table">
+  <tr><th>Nuage</th><th>Ce qu'il annonce</th></tr>
+  <tr><td>Cumulus</td><td>Beau temps (petits moutons épars)</td></tr>
+  <tr><td>Cirrus</td><td>Très haut, fins — temps sec, mais changement possible</td></tr>
+  <tr><td>Stratus</td><td>Bas, gris uniforme — brume, brouillard</td></tr>
+  <tr><td>Nimbostratus</td><td>Pluie continue</td></tr>
+  <tr><td>Cumulonimbus ⚠️</td><td><strong>Orage</strong> — grains violents, à fuir</td></tr>
+</table>
+
+<h2>Les 5 réflexes météo</h2>
+<ol>
+  <li><strong>Bulletin avant de partir</strong> — vent, mer, visibilité, 24–48 h.</li>
+  <li><strong>Limite petit bateau : force 5.</strong> Au-delà, on reste à quai.</li>
+  <li><strong>Mistral/Tramontane = vent fort</strong> même par ciel bleu → rentrer tôt.</li>
+  <li><strong>Cumulonimbus = orage</strong> → rejoindre un abri.</li>
+  <li><strong>Surveiller l'évolution du ciel</strong> et de la pression en mer.</li>
+</ol>
+
+<hr>
+<p class="meta" style="text-align:center;">
+  Voir aussi : <a href="../lessons/0005-meteo-vents.html">Leçon 5 — Météo &amp; vents</a> ·
+  <a href="glossaire.html">Glossaire</a> ·
+  <a href="reglementation.html">Réglementation</a>
+</p>
+
+</div>
+</body>
+</html>

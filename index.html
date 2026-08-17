@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parcours Permis Plaisance — Tronc commun &amp; options</title>
+  <link rel="stylesheet" href="assets/permis.css">
+  <style>
+    .block { border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1.5rem 0; background: white; border: 1px solid var(--color-border); }
+    .block h2 { margin-top: 0; }
+    .block--commun { border-left: 6px solid #8e44ad; }
+    .block--cotier { border-left: 6px solid #2980b9; }
+    .block--fluvial { border-left: 6px solid #27ae60; }
+    .block--commun h2 { color: #8e44ad; }
+    .block--cotier h2 { color: #2074a8; }
+    .block--fluvial h2 { color: #1e8449; }
+
+    .lesson-list { list-style: none; padding-left: 0; margin: 0.5rem 0; font-family: var(--font-sans); }
+    .lesson-list li { padding: 0.4rem 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+    .lesson-list li:last-child { border-bottom: none; }
+    .lesson-list .num { display: inline-block; min-width: 1.6rem; color: var(--color-muted); font-weight: 700; }
+    .lesson-list .exam { font-weight: 700; }
+    .fiches { font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-muted); margin-top: 0.6rem; }
+    .fiches a { margin-right: 0.2rem; }
+
+    .revise { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+    .revise > div { flex: 1; min-width: 240px; border-radius: 8px; padding: 0.9rem 1.1rem; font-family: var(--font-sans); }
+    .revise .r-cot { background: #eaf2f8; border: 1px solid #aed1ea; }
+    .revise .r-flu { background: #eafaf0; border: 1px solid #b5e6c8; }
+    .revise h4 { margin: 0 0 0.3rem; }
+    .soon { font-style: italic; color: var(--color-muted); }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<h1>🚤 Parcours Permis Plaisance</h1>
+<p class="meta">Tronc commun + options côtière et fluviale — votre point de départ pour réviser.</p>
+
+<div class="card card--info">
+  <h4>🎯 Comment ce cours est organisé</h4>
+  <p>Le permis plaisance suit une logique officielle : un <strong>tronc commun</strong> (valable pour les deux options) + une <strong>partie spécifique</strong> à chaque option. On apprend le commun une fois, puis le « delta » propre à l'eau de mer ou aux eaux intérieures. Pour réviser, on cible le bloc utile à l'examen visé.</p>
+</div>
+
+<div class="revise">
+  <div class="r-cot">
+    <h4>🌊 Avant l'examen CÔTIER</h4>
+    🔵 Tronc commun &nbsp;+&nbsp; 🌊 Spécifique côtier
+  </div>
+  <div class="r-flu">
+    <h4>🛶 Avant l'examen FLUVIAL</h4>
+    🔵 Tronc commun &nbsp;+&nbsp; 🛶 Spécifique fluvial
+  </div>
+</div>
+
+<!-- ===================== TRONC COMMUN ===================== -->
+<div class="block block--commun">
+  <h2>🔵 Tronc commun <span style="font-size:0.85rem;font-weight:400;color:var(--color-muted);">— les deux examens</span></h2>
+  <p style="font-family:var(--font-sans);font-size:0.9rem;">Les fondamentaux valables en mer comme en rivière : le cadre du permis, les principes de barre, la sécurité, la détresse et la radio, l'environnement.</p>
+  <ul class="lesson-list">
+    <li><span class="num">1</span> <a href="lessons/0001-vue-ensemble-permis.html">Vue d'ensemble du permis</a> — options, examen, documents</li>
+    <li><span class="num">2</span> <a href="lessons/0002-regles-route-priorites.html">Règles de barre &amp; priorités</a> — principes (illustrés en mer)</li>
+    <li><span class="num">6</span> <a href="lessons/0006-securite-equipements.html">Sécurité &amp; équipements</a> — détresse, VHF, homme à la mer, incendie</li>
+  </ul>
+  <p class="fiches">📄 Fiche : <a href="reference/glossaire.html">Glossaire</a></p>
+  <p class="soon">À venir dans ce bloc : radio/VHF approfondie (procédures, MAYDAY/PAN PAN), avitaillement &amp; entretien.</p>
+</div>
+
+<!-- ===================== CÔTIER ===================== -->
+<div class="block block--cotier">
+  <h2>🌊 Spécifique côtier <span style="font-size:0.85rem;font-weight:400;color:var(--color-muted);">— la mer</span></h2>
+  <ul class="lesson-list">
+    <li><span class="num">3</span> <a href="lessons/0003-feux-navigation.html">Feux de navigation</a> — reconnaître un navire la nuit</li>
+    <li><span class="num">4</span> <a href="lessons/0004-balisage-maritime.html">Balisage maritime</a> — latéral &amp; cardinal (région A)</li>
+    <li><span class="num">5</span> <a href="lessons/0005-meteo-vents.html">Météo &amp; vents</a> — vents méditerranéens, Beaufort, pression</li>
+    <li><span class="num">7</span> <a href="lessons/0007-reglementation.html">Réglementation côtière</a> — bande des 300 m, plongeurs</li>
+    <li><span class="num">8</span> <a href="lessons/0008-mouillage-manoeuvres.html">Mouillage &amp; manœuvres</a> — ancrage, accostage</li>
+    <li><span class="num">9</span> <a href="lessons/0009-carte-navigation.html">Carte marine &amp; navigation</a> — milles, sondes, cap/route</li>
+    <li class="exam"><span class="num">10</span> ▶ <a href="lessons/0010-revision-examen-blanc.html">Examen blanc côtier</a> — 40 questions</li>
+  </ul>
+  <p class="fiches">📄 Fiches : <a href="reference/regles-route.html">Règles de route</a> · <a href="reference/feux.html">Feux</a> · <a href="reference/balisage.html">Balisage</a> · <a href="reference/meteo.html">Météo</a> · <a href="reference/reglementation.html">Réglementation</a></p>
+</div>
+
+<!-- ===================== FLUVIAL ===================== -->
+<div class="block block--fluvial">
+  <h2>🛶 Spécifique fluvial <span style="font-size:0.85rem;font-weight:400;color:var(--color-muted);">— eaux intérieures</span></h2>
+  <ul class="lesson-list">
+    <li><span class="num">11</span> <a href="lessons/0011-navigation-fluviale.html">Navigation fluviale</a> — rives, balisage du chenal, circulation</li>
+    <li><span class="num">12</span> <a href="lessons/0012-fluvial-reglementation-securite.html">Réglementation, équipements &amp; environnement</a> — VNF, zones, batillage</li>
+    <li><span class="num">13</span> <a href="lessons/0013-panneaux-fluviaux.html">Les panneaux en détail</a> — + <a href="reference/panneaux-fluviaux.html">catalogue</a></li>
+    <li><span class="num">14</span> <a href="lessons/0014-passage-ecluse.html">Le passage d'écluse</a> — montante / descendante</li>
+    <li class="exam"><span class="num">15</span> ▶ <a href="lessons/0015-fluvial-examen-blanc.html">Examen blanc fluvial</a> — 40 questions</li>
+  </ul>
+  <p class="fiches">📄 Fiches : <a href="reference/fluvial.html">Fluvial</a> · <a href="reference/panneaux-fluviaux.html">Catalogue des panneaux</a> · <a href="reference/signaux-bateaux-fluviaux.html">Signaux des bateaux</a> · <a href="reference/radio-vhf.html">Radio VHF</a></p>
+</div>
+
+<hr>
+
+<div class="card card--tip">
+  <h4>💡 Conseil de révision</h4>
+  <p>Travaillez le <strong>tronc commun</strong> en premier (il sert aux deux), puis le bloc de l'examen que vous passez d'abord. Espacez les révisions et refaites les <strong>examens blancs</strong> jusqu'à ≤ 5 erreurs. Une question reste floue ? Demandez-moi, je suis votre professeur.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 7 — Réglementation : vitesses, zones et documents</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    /* Schéma de la bande des 300 m */
+    .bande-schema {
+      position: relative;
+      background: linear-gradient(to bottom, #f4e4c1 0%, #f4e4c1 18%, #aed6f1 18%, #5dade2 100%);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      height: 230px;
+      margin: 1.25rem 0;
+      overflow: hidden;
+      font-size: 0.8rem;
+    }
+    .bande-schema .label {
+      position: absolute;
+      background: rgba(255,255,255,0.85);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .bande-schema .plage { top: 6px; left: 8px; color: #9c640c; }
+    .bande-schema .ligne300 {
+      position: absolute; left: 0; right: 0; bottom: 38%;
+      border-top: 2px dashed #c0392b;
+    }
+    .bande-schema .ligne300 span {
+      position: absolute; right: 8px; top: -22px;
+      background: rgba(255,255,255,0.85); padding: 1px 6px; border-radius: 4px;
+      color: #c0392b; font-weight: bold;
+    }
+    .bande-schema .chenal {
+      position: absolute; bottom: 38%; height: 62%; width: 46px; left: 40%;
+      background: rgba(255,255,255,0.35);
+      border-left: 2px solid #f39c12; border-right: 2px solid #f39c12;
+    }
+    .bande-schema .chenal span {
+      position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+      white-space: nowrap; color: #b9770e; font-weight: bold;
+    }
+    .bande-schema .zone5 { bottom: 40%; left: 8px; color: #1a5276; }
+    .bande-schema .zonelibre { bottom: 6px; left: 8px; color: #1a5276; }
+
+    .doc-table { width: 100%; margin: 1rem 0; font-size: 0.9rem; }
+    .doc-table th { background: #1a5276; }
+
+    .flag-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .flag-card {
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 0.75rem;
+      text-align: center;
+      background: white;
+    }
+    .flag-card h5 { margin: 0.4rem 0 0.2rem; font-size: 0.9rem; }
+    .flag-card p { font-size: 0.78rem; margin: 0; color: var(--color-muted); }
+    .flag-card .swatch {
+      width: 64px; height: 42px; margin: 0 auto; border: 1px solid #999;
+    }
+    .flag-alpha { background: linear-gradient(to right, #fff 0 50%, #1565c0 50% 100%); }
+    .flag-stand { background: #c0392b; position: relative; }
+    .flag-stand::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to bottom right, transparent 44%, #fff 44% 56%, transparent 56%);
+    }
+
+    .two-cols { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+    .two-cols > div { flex: 1; min-width: 220px; }
+
+    .amende { color: #c0392b; font-weight: bold; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 7 · ⏱ 25 minutes · <span class="tag tag--côtier">Côtier</span> <span class="tag tag--important">Fondamental</span></p>
+
+<h1>Réglementation : vitesses, zones et documents</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>Connaître les règles qui encadrent la navigation près des côtes : la fameuse <strong>bande des 300 mètres</strong>, les limites de vitesse, les documents à avoir à bord, les pavillons de plongée et les zones protégées de Méditerranée. C'est l'un des chapitres les plus rentables de l'examen — les questions y sont nombreuses et tombent presque toujours.</p>
+</div>
+
+<h2>Pourquoi connaître la réglementation ?</h2>
+
+<p>En mer, la liberté a des limites précises. La plupart des accidents graves de l'été — scooters des mers près des plages, bateaux qui foncent sur des plongeurs, mouillages qui arrachent les herbiers — viennent d'une <strong>ignorance des règles</strong>, pas d'un manque de matériel. Et côté portefeuille : franchir la bande des 300 m à pleine vitesse peut coûter <span class="amende">jusqu'à 3 750 €</span> d'amende.</p>
+
+<hr>
+
+<h2>1. La bande des 300 mètres</h2>
+
+<p>C'est <strong>la</strong> règle reine de la navigation côtière. La <strong>bande littorale des 300 mètres</strong> est la zone qui s'étend sur 300 m à partir du rivage. Elle est partagée entre baigneurs, plongeurs et petites embarcations — la vitesse y est donc strictement encadrée.</p>
+
+<div class="bande-schema">
+  <span class="label plage">🏖️ Plage / rivage</span>
+  <span class="label zone5">Bande des 300 m → <strong>5 nœuds max</strong></span>
+  <div class="chenal"><span>Chenal balisé →</span></div>
+  <div class="ligne300"><span>300 m</span></div>
+  <span class="label zonelibre">Au-delà de 300 m → vitesse libre*</span>
+</div>
+
+<div class="card card--tip">
+  <h4>🧠 La règle à retenir par cœur</h4>
+  <ul>
+    <li><strong>Vitesse limitée à 5 nœuds</strong> (≈ 9 km/h) dans toute la bande des 300 m</li>
+    <li>Pour <strong>traverser</strong> la bande (sortir du port, rejoindre le large), on emprunte un <strong>chenal balisé</strong>, <strong>perpendiculairement</strong> au rivage, toujours à 5 nœuds</li>
+    <li>Le ski nautique, le scooter des mers et les engins tractés sont interdits dans la bande, sauf dans les chenaux autorisés</li>
+    <li><strong>Pas de dérogation</strong> : 5 nœuds, c'est 5 nœuds. <span class="amende">Amende jusqu'à 3 750 € (voire 6 mois de prison)</span> en cas d'excès grave</li>
+  </ul>
+  <p class="meta">* « Vitesse libre » au-delà de 300 m sous réserve des arrêtés préfectoraux locaux et de la règle de barre (garder une vitesse de sécurité).</p>
+</div>
+
+<hr>
+
+<h2>2. Les pavillons de plongée 🤿</h2>
+
+<p>Un plongeur invisible sous la surface est la cible la plus dangereuse en mer. Dès que vous voyez l'un de ces pavillons, <strong>ralentissez et écartez-vous</strong>.</p>
+
+<div class="flag-grid">
+  <div class="flag-card">
+    <div class="swatch flag-alpha"></div>
+    <h5>Pavillon Alpha</h5>
+    <p>Code international (bleu &amp; blanc). « Plongeur immergé, capacité de manœuvre réduite ».</p>
+  </div>
+  <div class="flag-card">
+    <div class="swatch flag-stand"></div>
+    <h5>Pavillon de plongée</h5>
+    <p>Rouge à croix (ou bande) blanche. Signale un plongeur en Méditerranée.</p>
+  </div>
+</div>
+
+<div class="card card--warning">
+  <h4>⚠️ Distances de sécurité autour d'un plongeur</h4>
+  <ul>
+    <li><strong>Navigation interdite</strong> dans un rayon de <strong>100 m</strong> autour d'une bouée ou d'un pavillon signalant un plongeur</li>
+    <li>Si vous devez passer à proximité : vitesse réduite, <strong>5 nœuds maximum</strong>, en permanence</li>
+    <li>En Méditerranée, trois marques sont admises : le pavillon <strong>Alpha</strong>, la <strong>croix de Saint-André</strong> blanche sur fond rouge, et le rouge à <strong>bande blanche diagonale</strong></li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>3. Les documents obligatoires à bord</h2>
+
+<p>Un contrôle des Affaires maritimes peut arriver à tout moment. Voici ce que vous devez pouvoir présenter.</p>
+
+<table class="doc-table">
+  <thead>
+    <tr><th>Document</th><th>À quoi ça sert</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Permis plaisance</strong></td>
+      <td>Obligatoire pour tout bateau à moteur de plus de <strong>4,5 kW (6 CV)</strong>. Option côtière = jusqu'à 6 milles.</td>
+    </tr>
+    <tr>
+      <td><strong>Certificat d'immatriculation</strong></td>
+      <td>Depuis 2022, remplace l'ancienne carte de circulation et l'acte de francisation. Identifie le navire.</td>
+    </tr>
+    <tr>
+      <td><strong>Marquage de coque</strong></td>
+      <td>Numéro d'immatriculation lisible sur la coque. Absent ou illisible : <span class="amende">jusqu'à 3 750 €</span>.</td>
+    </tr>
+    <tr>
+      <td><strong>Attestation d'assurance</strong></td>
+      <td>Non obligatoire en théorie, mais exigée par tous les loueurs et fortement recommandée.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="card card--info">
+  <h4>👶 Conditions de conduite</h4>
+  <ul>
+    <li><strong>Âge minimum : 16 ans</strong> pour passer et utiliser le permis côtier</li>
+    <li>Prêter la barre à un proche non titulaire : possible seulement si <strong>vous êtes à bord</strong> et gardez le contrôle</li>
+    <li>Le capitaine reste <strong>responsable</strong> de tout ce qui se passe à bord, y compris l'état (alcool, fatigue) de l'équipage qui barre</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>4. Protéger le milieu marin 🌿</h2>
+
+<p>La Méditerranée est fragile. Plusieurs règles environnementales tombent à l'examen — et sont surveillées de près l'été.</p>
+
+<div class="two-cols">
+  <div>
+    <div class="card card--warning">
+      <h4>⚓ Mouillage &amp; posidonie</h4>
+      <p>L'<strong>herbier de posidonie</strong> (« poumon » de la Méditerranée) est protégé. <strong>Interdiction de mouiller</strong> dessus dans de nombreuses zones. Repérez les fonds clairs et sableux pour jeter l'ancre, ou utilisez les bouées d'amarrage prévues.</p>
+    </div>
+  </div>
+  <div>
+    <div class="card card--warning">
+      <h4>🗑️ Rejets interdits</h4>
+      <p>Interdit de rejeter à la mer : <strong>ordures, plastiques, hydrocarbures, eaux noires</strong> (toilettes) près des côtes. Utilisez les cuves de récupération et les bornes des ports.</p>
+    </div>
+  </div>
+</div>
+
+<div class="card card--tip">
+  <h4>🏞️ Zones protégées de Méditerranée</h4>
+  <p>Le <strong>Parc national de Port-Cros</strong>, le <strong>Parc national des Calanques</strong> et les zones <strong>Natura 2000</strong> imposent des règles renforcées : vitesse, mouillage, parfois interdiction totale d'accès. <strong>Avant de partir, vérifiez l'arrêté préfectoral local</strong> de la zone visée.</p>
+</div>
+
+<hr>
+
+<h2>5. Quiz — Testez vos connaissances</h2>
+
+<div class="quiz-question" data-correct="2" data-feedback="Dans la bande des 300 mètres, la vitesse est limitée à 5 nœuds (environ 9 km/h) pour protéger baigneurs et plongeurs. C'est une règle absolue, sans dérogation.">
+  <p><strong>Q1.</strong> Quelle est la vitesse maximale autorisée dans la bande des 300 mètres ?</p>
+  <ul class="quiz-options">
+    <li>3 nœuds</li>
+    <li>10 nœuds</li>
+    <li>5 nœuds</li>
+    <li>Aucune limite</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="Pour traverser la bande des 300 m, on emprunte un chenal balisé, perpendiculairement au rivage, et toujours à 5 nœuds maximum. On ne navigue pas le long de la plage.">
+  <p><strong>Q2.</strong> Comment doit-on traverser la bande des 300 mètres pour rejoindre le large ?</p>
+  <ul class="quiz-options">
+    <li>En longeant la plage à vitesse réduite</li>
+    <li>Par un chenal balisé, perpendiculairement au rivage</li>
+    <li>N'importe où, tant qu'on va vite</li>
+    <li>Uniquement de nuit</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="Le pavillon Alpha (bleu et blanc) du code international signale un plongeur immergé et une capacité de manœuvre réduite. Il faut s'écarter et ralentir.">
+  <p><strong>Q3.</strong> Que signale le pavillon Alpha hissé sur un bateau ?</p>
+  <ul class="quiz-options">
+    <li>Le bateau demande de l'aide</li>
+    <li>Le bateau est en pêche</li>
+    <li>Le bateau va mouiller</li>
+    <li>Un plongeur est immergé à proximité</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="La navigation est interdite dans un rayon de 100 mètres autour d'une bouée ou d'un pavillon signalant un plongeur. À proximité, la vitesse est limitée à 5 nœuds.">
+  <p><strong>Q4.</strong> Quelle distance minimale devez-vous respecter autour d'une marque signalant un plongeur ?</p>
+  <ul class="quiz-options">
+    <li>100 mètres</li>
+    <li>20 mètres</li>
+    <li>500 mètres</li>
+    <li>10 mètres</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Le permis plaisance est obligatoire dès que le moteur dépasse 4,5 kW, soit 6 chevaux. En dessous, aucun permis n'est exigé.">
+  <p><strong>Q5.</strong> À partir de quelle puissance moteur le permis devient-il obligatoire ?</p>
+  <ul class="quiz-options">
+    <li>2 kW (3 CV)</li>
+    <li>10 kW (13 CV)</li>
+    <li>4,5 kW (6 CV)</li>
+    <li>Toujours, quelle que soit la puissance</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="L'âge minimum pour passer et utiliser le permis plaisance côtier est de 16 ans.">
+  <p><strong>Q6.</strong> Quel est l'âge minimum pour passer le permis côtier ?</p>
+  <ul class="quiz-options">
+    <li>12 ans</li>
+    <li>14 ans</li>
+    <li>18 ans</li>
+    <li>16 ans</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="Mouiller (jeter l'ancre) sur un herbier de posidonie est interdit dans de nombreuses zones de Méditerranée : c'est un milieu protégé essentiel à l'écosystème. On cherche un fond de sable clair ou une bouée d'amarrage.">
+  <p><strong>Q7.</strong> Sur quel fond est-il interdit de mouiller en Méditerranée ?</p>
+  <ul class="quiz-options">
+    <li>Sur le sable</li>
+    <li>Sur les herbiers de posidonie</li>
+    <li>Sur la roche</li>
+    <li>Sur la vase</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="Depuis 2022, le certificat d'immatriculation remplace l'ancienne carte de circulation et l'acte de francisation. Il identifie officiellement le navire.">
+  <p><strong>Q8.</strong> Quel document identifie officiellement votre navire depuis 2022 ?</p>
+  <ul class="quiz-options">
+    <li>Le certificat d'immatriculation</li>
+    <li>La carte grise nautique</li>
+    <li>Le passeport du bateau</li>
+    <li>L'acte de francisation seul</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📌 Ce qu'il faut retenir</h2>
+
+<ul>
+  <li><strong>Bande des 300 m :</strong> 5 nœuds max, traversée par chenal balisé perpendiculaire au rivage</li>
+  <li><strong>Plongeurs :</strong> pavillon Alpha (bleu/blanc) ou rouge à croix blanche → 100 m d'écart, 5 nœuds à proximité</li>
+  <li><strong>Permis :</strong> obligatoire dès 4,5 kW (6 CV), âge minimum 16 ans, option côtière = 6 milles</li>
+  <li><strong>Documents :</strong> permis + certificat d'immatriculation + marquage de coque (+ assurance recommandée)</li>
+  <li><strong>Environnement :</strong> pas de mouillage sur la posidonie, aucun rejet en mer, vérifier les arrêtés des parcs (Port-Cros, Calanques)</li>
+</ul>
+
+<div class="card card--warning">
+  <h4>⚠️ Pour cet été en Méditerranée</h4>
+  <p>En sortant du port, restez à <strong>5 nœuds jusqu'à la bouée de 300 m</strong> — c'est là que les contrôles sont fréquents et que les baigneurs nagent. Avant de mouiller dans une calanque, repérez un <strong>fond de sable clair</strong> (pas l'herbier sombre) ou prenez une <strong>bouée d'amarrage</strong>. Et gardez à bord une copie de votre <strong>permis</strong> et du <strong>certificat d'immatriculation</strong> du bateau loué.</p>
+</div>
+
+<div class="card card--info">
+  <h4>📖 À lire / consulter</h4>
+  <p>Source de référence la plus fiable : <a href="https://www.mer.gouv.fr/regles-de-securite-pour-les-loisirs-nautiques-en-mer" target="_blank">Ministère de la Mer — Règles de sécurité pour les loisirs nautiques en mer</a>. Pour la zone précise où vous naviguerez, cherchez l'<strong>arrêté préfectoral maritime</strong> correspondant (Préfecture maritime de la Méditerranée).</p>
+  <p>📄 Pour réviser : imprimez la <a href="../reference/reglementation.html">fiche réglementation</a> (chiffres clés : 300 m / 5 nœuds / 100 m / 6 CV / 16 ans).</p>
+</div>
+
+<div class="card card--tip">
+  <h4>💡 Une question ?</h4>
+  <p>Un point n'est pas clair ? Vous voulez réviser la bande des 300 m avec un schéma, ou comprendre les zones de Port-Cros avant votre sortie ? Demandez-moi — je suis votre professeur.</p>
+</div>
+
+<hr>
+
+<div class="lesson-nav">
+  <a href="0006-securite-equipements.html">← Leçon 6 : Sécurité et équipements</a>
+  <a href="0008-mouillage-manoeuvres.html">Leçon 8 : Mouillage et manœuvres →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.mer.gouv.fr/le-permis-plaisance-permis-de-conduire-les-bateaux-de-plaisance-moteur" target="_blank">Ministère de la Mer</a> ·
+  <a href="https://www.mer.gouv.fr/regles-de-securite-pour-les-loisirs-nautiques-en-mer" target="_blank">Règles de sécurité — loisirs nautiques</a> ·
+  Arrêtés préfectoraux maritimes · Division 240</em>
+</p>
+
+</div>
+</body>
+</html>

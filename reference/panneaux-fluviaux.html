@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue des Panneaux Fluviaux — Aide-mémoire</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <style>
+    .pgrid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+      gap: 0.7rem; margin: 0.8rem 0 1.4rem;
+    }
+    .pcard {
+      border: 1px solid var(--color-border); border-radius: 6px;
+      padding: 0.6rem; background: white; text-align: center;
+    }
+    .pcard .code { font-family: var(--font-sans); font-size: 0.68rem; color: var(--color-muted); font-weight: 700; }
+    .pcard h5 { margin: 0.3rem 0 0; font-size: 0.78rem; line-height: 1.2; }
+
+    .fp {
+      width: 46px; height: 46px; margin: 0.25rem auto 0.2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; border-radius: 3px; position: relative; overflow: hidden;
+      font-family: var(--font-sans); font-weight: 700; line-height: 1;
+    }
+    .fp-red { background: #fff; border: 4px solid #c0392b; color: #111; }
+    .fp-bar::after {
+      content: ""; position: absolute; left: -12%; top: 44%;
+      width: 124%; height: 4px; background: #c0392b; transform: rotate(-45deg);
+    }
+    .fp-a1 { background: linear-gradient(#c0392b 0 34%, #fff 34% 66%, #c0392b 66% 100%); border: 1px solid #999; }
+    .fp-blue { background: #1a5276; color: #fff; border: 1px solid #14425e; }
+    .fp-rec { background: #fff; border: 1px solid #999; gap: 3px; }
+    .fp-rec .di { width: 13px; height: 13px; background: linear-gradient(135deg, #27ae60 0 50%, #fff 50% 100%); transform: rotate(45deg); border: 1px solid #1e8449; }
+    .fp small { font-size: 0.5rem; }
+    .legend { font-family: var(--font-sans); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<h1>Catalogue des Panneaux Fluviaux</h1>
+<p class="meta">Les principaux signaux de la navigation intérieure (RGP / CEVNI). <strong>Imprimez cette fiche.</strong> Pictogrammes schématisés — la <em>couleur</em> et la <em>forme</em> priment.</p>
+
+<div class="card card--tip">
+  <h4>🧠 Clé de lecture (3 secondes)</h4>
+  <p class="legend">
+  🟥 <strong>Bordure rouge = ORDRE.</strong> Avec <strong>barre diagonale → interdiction (A)</strong> · sans barre → <strong>obligation (B)</strong> ou <strong>limitation (C)</strong>.<br>
+  🟩 <strong>Losanges vert/blanc → recommandation (D)</strong> (chenal conseillé).<br>
+  🟦 <strong>Bleu, picto blanc → indication (E)</strong> (information / autorisation).<br>
+  ⏩ On lit toujours : <strong>couleur &amp; bordure d'abord</strong>, pictogramme ensuite. Vitesses en <strong>km/h</strong>.</p>
+</div>
+
+<div class="card card--warning">
+  <h4>🔢 Un chiffre : vitesse (km/h) ou distance (mètres) ?</h4>
+  <p class="legend">La clé, c'est la <strong>barre diagonale</strong> :</p>
+  <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:flex-start; margin:0.6rem 0;">
+    <div style="text-align:center; min-width:120px;">
+      <div class="fp fp-red" style="margin:0 auto;">6</div>
+      <div style="font-size:0.72rem; margin-top:0.3rem;"><strong>Vitesse (B.6)</strong><br>bordure rouge, <strong>sans barre</strong> → <strong>km/h</strong></div>
+    </div>
+    <div style="text-align:center; min-width:120px;">
+      <div class="fp fp-red fp-bar" style="margin:0 auto;">P</div>
+      <div style="width:52px; margin:0.25rem auto 0; border:1px solid #999; background:#fff; font-size:0.6rem; font-weight:700; padding:1px 0;">← 500 m →</div>
+      <div style="font-size:0.72rem; margin-top:0.3rem;"><strong>Stationnement interdit (A.5)</strong><br><strong>avec barre</strong> → le chiffre est en <strong>mètres</strong></div>
+    </div>
+  </div>
+  <p class="legend">
+  ▪️ <strong>Pas de barre</strong> = obligation (B) → chiffre = <strong>vitesse km/h</strong> (uniquement le panneau B.6).<br>
+  ▪️ <strong>Barre diagonale</strong> = interdiction (A) → tout chiffre = <strong>distance / longueur en mètres</strong>.<br>
+  ▪️ Un <strong>petit panneau blanc rectangulaire</strong> (souvent avec une <strong>flèche</strong>) ajouté au signal indique toujours une <strong>distance en mètres</strong> — le tronçon concerné.<br>
+  ▪️ Les restrictions <strong>C</strong> (▽ profondeur · ↕ hauteur · ↔ largeur) affichent aussi des <strong>mètres</strong>.<br>
+  ⏩ En clair : <strong>km/h seulement sur B.6</strong> ; partout ailleurs, un nombre = <strong>mètres</strong>.</p>
+</div>
+
+<h2>A · Interdictions <span style="font-size:0.85rem;color:var(--color-muted);">(fond blanc, bordure rouge, barre)</span></h2>
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-a1"></div><div class="code">A.1</div><h5>Interdiction de passer</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">⇄</div><div class="code">A.2</div><h5>Interdit de dépasser</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">⇉</div><div class="code">A.3</div><h5>Dépassement de convois interdit</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">✕</div><div class="code">A.4</div><h5>Croiser &amp; dépasser interdit</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">P</div><div class="code">A.5</div><h5>Stationnement interdit</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">⚓</div><div class="code">A.6</div><h5>Mouillage interdit</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🪢</div><div class="code">A.7</div><h5>Amarrage interdit</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">↩</div><div class="code">A.8</div><h5>Demi-tour (virer) interdit</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🌊</div><div class="code">A.9</div><h5>Pas de remous / batillage</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">‖ ‖</div><div class="code">A.10</div><h5>Rester dans l'espace indiqué</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🚤</div><div class="code">A.12</div><h5>Interdit aux bateaux à moteur</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🚣</div><div class="code">A.13</div><h5>Interdit aux menues embarcations</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🎿</div><div class="code">A.14</div><h5>Ski nautique interdit</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">⛵</div><div class="code">A.15</div><h5>Interdit aux bateaux à voile</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🏄</div><div class="code">A.17</div><h5>Planche à voile interdite</h5></div>
+  <div class="pcard"><div class="fp fp-red fp-bar">🛥️</div><div class="code">A.20</div><h5>Jet-ski interdit</h5></div>
+</div>
+
+<h2>B · Obligations <span style="font-size:0.85rem;color:var(--color-muted);">(fond blanc, bordure rouge, sans barre)</span></h2>
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-red">➡️</div><div class="code">B.1</div><h5>Direction obligatoire (flèche)</h5></div>
+  <div class="pcard"><div class="fp fp-red">↰</div><div class="code">B.2a</div><h5>Se diriger vers bâbord</h5></div>
+  <div class="pcard"><div class="fp fp-red">↱</div><div class="code">B.2b</div><h5>Se diriger vers tribord</h5></div>
+  <div class="pcard"><div class="fp fp-red">⬅️</div><div class="code">B.3a</div><h5>Tenir le côté bâbord</h5></div>
+  <div class="pcard"><div class="fp fp-red">➡️</div><div class="code">B.3b</div><h5>Tenir le côté tribord</h5></div>
+  <div class="pcard"><div class="fp fp-red">✋</div><div class="code">B.5</div><h5>Arrêt obligatoire</h5></div>
+  <div class="pcard"><div class="fp fp-red">6</div><div class="code">B.6</div><h5>Vitesse limitée (km/h)</h5></div>
+  <div class="pcard"><div class="fp fp-red">●</div><div class="code">B.7</div><h5>Émettre un signal sonore</h5></div>
+  <div class="pcard"><div class="fp fp-red">❗</div><div class="code">B.8</div><h5>Vigilance particulière</h5></div>
+  <div class="pcard"><div class="fp fp-red">👀</div><div class="code">B.9</div><h5>Vérifier que la voie est libre</h5></div>
+  <div class="pcard"><div class="fp fp-red">📻</div><div class="code">B.11</div><h5>Utiliser le radiotéléphone</h5></div>
+</div>
+
+<h2>C · Limitations <span style="font-size:0.85rem;color:var(--color-muted);">(fond blanc, bordure rouge — une mesure)</span></h2>
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-red">▽<small>m</small></div><div class="code">C.1</div><h5>Profondeur limitée (tirant d'eau)</h5></div>
+  <div class="pcard"><div class="fp fp-red">↕<small>m</small></div><div class="code">C.2</div><h5>Hauteur libre limitée (tirant d'air)</h5></div>
+  <div class="pcard"><div class="fp fp-red">↔<small>m</small></div><div class="code">C.3</div><h5>Largeur limitée</h5></div>
+  <div class="pcard"><div class="fp fp-red">⚠</div><div class="code">C.4</div><h5>Restrictions à la navigation</h5></div>
+  <div class="pcard"><div class="fp fp-red">⇤<small>m</small></div><div class="code">C.5</div><h5>Chenal éloigné de la rive</h5></div>
+</div>
+
+<h2>D · Recommandation <span style="font-size:0.85rem;color:var(--color-muted);">(losanges vert/blanc)</span></h2>
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-rec"><span class="di"></span><span class="di"></span></div><div class="code">D.1</div><h5>Chenal recommandé (passer entre)</h5></div>
+  <div class="pcard"><div class="fp fp-rec"><span class="di"></span></div><div class="code">D.2</div><h5>Se tenir dans l'espace indiqué</h5></div>
+</div>
+
+<h2>E · Indications <span style="font-size:0.85rem;color:var(--color-muted);">(fond bleu, picto blanc)</span></h2>
+<div class="pgrid">
+  <div class="pcard"><div class="fp fp-blue">✔</div><div class="code">E.1</div><h5>Autorisation de passer</h5></div>
+  <div class="pcard"><div class="fp fp-blue">〜</div><div class="code">E.2</div><h5>Ligne électrique aérienne</h5></div>
+  <div class="pcard"><div class="fp fp-blue">▤</div><div class="code">E.3</div><h5>Barrage</h5></div>
+  <div class="pcard"><div class="fp fp-blue">⛴</div><div class="code">E.4</div><h5>Bac (prioritaire)</h5></div>
+  <div class="pcard"><div class="fp fp-blue">P</div><div class="code">E.5</div><h5>Stationnement autorisé</h5></div>
+  <div class="pcard"><div class="fp fp-blue">⚓</div><div class="code">E.6</div><h5>Mouillage autorisé</h5></div>
+  <div class="pcard"><div class="fp fp-blue">🪢</div><div class="code">E.7</div><h5>Amarrage autorisé</h5></div>
+  <div class="pcard"><div class="fp fp-blue">↻</div><div class="code">E.8</div><h5>Aire de virage</h5></div>
+  <div class="pcard"><div class="fp fp-blue">⊠</div><div class="code">E.11</div><h5>Fin d'une interdiction / limitation</h5></div>
+  <div class="pcard"><div class="fp fp-blue">🚰</div><div class="code">E.13</div><h5>Eau potable</h5></div>
+  <div class="pcard"><div class="fp fp-blue">📞</div><div class="code">E.14</div><h5>Téléphone</h5></div>
+  <div class="pcard"><div class="fp fp-blue">🎿</div><div class="code">E.17</div><h5>Ski nautique autorisé</h5></div>
+  <div class="pcard"><div class="fp fp-blue">⛵</div><div class="code">E.18</div><h5>Voile autorisée</h5></div>
+</div>
+
+<h2>F · Position &amp; passage du chenal <span style="font-size:0.85rem;color:var(--color-muted);">(panneaux sur la rive — souvent tombés à l'examen)</span></h2>
+
+<div class="card card--info">
+  <h4>🔑 La règle qui déverrouille tout</h4>
+  <p class="legend">
+  Ces panneaux se lisent avec <strong>2 clés</strong> :<br>
+  ▪️ <strong>La FORME donne la rive de référence :</strong> <strong>carré</strong> (posé à plat, côtés horizontaux) → rive <strong>DROITE</strong> · <strong>losange</strong> (sur la pointe) → rive <strong>GAUCHE</strong>.<br>
+  🎨 <strong>La COULEUR donne la fonction :</strong> <span style="color:#c0392b;font-weight:700">rouge</span>/<span style="color:#1e8449;font-weight:700">vert</span> + blanc → <strong>position</strong> (le chenal <em>longe</em> cette rive) · <strong>jaune à bande noire</strong> → <strong>passage</strong> (le chenal <em>traverse</em> vers l'autre rive).<br>
+  ⚠️ Le jaune est <strong>souvent rendu orangé</strong> sur les photos d'examen.</p>
+</div>
+
+<h3 style="margin-bottom:0.3rem;">Position — le chenal longe une rive</h3>
+<div class="pgrid">
+  <div class="pcard">
+    <div class="fp">
+      <svg width="42" height="42" viewBox="0 0 44 44" aria-hidden="true">
+        <rect width="44" height="44" fill="#fff" stroke="#999" stroke-width="1"/>
+        <rect y="12" width="44" height="20" fill="#c0392b"/>
+      </svg>
+    </div>
+    <div class="code">CARRÉ · rouge</div><h5>Chenal proche de la rive DROITE</h5>
+  </div>
+  <div class="pcard">
+    <div class="fp">
+      <svg width="42" height="42" viewBox="0 0 44 44" aria-hidden="true">
+        <polygon points="22,3 41,22 3,22" fill="#27ae60" stroke="#1e8449" stroke-width="1"/>
+        <polygon points="3,22 41,22 22,41" fill="#fff" stroke="#1e8449" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="code">LOSANGE · vert</div><h5>Chenal proche de la rive GAUCHE</h5>
+  </div>
+</div>
+
+<h3 style="margin-bottom:0.3rem;">Passage — le chenal traverse vers l'autre rive</h3>
+<div class="pgrid">
+  <div class="pcard">
+    <div class="fp">
+      <svg width="42" height="42" viewBox="0 0 44 44" aria-hidden="true">
+        <rect width="44" height="44" fill="#f2b21e" stroke="#b7950b" stroke-width="1"/>
+        <rect x="16" width="12" height="44" fill="#111"/>
+      </svg>
+    </div>
+    <div class="code">CARRÉ · jaune/noir</div><h5>Le chenal passe de la rive DROITE → GAUCHE</h5>
+  </div>
+  <div class="pcard">
+    <div class="fp">
+      <svg width="42" height="42" viewBox="0 0 44 44" aria-hidden="true">
+        <defs><clipPath id="diaPass"><polygon points="22,2 42,22 22,42 2,22"/></clipPath></defs>
+        <polygon points="22,2 42,22 22,42 2,22" fill="#f2b21e" stroke="#b7950b" stroke-width="1"/>
+        <rect x="16" width="12" height="44" fill="#111" clip-path="url(#diaPass)"/>
+      </svg>
+    </div>
+    <div class="code">LOSANGE · jaune/noir</div><h5>Le chenal passe de la rive GAUCHE → DROITE</h5>
+  </div>
+</div>
+
+<div class="card card--tip">
+  <h4>🧭 Et le grand panneau orange–noir–orange à bandes verticales ?</h4>
+  <p class="legend">C'est le même signal de <strong>passage</strong> vu de près : fond jaune (orangé) avec une <strong>large bande noire verticale</strong> au centre → « le chenal passe d'une rive à l'autre ». S'il est <strong>carré</strong>, la traversée part de la <strong>rive droite</strong> ; s'il est en <strong>losange</strong>, elle part de la <strong>rive gauche</strong>. À ne pas confondre avec le panneau A.5 (« P » barré = stationnement interdit) ni avec une marque de position.</p>
+</div>
+
+<div class="card card--warning">
+  <h4>⚠️ Les pièges fréquents</h4>
+  <ul>
+    <li>Même pictogramme, sens opposé : « P » <strong>barré de rouge</strong> = stationnement <strong>interdit</strong> (A.5) ; « P » <strong>bleu</strong> = stationnement <strong>autorisé</strong> (E.5). Idem pour ⚓ et 🪢.</li>
+    <li><strong>Hauteur (C.2)</strong> = tirant d'air (sous un pont) ; <strong>profondeur (C.1)</strong> = tirant d'eau (sous la quille).</li>
+    <li>Un <strong>chiffre</strong> sur un panneau d'obligation rouge = <strong>vitesse en km/h</strong> (B.6).</li>
+    <li><strong>Un seul</strong> losange vert/blanc = <em>position</em> du chenal (proche rive gauche) ; <strong>deux</strong> losanges vert/blanc = <em>chenal recommandé</em>, on passe <strong>entre</strong> les deux (D.1). La couleur est la même, c'est le <strong>nombre</strong> qui change le sens.</li>
+    <li><strong>Forme = rive</strong> (carré → droite, losange → gauche), <strong>couleur = fonction</strong> (rouge/vert = longe la rive ; jaune/noir = traverse vers l'autre rive).</li>
+    <li><strong>A.2 vs A.3 :</strong> <strong>A.2</strong> = interdiction de <em>tout</em> dépassement (personne ne dépasse). <strong>A.3</strong> (deux flèches) = interdiction de dépasser <em>entre convois</em> uniquement : un bateau de plaisance (non-convoi) n'est <strong>pas</strong> visé et <strong>peut donc dépasser</strong>, y compris un convoi.</li>
+  </ul>
+</div>
+
+<hr>
+<p class="meta" style="text-align:center;">
+  Voir aussi : <a href="../lessons/0013-panneaux-fluviaux.html">Leçon 13 — Les panneaux en détail</a> ·
+  <a href="fluvial.html">Fiche fluvial</a> ·
+  <a href="https://www.ecologie.gouv.fr/sites/default/files/documents/Guide_sur_la_signalisation_pour_la_navigation_int%C3%A9rieure.pdf" target="_blank">Guide officiel (Cerema)</a>
+</p>
+
+</div>
+</body>
+</html>

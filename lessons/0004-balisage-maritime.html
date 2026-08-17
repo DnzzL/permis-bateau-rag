@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 4 — Balisage Maritime</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    .buoy-mini { text-align: center; margin: 1rem 0; }
+    .buoy-mini svg { vertical-align: middle; }
+
+    .two-cols {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .two-cols > div { flex: 1; min-width: 200px; }
+
+    .cardinal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .cardinal-card {
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 0.75rem;
+      text-align: center;
+      background: white;
+    }
+    .cardinal-card h5 { margin: 0.3rem 0; font-size: 0.9rem; }
+    .cardinal-card p { font-size: 0.8rem; margin: 0; }
+    .cardinal-card svg { display: block; margin: 0 auto; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 4 · ⏱ 20 minutes · <span class="tag tag--côtier">Côtier</span> <span class="tag tag--fluvial">Fluvial</span> <span class="tag tag--important">Fondamental</span></p>
+
+<h1>Balisage Maritime</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>Savoir lire les bouées et balises comme un code de la route. En Méditerranée, vous croiserez des bouées rouges et vertes en entrant dans les ports (porquerolles, Cassis, Saint-Tropez…) — savoir les interpréter, c'est éviter de s'échouer.</p>
+</div>
+
+<h2>Pourquoi le balisage ?</h2>
+
+<p>Les bouées et balises sont les <strong>panneaux de signalisation de la mer</strong>. Elles indiquent :</p>
+<ul>
+  <li>Où passer pour entrer dans un port ou un chenal</li>
+  <li>Où se trouvent les dangers (rochers, épaves, hauts-fonds)</li>
+  <li>Les zones interdites ou réglementées</li>
+  <li>Les eaux sûres (libres de tout danger)</li>
+</ul>
+
+<p>En Méditerranée, la visibilité peut changer vite (mistral, tramontane). Savoir lire le balisage, c'est pouvoir rentrer au port même par visibilité réduite.</p>
+
+<hr>
+
+<h2>1. Le balisage latéral — Le chenal</h2>
+
+<p>C'est le balisage le plus important pour l'examen et pour la navigation côtière. Il délimite un chenal d'accès à un port.</p>
+
+<div class="two-cols">
+  <div style="text-align:center;">
+    <svg width="300" height="160" viewBox="0 0 300 160">
+      <!-- Mer (fond) -->
+      <rect x="0" y="0" width="300" height="160" fill="#e8f4f8" rx="4"/>
+      <!-- Chenal -->
+      <text x="150" y="20" font-size="11" fill="#2980b9" text-anchor="middle" font-weight="bold">VUE DU LARGE VERS LE PORT</text>
+
+      <!-- Bouée bâbord (rouge) : CYLINDRE / « boîte » — sommet PLAT -->
+      <rect x="34" y="42" width="26" height="38" rx="2" fill="#e74c3c"/>
+      <ellipse cx="47" cy="42" rx="13" ry="3.5" fill="#c0392b"/>
+      <text x="47" y="66" font-size="9" fill="white" text-anchor="middle" font-weight="bold">BÂB</text>
+      <text x="47" y="100" font-size="10" fill="#e74c3c" text-anchor="middle">🟥 Rouge</text>
+      <text x="47" y="113" font-size="9" fill="#666" text-anchor="middle">(cylindre · plat)</text>
+
+      <!-- Bouée tribord (verte) : CÔNE — sommet POINTU -->
+      <polygon points="248,30 233,80 263,80" fill="#27ae60"/>
+      <text x="248" y="72" font-size="9" fill="white" text-anchor="middle" font-weight="bold">TRIB</text>
+      <text x="248" y="100" font-size="10" fill="#27ae60" text-anchor="middle">🟩 Vert</text>
+      <text x="248" y="113" font-size="9" fill="#666" text-anchor="middle">(cône · pointu)</text>
+
+      <!-- Entrée port au fond -->
+      <path d="M 130 140 L 130 100 L 170 100 L 170 140" stroke="#333" stroke-width="3" fill="none"/>
+      <text x="150" y="135" font-size="10" fill="#333" text-anchor="middle">🏠 Port</text>
+
+      <!-- Flèche entrante -->
+      <polygon points="150,150 140,158 160,158" fill="#2980b9"/>
+      <text x="150" y="150" font-size="9" fill="#2980b9" text-anchor="middle">⛵</text>
+    </svg>
+    <p class="meta"><strong>« Rouge à gauche, vert à droite »</strong> en venant du large.</p>
+  </div>
+
+  <div class="memory-box" style="align-self:center;">
+    <strong>🧠 Les règles d'or :</strong><br>
+    • En entrant (du large vers le port) : <strong>rouge à bâbord (gauche)</strong>, vert à tribord (droite)<br>
+    • En sortant : l'inverse — le rouge se tient à tribord<br>
+    • <strong>« Rouge à gauche en entrant »</strong><br>
+    • <strong>« Retour du large, rouge à gauche »</strong><br><br>
+    <strong>Formes :</strong> bâbord = cylindre, sommet plat (▭) · tribord = cône, sommet pointu (▲)<br>
+    <strong>Feux :</strong> rouge pour bâbord, vert pour tribord
+  </div>
+</div>
+
+<hr>
+
+<h2>2. Le balisage cardinal — Le danger</h2>
+
+<p>Les bouées cardinales indiquent <strong>où est le danger par rapport à la bouée</strong>. Le nom de la bouée vous dit de quel côté passer pour être en sécurité.</p>
+
+<p>Exemple : une bouée <strong>Nord</strong> a le danger au <strong>Sud</strong>. Passez au <strong>Nord</strong> de la bouée.</p>
+
+<div class="cardinal-grid">
+  <div class="cardinal-card">
+    <svg width="70" height="80" viewBox="0 0 70 80">
+      <!-- Nord : noir sur jaune, 2 cônes pointes en haut -->
+      <rect x="23" y="32" width="24" height="18" fill="#111"/>
+      <rect x="23" y="50" width="24" height="22" fill="#f1c40f"/>
+      <polygon points="29,16 24,32 34,32" fill="#111"/>
+      <polygon points="41,16 36,32 46,32" fill="#111"/>
+    </svg>
+    <h5>⬆️ NORD</h5>
+    <p>Danger au <strong>Sud</strong>.<br>Passer au <strong>Nord</strong>.<br>▲▲ pointes en haut<br>Feu : Q (scintillant)</p>
+  </div>
+  <div class="cardinal-card">
+    <svg width="70" height="80" viewBox="0 0 70 80">
+      <!-- Est : noir-jaune-noir, 2 cônes base-à-base (losange) -->
+      <rect x="23" y="32" width="24" height="14" fill="#111"/>
+      <rect x="23" y="46" width="24" height="10" fill="#f1c40f"/>
+      <rect x="23" y="56" width="24" height="18" fill="#111"/>
+      <polygon points="35,14 26,26 44,26" fill="#111"/>
+      <polygon points="35,36 26,26 44,26" fill="#111"/>
+    </svg>
+    <h5>➡️ EST</h5>
+    <p>Danger à l'<strong>Ouest</strong>.<br>Passer à l'<strong>Est</strong>.<br>⟡ cônes base-à-base<br>Feu : Q(3) — 3 éclats</p>
+  </div>
+  <div class="cardinal-card">
+    <svg width="70" height="80" viewBox="0 0 70 80">
+      <!-- Sud : jaune sur noir, 2 cônes pointes en bas -->
+      <rect x="23" y="32" width="24" height="18" fill="#f1c40f"/>
+      <rect x="23" y="50" width="24" height="22" fill="#111"/>
+      <polygon points="29,36 24,20 34,20" fill="#111"/>
+      <polygon points="41,36 36,20 46,20" fill="#111"/>
+    </svg>
+    <h5>⬇️ SUD</h5>
+    <p>Danger au <strong>Nord</strong>.<br>Passer au <strong>Sud</strong>.<br>▼▼ pointes en bas<br>Feu : Q(6)+LFl — 6+1 long</p>
+  </div>
+  <div class="cardinal-card">
+    <svg width="70" height="80" viewBox="0 0 70 80">
+      <!-- Ouest : jaune-noir-jaune, 2 cônes pointe-à-pointe (sablier) -->
+      <rect x="23" y="32" width="24" height="14" fill="#f1c40f"/>
+      <rect x="23" y="46" width="24" height="10" fill="#111"/>
+      <rect x="23" y="56" width="24" height="18" fill="#f1c40f"/>
+      <polygon points="35,24 26,14 44,14" fill="#111"/>
+      <polygon points="35,24 26,36 44,36" fill="#111"/>
+    </svg>
+    <h5>⬅️ OUEST</h5>
+    <p>Danger à l'<strong>Est</strong>.<br>Passer à l'<strong>Ouest</strong>.<br>⟣ cônes pointe-à-pointe<br>Feu : Q(9) — 9 éclats</p>
+  </div>
+</div>
+
+<div class="memory-box">
+  <strong>🧠 Les nombres magiques : 1-3-6-9</strong><br>
+  Dans l'ordre horaire (N-E-S-O), le nombre d'éclats augmente :<br>
+  • <strong>N</strong> = continue (pas de motif) = <strong>0</strong> éclat groupé<br>
+  • <strong>E</strong> = 3 éclats<br>
+  • <strong>S</strong> = 6 éclats + 1 long<br>
+  • <strong>O</strong> = 9 éclats<br><br>
+  <strong>Les couleurs :</strong> N = noir en haut, S = jaune en haut, E = noir-jaune-noir, O = jaune-noir-jaune
+</div>
+
+<hr>
+
+<h2>3. Les autres bouées</h2>
+
+<div class="two-cols">
+  <div style="border:1px solid var(--color-border); border-radius:8px; padding:1rem; background:white;">
+    <h4 style="margin-top:0;">💧 Eau saine</h4>
+    <p><strong>Couleur :</strong> bandes verticales rouges et blanches<br>
+    <strong>Sommet :</strong> sphère rouge<br>
+    <strong>Feu :</strong> blanc isophase ou 1 éclat long<br>
+    Utilisation : entrée de port, milieu de chenal, eau libre</p>
+  </div>
+  <div style="border:1px solid var(--color-border); border-radius:8px; padding:1rem; background:white;">
+    <h4 style="margin-top:0;">⚠️ Danger isolé</h4>
+    <p><strong>Couleur :</strong> bandes horizontales noires et rouges<br>
+    <strong>Sommet :</strong> 2 sphères noires<br>
+    <strong>Feu :</strong> blanc, 2 éclats groupés<br>
+    Utilisation : danger isolé, contourner de près</p>
+  </div>
+  <div style="border:1px solid var(--color-border); border-radius:8px; padding:1rem; background:white;">
+    <h4 style="margin-top:0;">🟡 Spécial</h4>
+    <p><strong>Couleur :</strong> jaune<br>
+    <strong>Sommet :</strong> X jaune (croix de St-André)<br>
+    <strong>Feu :</strong> jaune<br>
+    Utilisation : zones d'exercice, câbles, pipe-lines, réserves</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>🧪 Quiz — Testez votre balisage</h2>
+
+<div class="quiz-question" data-correct="0" data-feedback="En venant du large (sens entrant), le rouge se tient à bâbord (gauche), le vert à tribord (droite). « Rouge à gauche en entrant ».">
+  <p><strong>1.</strong> En venant du large vers un port, où se tient la bouée rouge ?</p>
+  <ul class="quiz-options">
+    <li>À bâbord (gauche)</li>
+    <li>À tribord (droite)</li>
+    <li>Au centre du chenal</li>
+    <li>Il n'y a pas de règle</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="La bouée bâbord (rouge) a une forme cylindrique ou un sommet cylindrique. Le cône est pour tribord.">
+  <p><strong>2.</strong> Quelle est la forme du sommet d'une bouée bâbord ?</p>
+  <ul class="quiz-options">
+    <li>Cône pointant vers le haut</li>
+    <li>Cylindre</li>
+    <li>Sphère</li>
+    <li>Croix de Saint-André</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="La bouée Nord a le danger au Sud. Son nom dit de quel côté passer : passez au Nord de la bouée.">
+  <p><strong>3.</strong> Une bouée cardinale Nord signale un danger. Où est le danger ?</p>
+  <ul class="quiz-options">
+    <li>Au Nord</li>
+    <li>Au Sud</li>
+    <li>À l'Est</li>
+    <li>À l'Ouest</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="La bouée Ouest a 9 éclats. La séquence horaire N-E-S-O donne 0-3-6-9 éclats groupés.">
+  <p><strong>4.</strong> Combien d'éclats groupés pour une bouée cardinale Ouest ?</p>
+  <ul class="quiz-options">
+    <li>3 éclats</li>
+    <li>6 éclats</li>
+    <li>12 éclats</li>
+    <li>9 éclats</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Le danger isolé a des bandes horizontales noires et rouges, avec 2 sphères noires au sommet. Il faut le contourner.">
+  <p><strong>5.</strong> Quelle bouée a des bandes horizontales noires et rouges + 2 sphères noires ?</p>
+  <ul class="quiz-options">
+    <li>Eau saine</li>
+    <li>Cardinale Sud</li>
+    <li>Danger isolé</li>
+    <li>Spéciale</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="La bouée d'eau saine a des bandes verticales rouges et blanches, une sphère rouge au sommet, et indique une eau libre de tout danger.">
+  <p><strong>6.</strong> Une bouée à bandes verticales rouges et blanches + sphère rouge indique :</p>
+  <ul class="quiz-options">
+    <li>Une eau saine (libre de danger)</li>
+    <li>Un danger isolé</li>
+    <li>Une zone spéciale</li>
+    <li>Un chenal latéral</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📖 À faire après cette leçon</h2>
+
+<div class="card card--tip">
+  <h4>Révisions recommandées</h4>
+  <ul>
+    <li>Imprimez la fiche <a href="../reference/balisage.html">reference/balisage.html</a> — elle résume les 5 catégories.</li>
+    <li>Regardez votre fiche <code>balisage.png</code> — comparez avec ce que vous venez d'apprendre.</li>
+    <li>Révisez la règle d'or : « Rouge à gauche en entrant, vert à droite ».</li>
+    <li>Mémorisez la séquence 1-3-6-9 pour les cardinales.</li>
+  </ul>
+</div>
+
+<p>Quand vous êtes prêt, dites-moi et on passe à la <strong>Leçon 5 : Météo et vents locaux</strong> — avec un focus sur les vents méditerranéens (mistral, tramontane, levant…).</p>
+
+<hr>
+
+<div class="lesson-nav">
+  <a href="0003-feux-navigation.html">← Leçon 3 : Feux de navigation</a>
+  <a href="0005-meteo-vents.html">Leçon 5 : Météo →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.mer.gouv.fr/permis-plaisance" target="_blank">Ministère de la Mer</a> · Système de balisage maritime A (IALA)</em>
+</p>
+
+</div>
+</body>
+</html>

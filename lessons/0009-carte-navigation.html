@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon 9 — Carte Marine et Navigation de Base</title>
+  <link rel="stylesheet" href="../assets/permis.css">
+  <script src="../assets/quiz.js"></script>
+  <style>
+    .schema { text-align: center; margin: 1.5rem 0; }
+    .schema p.meta { margin-top: 0.4rem; }
+
+    .formula {
+      text-align: center;
+      font-size: 1.15rem;
+      background: #f0f6fb;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 0.9rem;
+      margin: 1rem 0;
+      font-family: var(--font-sans);
+    }
+    .formula strong { color: #1a5276; }
+
+    .sym-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.7rem;
+      margin: 1rem 0;
+    }
+    .sym-card {
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 0.7rem;
+      text-align: center;
+      background: white;
+    }
+    .sym-card h5 { margin: 0.3rem 0 0.1rem; font-size: 0.88rem; }
+    .sym-card p { font-size: 0.76rem; margin: 0; color: var(--color-muted); }
+    .sym-card .ico { font-size: 1.6rem; }
+
+    .two-cols { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+    .two-cols > div { flex: 1; min-width: 220px; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<p class="meta">Leçon 9 · ⏱ 25 minutes · <span class="tag tag--côtier">Côtier</span> <span class="tag tag--important">Fondamental</span></p>
+
+<h1>Carte Marine et Navigation de Base</h1>
+
+<div class="card card--info">
+  <h4>🎯 Objectif de cette leçon</h4>
+  <p>Savoir <strong>lire une carte marine</strong> : trouver une position en latitude/longitude, mesurer une distance, comprendre les profondeurs et les symboles, et faire un calcul simple <strong>vitesse–temps–distance</strong>. À l'examen, on vous donne la carte SHOM <strong>9999</strong> et on pose des questions de lecture. En mer, c'est ce qui vous permet de savoir où vous êtes et combien de temps il reste.</p>
+</div>
+
+<h2>Pourquoi la carte ?</h2>
+<p>Le GPS tombe en panne, la batterie se vide, le téléphone n'a plus de réseau. La <strong>carte marine</strong> (éditée par le <strong>SHOM</strong> en France) reste votre filet de sécurité : elle montre les profondeurs, les dangers, les phares et les bouées. Savoir la lire, c'est ne jamais être perdu.</p>
+
+<hr>
+
+<h2>1. Se situer : latitude et longitude</h2>
+
+<div class="two-cols">
+  <div>
+    <p>Toute position en mer se note par deux coordonnées :</p>
+    <ul>
+      <li><strong>Latitude</strong> : position <strong>Nord/Sud</strong> par rapport à l'équateur (de 0° à 90°). Se lit sur les <strong>bords verticaux</strong> (gauche/droite) de la carte.</li>
+      <li><strong>Longitude</strong> : position <strong>Est/Ouest</strong> par rapport au méridien de Greenwich (de 0° à 180°). Se lit sur les <strong>bords horizontaux</strong> (haut/bas).</li>
+    </ul>
+    <div class="card card--tip">
+      <h4>🧠 Mémo</h4>
+      <p><strong>LATitude ≈ ALTitude</strong> → vertical (Nord/Sud). On donne <strong>toujours la latitude en premier.</strong><br>
+      Ex. : <em>43°05′ N — 006°10′ E</em>. Et <strong>1° = 60 minutes (′)</strong>.</p>
+    </div>
+  </div>
+  <div class="schema">
+    <svg width="320" height="240" viewBox="0 0 320 240">
+      <!-- Cadre carte -->
+      <rect x="55" y="35" width="220" height="160" fill="#dcedf7" stroke="#34495e" stroke-width="1.5"/>
+      <!-- Échelle latitude (gauche) -->
+      <line x1="55" y1="75" x2="48" y2="75" stroke="#c0392b" stroke-width="1.5"/>
+      <line x1="55" y1="115" x2="48" y2="115" stroke="#c0392b" stroke-width="1.5"/>
+      <line x1="55" y1="155" x2="48" y2="155" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="44" y="78" font-size="9" fill="#c0392b" text-anchor="end">43°06′</text>
+      <text x="44" y="118" font-size="9" fill="#c0392b" text-anchor="end">43°05′</text>
+      <text x="44" y="158" font-size="9" fill="#c0392b" text-anchor="end">43°04′</text>
+      <text x="20" y="120" font-size="10" fill="#c0392b" font-weight="bold" transform="rotate(-90 20 120)">LATITUDE (N/S)</text>
+      <!-- Échelle longitude (haut) -->
+      <line x1="115" y1="35" x2="115" y2="28" stroke="#1a5276" stroke-width="1.5"/>
+      <line x1="175" y1="35" x2="175" y2="28" stroke="#1a5276" stroke-width="1.5"/>
+      <line x1="235" y1="35" x2="235" y2="28" stroke="#1a5276" stroke-width="1.5"/>
+      <text x="115" y="22" font-size="9" fill="#1a5276" text-anchor="middle">6°08′</text>
+      <text x="175" y="22" font-size="9" fill="#1a5276" text-anchor="middle">6°09′</text>
+      <text x="235" y="22" font-size="9" fill="#1a5276" text-anchor="middle">6°10′</text>
+      <text x="165" y="13" font-size="10" fill="#1a5276" font-weight="bold" text-anchor="middle">LONGITUDE (E/O)</text>
+      <!-- Point tracé -->
+      <line x1="175" y1="108" x2="175" y2="122" stroke="#e67e22" stroke-width="1.5"/>
+      <line x1="168" y1="115" x2="182" y2="115" stroke="#e67e22" stroke-width="1.5"/>
+      <circle cx="175" cy="115" r="3" fill="none" stroke="#e67e22" stroke-width="1.5"/>
+      <text x="180" y="135" font-size="9" fill="#e67e22">43°05′ N · 6°09′ E</text>
+      <!-- Note distance -->
+      <text x="60" y="215" font-size="9" fill="#c0392b">↖ Mesurer les distances sur l'échelle latitude (côtés)</text>
+    </svg>
+    <p class="meta">On lit la latitude sur les côtés, la longitude en haut/bas.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>2. Distances et vitesses : le mille et le nœud</h2>
+
+<div class="formula">
+  1 <strong>mille nautique</strong> = <strong>1 852 m</strong> = <strong>1 minute (′) de latitude</strong><br>
+  1 <strong>nœud</strong> = 1 mille nautique <strong>par heure</strong>
+</div>
+
+<div class="card card--warning">
+  <h4>⚠️ Règle d'or de l'examen</h4>
+  <p>Une distance se mesure <strong>TOUJOURS sur l'échelle des latitudes</strong> (les bords verticaux, gauche/droite) — jamais sur l'échelle des longitudes. Pourquoi ? Parce qu'<strong>1 minute de latitude = 1 mille nautique</strong> partout, alors que la valeur d'une minute de longitude change selon la latitude.</p>
+</div>
+
+<p>Concrètement : on prend l'écartement entre deux points au compas à pointes sèches, puis on reporte cet écartement sur l'échelle verticale des latitudes pour lire le nombre de milles.</p>
+
+<hr>
+
+<h2>3. Lire les profondeurs et les symboles</h2>
+
+<p>La carte est couverte de chiffres et de symboles. Les essentiels pour le côtier :</p>
+
+<div class="sym-grid">
+  <div class="sym-card"><div class="ico">5₂</div><h5>Sonde</h5><p>Profondeur (ici 5,2 m) depuis le zéro hydrographique. <a href="#sondes">détails ↓</a></p></div>
+  <div class="sym-card"><div class="ico">⚓</div><h5>Mouillage</h5><p>Zone de mouillage autorisée / conseillée.</p></div>
+  <div class="sym-card"><div class="ico">🗼</div><h5>Phare / feu</h5><p>Avec ses caractéristiques (couleur, rythme, portée).</p></div>
+  <div class="sym-card"><div class="ico">🪨</div><h5>Roche / danger</h5><p>Roche, haut-fond — astérisque ou croix. À éviter.</p></div>
+  <div class="sym-card"><div class="ico">⛓️</div><h5>Épave</h5><p>Symbole d'épave, parfois avec sa profondeur. Danger.</p></div>
+  <div class="sym-card"><div class="ico">S · V</div><h5>Nature du fond</h5><p>S = sable, V = vase, R = roche… utile pour mouiller.</p></div>
+</div>
+
+<h3 id="sondes">3.1 Sonde, hauteur d'eau réelle et sondes découvrantes</h3>
+
+<p>Trois notions à ne surtout pas confondre — c'est un grand classique de l'examen :</p>
+
+<div class="schema">
+  <svg width="400" height="250" viewBox="0 0 400 250">
+    <defs>
+      <marker id="dim" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+      </marker>
+    </defs>
+    <!-- ciel / eau / fond -->
+    <rect x="0" y="0" width="400" height="55" fill="#eaf4fb"/>
+    <rect x="0" y="55" width="400" height="150" fill="#bfe0f2"/>
+    <rect x="0" y="205" width="400" height="45" fill="#e4cfa3"/>
+    <text x="6" y="226" font-size="10" fill="#9c640c">Fond marin</text>
+    <!-- surface actuelle -->
+    <line x1="0" y1="55" x2="400" y2="55" stroke="#3d7ea6" stroke-width="2"/>
+    <text x="108" y="50" font-size="10" fill="#2c5d7c">Surface de l'eau (instant T)</text>
+    <!-- zéro hydrographique -->
+    <line x1="0" y1="110" x2="400" y2="110" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="6 3"/>
+    <text x="6" y="106" font-size="9" fill="#c0392b" font-weight="bold">Zéro hydrographique (zéro des cartes)</text>
+    <!-- Marée : surface(55) -> zéro(110) -->
+    <line x1="72" y1="57" x2="72" y2="108" stroke="#555" stroke-width="1.2" marker-start="url(#dim)" marker-end="url(#dim)"/>
+    <text x="78" y="87" font-size="10" fill="#555">marée</text>
+    <!-- Sonde : zéro(110) -> fond(205) -->
+    <line x1="72" y1="112" x2="72" y2="203" stroke="#1a5276" stroke-width="1.4" marker-start="url(#dim)" marker-end="url(#dim)"/>
+    <text x="78" y="162" font-size="11" fill="#1a5276" font-weight="bold">SONDE</text>
+    <!-- Hauteur réelle : surface(55) -> fond(205) -->
+    <line x1="342" y1="57" x2="342" y2="203" stroke="#1e8449" stroke-width="1.4" marker-start="url(#dim)" marker-end="url(#dim)"/>
+    <text x="250" y="128" font-size="10" fill="#1e8449" font-weight="bold">hauteur d'eau</text>
+    <text x="250" y="141" font-size="10" fill="#1e8449" font-weight="bold">réelle = sonde</text>
+    <text x="250" y="154" font-size="10" fill="#1e8449" font-weight="bold">+ marée</text>
+    <!-- rocher découvrant -->
+    <polygon points="175,205 225,205 200,92" fill="#9c7a4a"/>
+    <text x="200" y="86" font-size="10" fill="#7a3b12" text-anchor="middle">roche : découvre de <tspan text-decoration="underline" font-weight="bold">1,5 m</tspan></text>
+  </svg>
+  <p class="meta">La sonde se mesure depuis le zéro hydrographique ; la marée s'ajoute par-dessus.</p>
+</div>
+
+<ul>
+  <li><strong>La sonde</strong> = la profondeur imprimée sur la carte, mesurée depuis le <strong>zéro hydrographique</strong> (le « zéro des cartes » = niveau des plus basses mers astronomiques). C'est la profondeur <strong>minimale garantie</strong> : vous avez toujours <em>au moins</em> ça sous la quille.</li>
+  <li><strong>La hauteur d'eau réelle</strong> = <strong>sonde + hauteur de la marée</strong> à l'instant T (lue dans l'annuaire des marées). La marée étant presque toujours positive, l'eau réelle est en général <strong>plus profonde</strong> que la sonde.</li>
+  <li><strong>La sonde découvrante</strong> (ou asséchante) = un point qui <strong>émerge à marée basse</strong>. Sa valeur est <strong><u>soulignée</u></strong> sur la carte et indique de combien le fond <strong>dépasse au-dessus</strong> du zéro hydrographique (ex. <u>1,5</u> = découvre de 1,5 m). C'est un <strong>danger</strong>.</li>
+</ul>
+
+<div class="card card--info">
+  <h4>✏️ Exemple</h4>
+  <p>Sonde de la carte : <strong>3 m</strong> · hauteur de marée à cet instant : <strong>2 m</strong> → hauteur d'eau réelle = 3 + 2 = <strong>5 m</strong>.<br>
+  Au-dessus d'une roche découvrante <u>1,5</u> avec 2 m de marée : il ne reste que 2 − 1,5 = <strong>0,5 m d'eau</strong> → on évite !</p>
+</div>
+
+<div class="card card--tip">
+  <h4>🌊 En Méditerranée &amp; pour mouiller</h4>
+  <p>La marée y est très faible (souvent &lt; 30 cm) : la hauteur d'eau réelle est donc <strong>proche de la sonde</strong>. Mais le concept reste testé à l'examen, et une sonde découvrante au ras de l'eau reste un vrai piège. Pour mouiller (Leçon 8), visez une <strong>sonde confortable</strong> sur un fond de <strong>sable (S)</strong> — jamais une roche, une épave ou un herbier.</p>
+</div>
+
+<hr>
+
+<h2>4. Cap, route et le nord</h2>
+
+<div class="two-cols">
+  <div>
+    <ul>
+      <li><strong>Le cap</strong> : la direction vers laquelle pointe l'étrave (le « nez » du bateau), en degrés de 0 à 360°.</li>
+      <li><strong>La route</strong> : la trajectoire réellement suivie <strong>sur le fond</strong>. Le vent et le courant peuvent l'écarter du cap.</li>
+      <li><strong>Le nord vrai</strong> (géographique) sert de référence sur la carte ; le <strong>compas</strong> indique le <strong>nord magnétique</strong>, légèrement différent (la <em>déclinaison</em>).</li>
+    </ul>
+    <p>La <strong>rose des vents</strong> imprimée sur la carte permet de mesurer et reporter les caps.</p>
+  </div>
+  <div class="schema">
+    <svg width="200" height="200" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="80" fill="#f4f8fb" stroke="#34495e" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#bcd" stroke-width="0.5"/>
+      <!-- graduations principales -->
+      <text x="100" y="28" font-size="13" fill="#c0392b" text-anchor="middle" font-weight="bold">N 0°</text>
+      <text x="178" y="105" font-size="12" fill="#34495e" text-anchor="middle">E 90°</text>
+      <text x="100" y="185" font-size="12" fill="#34495e" text-anchor="middle">S 180°</text>
+      <text x="22" y="105" font-size="12" fill="#34495e" text-anchor="middle">O 270°</text>
+      <!-- aiguille cap ~060° -->
+      <line x1="100" y1="100" x2="160" y2="60" stroke="#e67e22" stroke-width="3" marker-end="url(#cap)"/>
+      <defs>
+        <marker id="cap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#e67e22"/>
+        </marker>
+      </defs>
+      <text x="150" y="95" font-size="11" fill="#e67e22" font-weight="bold">Cap 060°</text>
+      <circle cx="100" cy="100" r="3" fill="#34495e"/>
+    </svg>
+    <p class="meta">La rose : 0° = Nord, 90° = Est, 180° = Sud, 270° = Ouest.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>5. Le calcul vitesse – temps – distance</h2>
+
+<p>C'est <strong>la</strong> question de calcul du permis. Une seule formule, dans les trois sens :</p>
+
+<div class="formula">
+  <strong>Distance = Vitesse × Temps</strong><br>
+  <span style="font-size:0.95rem;">Vitesse = Distance ÷ Temps &nbsp;·&nbsp; Temps = Distance ÷ Vitesse</span>
+</div>
+
+<div class="card card--info">
+  <h4>✏️ Exemple type</h4>
+  <p>Vous filez <strong>10 nœuds</strong> (10 milles/heure) et devez parcourir <strong>25 milles</strong>. Combien de temps ?<br>
+  <strong>Temps = 25 ÷ 10 = 2,5 h</strong> = <strong>2 h 30 min</strong>.</p>
+  <p>Et si vous parcourez 15 milles en 1 h 30 (1,5 h) ? <strong>Vitesse = 15 ÷ 1,5 = 10 nœuds.</strong></p>
+</div>
+
+<div class="card card--warning">
+  <h4>⚠️ Le piège des minutes</h4>
+  <p>Convertissez toujours le temps en <strong>heures décimales</strong> avant de calculer : 30 min = <strong>0,5 h</strong> · 15 min = <strong>0,25 h</strong> · 45 min = <strong>0,75 h</strong> · 20 min = <strong>0,33 h</strong>.</p>
+</div>
+
+<hr>
+
+<h2>6. Quiz — Testez votre lecture de carte</h2>
+
+<div class="quiz-question" data-correct="1" data-feedback="1 mille nautique = 1 852 mètres, et correspond à 1 minute d'arc de latitude. Le nœud est un mille par heure.">
+  <p><strong>Q1.</strong> À combien de mètres correspond un mille nautique ?</p>
+  <ul class="quiz-options">
+    <li>1 000 mètres</li>
+    <li>1 852 mètres</li>
+    <li>2 000 mètres</li>
+    <li>1 609 mètres</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="On mesure TOUJOURS les distances sur l'échelle des latitudes (bords verticaux), car 1 minute de latitude = 1 mille nautique partout.">
+  <p><strong>Q2.</strong> Sur quelle échelle mesure-t-on une distance sur la carte ?</p>
+  <ul class="quiz-options">
+    <li>L'échelle des latitudes (côtés)</li>
+    <li>L'échelle des longitudes (haut/bas)</li>
+    <li>N'importe quelle échelle</li>
+    <li>L'échelle de la rose des vents</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="La latitude se lit sur les bords verticaux et se donne toujours en premier. Mémo : LATitude ≈ ALTitude (vertical, Nord/Sud).">
+  <p><strong>Q3.</strong> Où lit-on la latitude sur une carte marine ?</p>
+  <ul class="quiz-options">
+    <li>En haut et en bas</li>
+    <li>Au centre de la carte</li>
+    <li>Sur la rose des vents</li>
+    <li>Sur les bords verticaux</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Temps = Distance ÷ Vitesse = 30 ÷ 10 = 3 heures. Pensez à convertir les minutes en heures décimales.">
+  <p><strong>Q4.</strong> À 10 nœuds, combien de temps pour parcourir 30 milles ?</p>
+  <ul class="quiz-options">
+    <li>1 heure</li>
+    <li>2 heures</li>
+    <li>3 heures</li>
+    <li>30 minutes</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="1" data-feedback="Une sonde indique la profondeur d'eau (en mètres) au niveau le plus bas : vous avez donc au moins cette hauteur d'eau sous la quille.">
+  <p><strong>Q5.</strong> Que représente une « sonde » sur la carte ?</p>
+  <ul class="quiz-options">
+    <li>La hauteur d'un phare</li>
+    <li>La profondeur de l'eau</li>
+    <li>La vitesse du courant</li>
+    <li>La distance à la côte</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="0" data-feedback="Le cap est la direction vers laquelle pointe l'étrave. La route est la trajectoire réelle sur le fond, qui peut différer du cap à cause du vent et du courant.">
+  <p><strong>Q6.</strong> Quelle est la différence entre le cap et la route ?</p>
+  <ul class="quiz-options">
+    <li>Cap = direction visée, route = trajet réel sur le fond</li>
+    <li>Ce sont deux mots pour la même chose</li>
+    <li>Le cap se mesure en milles, la route en nœuds</li>
+    <li>La route est toujours vers le nord</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="2" data-feedback="Hauteur d'eau réelle = sonde + hauteur de la marée = 4 + 1 = 5 m. La sonde seule (4 m) est la profondeur minimale garantie au zéro hydrographique.">
+  <p><strong>Q7.</strong> Sonde de 4 m sur la carte, marée de 1 m à cet instant. Quelle est la hauteur d'eau réelle ?</p>
+  <ul class="quiz-options">
+    <li>3 mètres</li>
+    <li>4 mètres</li>
+    <li>5 mètres</li>
+    <li>1 mètre</li>
+  </ul>
+</div>
+
+<div class="quiz-question" data-correct="3" data-feedback="Une sonde soulignée est « découvrante » : la zone émerge à marée basse de la valeur indiquée au-dessus du zéro hydrographique. C'est un danger à contourner.">
+  <p><strong>Q8.</strong> Que signifie une sonde dont le chiffre est souligné sur la carte ?</p>
+  <ul class="quiz-options">
+    <li>Une profondeur exceptionnelle</li>
+    <li>Une zone de mouillage</li>
+    <li>Une erreur d'impression</li>
+    <li>Une zone qui découvre à marée basse</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📌 Ce qu'il faut retenir</h2>
+<ul>
+  <li><strong>Position :</strong> latitude (N/S, côtés, en premier) puis longitude (E/O, haut/bas). 1° = 60′.</li>
+  <li><strong>1 mille = 1 852 m = 1′ de latitude</strong> · <strong>1 nœud = 1 mille/h</strong>.</li>
+  <li><strong>Distances : toujours sur l'échelle des latitudes</strong> (jamais les longitudes).</li>
+  <li><strong>Sonde</strong> = profondeur depuis le zéro hydrographique (mini garanti) · <strong>hauteur d'eau réelle = sonde + marée</strong> · <strong>sonde soulignée = découvrante</strong> (émerge à marée basse, danger).</li>
+  <li><strong>Cap</strong> (direction visée) ≠ <strong>route</strong> (trajet réel). Nord vrai sur la carte, nord magnétique au compas.</li>
+  <li><strong>Distance = Vitesse × Temps</strong> (convertir les minutes en heures décimales).</li>
+</ul>
+
+<div class="card card--warning">
+  <h4>⚠️ Pour cet été en Méditerranée</h4>
+  <p>Avant de partir, repérez votre trajet sur la carte : <strong>distance totale</strong> (sur l'échelle latitude) et <strong>durée estimée</strong> à votre vitesse de croisière. Ça vous dit l'heure de retour et la quantité de carburant (rappel : 1/3 aller, 1/3 retour, 1/3 réserve — Leçon 6). Gardez une <strong>carte papier</strong> à bord : le jour où le GPS lâche, c'est elle qui vous ramène.</p>
+</div>
+
+<div class="card card--info">
+  <h4>📖 À lire / s'entraîner</h4>
+  <p>Entraînez-vous sur la carte d'examen : <a href="https://www.loisirs-nautic.fr/test_cotier_carte_marine.php" target="_blank">tests de lecture de carte (permis côtier)</a>. La carte officielle est la <strong>SHOM 9999</strong>.</p>
+</div>
+
+<div class="card card--tip">
+  <h4>💡 Une question ?</h4>
+  <p>Vous voulez qu'on fasse ensemble un exercice de calcul vitesse–temps–distance, ou qu'on décortique un coin de la carte 9999 ? Demandez-moi — je suis votre professeur.</p>
+</div>
+
+<hr>
+
+<div class="lesson-nav">
+  <a href="0008-mouillage-manoeuvres.html">← Leçon 8 : Mouillage et manœuvres</a>
+  <a href="0010-revision-examen-blanc.html">Leçon 10 : Révision &amp; examen blanc →</a>
+</div>
+
+<p class="meta" style="text-align:center; margin-top:2rem;">
+  <em>Sources : <a href="https://www.maformationnautique.fr/carte-marine-permis-cotier/" target="_blank">Ma Formation Nautique — la carte marine</a> ·
+  <a href="https://www.loisirs-nautic.fr/test_cotier_carte_marine.php" target="_blank">Loisirs Nautic — tests carte</a> ·
+  SHOM</em>
+</p>
+
+</div>
+</body>
+</html>
