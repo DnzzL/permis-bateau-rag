@@ -33,13 +33,13 @@
     }
   },
   "pertinence": {
-    "avg_pct": 65.6,
-    "full": 7,
+    "avg_pct": 67.2,
+    "full": 9,
     "total": 60
   },
   "refus_hors_domaine": {
-    "refused": 10,
+    "refused": 9,
     "total": 10,
-    "pct": 100.0
+    "pct": 90.0
   }
 }

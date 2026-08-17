@@ -99,7 +99,7 @@ Le graphe s'exécute chunk par chunk avec un checkpoint JSON (`rag/data/checkpoi
 ```
 permis bateau/
 ├── lessons/           # 15 leçons HTML (tronc commun, côtier, fluvial, examens blancs)
-├── reference/         # 17 fiches HTML (feux, balisage, VHF, signaux, CE, trafic portuaire…)
+├── reference/         # 19 fiches HTML (feux, balisage, VHF, signaux, CE, trafic, carte, détresse…)
 ├── learning-records/  # 19 notes de révision Markdown
 ├── backlog/           # suivi de projet (Backlog.md)
 ├── REFERENCE-AUDIT.md # audit vs sources officielles (exhaustivité + justesse)
@@ -121,12 +121,15 @@ Benchmark étendu : **60 questions** (5 manuelles + échantillon stratifié des 
 
 | Métrique | Résultat |
 | --- | --- |
-| Bonne source en top-3 | classic 63 % · graph 65 % |
-| Couverture conceptuelle des réponses | ~64 % (proxy mots-clés volontairement conservateur) |
+| Bonne réponse couverte en top-1 | classic 80 % · graph 82 % |
+| Bonne réponse couverte en top-3 | **classic 90 % · graph 92 %** |
+| Couverture conceptuelle des réponses | ~67 % (proxy mots-clés volontairement conservateur) |
 | Réponses complètes (tous les concepts) | ~9/60 — des réponses correctes courtes scoreront rarement 100 % |
 | Refus hors-domaine (10 pièges, sans contexte) | ~9-10/10 |
 
-Spot-checks manuels des réponses (mille nautique = 1852 m, latitude sur les bords verticaux, sonde soulignée = découvrante…) : **réponses factuellement exactes**. Le scoring mots-clés sous-estime donc la qualité réelle. Les ~37 % de questions sans leur source dans le top-3 sont des détails non couverts par le corpus (chantier en cours) — voir section suivante.
+La couverture vérifie que la **bonne réponse QCM est couverte par le contenu des top-k** (proxy : substring ou rappel ≥ 50 % des tokens significatifs — les QCM reformulent les leçons). Les fiches de détail (`carte-marine.html`, `signaux-detresse.html`…) sont désormais top-1 sur leurs sujets.
+
+Spot-checks manuels des réponses (mille nautique = 1852 m, latitude sur les bords verticaux, sonde soulignée = découvrante…) : **réponses factuellement exactes**. Le scoring mots-clés sous-estime la qualité réelle. La pertinence varie de ±3 pts entre runs (non-déterminisme LLM) — d'où le seuil de 5 pts du `--check`.
 
 **Régression** : `rag/benchmark.py --snapshot` écrit `evals/report-<date>.json`, `--baseline` fige la référence, `--check` échoue (code 1) si pertinence ou top-3 régresse de plus de 5 points — à brancher en CI.
 

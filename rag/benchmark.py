@@ -118,6 +118,7 @@ class BenchQuestion(NamedTuple):
     keywords: list[str]
     expected: str  # fragment attendu dans le source des chunks documents
     origin: str    # "manuel" | "qcm:<topic>" | "qcm:sans-topic"
+    gold: str = ""  # bonne réponse QCM (texte) — couverture testée dans le contenu
 
 
 # ── Normalisation ─────────────────────────────────────────────────────
@@ -140,6 +141,25 @@ def jaccard(a: str, b: str) -> float:
     if not union:
         return 1.0
     return len(sa & sb) / len(union)
+
+
+def gold_hit(chunk_norm: str, gold_norm: str) -> bool:
+    """La bonne réponse QCM est-elle couverte par ce chunk ?
+
+    Proxy stable : substring exact (formulation présente telle quelle) OU
+    rappel >= 50 % des tokens significatifs du gold dans le chunk (les QCM
+    reformulent les leçons — ex. \"une zone qui découvre à marée basse\" vs
+    \"sonde découvrante = émerge au zéro hydrographique à marée basse\").
+    """
+    if not gold_norm:
+        return False
+    if gold_norm in chunk_norm:
+        return True
+    tokens = set(re.findall(r"[a-z0-9]+", gold_norm))
+    if len(tokens) < 3:
+        return gold_norm in chunk_norm
+    present = sum(1 for t in tokens if t in chunk_norm)
+    return present / max(len(tokens), 1) >= 0.5
 
 
 def contains_keywords(answer: str, keywords: list[str]) -> int:
@@ -229,7 +249,7 @@ def build_questions(con: duckdb.DuckDBPyConnection, seed: int) -> list[BenchQues
     for q, opts, ci, fb, topic, src in rows:
         kws = derive_keywords(opts[ci], fb or "")
         expected = Path(src).stem if src else ""
-        item = BenchQuestion(q, kws, expected, f"qcm-{topic or 'sans-topic'}")
+        item = BenchQuestion(q, kws, expected, f"qcm-{topic or 'sans-topic'}", opts[ci])
         if topic:
             by_topic.setdefault(topic, []).append(item)
         else:
@@ -330,13 +350,29 @@ def run(con: duckdb.DuckDBPyConnection, args: argparse.Namespace) -> dict[str, A
         hits_g = retrieve_graph(con, q.question, 5)
         hits_c = retrieve_classic(con, q.question, 5)
 
+        gold_norm = _norm(q.gold) if q.gold else ""
         for mode, hits in (("classic", hits_c), ("graph", hits_g)):
             srcs = top_sources(con, hits)
+            # Couverture = la BONNE RÉPONSE (gold) apparaît dans le contenu
+            # des top-k chunks ; fallback sur la source attendue pour les
+            # questions manuelles sans gold (les QCM d'examens blancs sont
+            # tirés d'une leçon alors que la réponse vit dans une autre).
+            chunks = []
+            for cid, _s in hits:
+                row = con.execute(
+                    "SELECT chunk_text FROM documents WHERE id = ?", [cid]
+                ).fetchone()
+                chunks.append(_norm(row[0]) if row else "")
             for k in (1, 3, 5):
-                if any(q.expected in s for s in srcs[:k]):
+                in_content = bool(gold_norm) and any(gold_hit(c, gold_norm) for c in chunks[:k])
+                in_source = any(q.expected in s for s in srcs[:k])
+                if in_content or (not gold_norm and in_source):
                     cover[mode][k] += 1
+            hit_top1 = (
+                bool(gold_norm) and gold_hit(chunks[0], gold_norm)
+            ) or (not gold_norm and q.expected in srcs[0])
             top = srcs[0].split("/")[-1] if srcs else "?"
-            tag = "✓" if q.expected in srcs[0] else "✗"
+            tag = "✓" if hit_top1 else "✗"
             print(f"    {mode:8s} top-1: {top[:55]} {tag}")
 
         # Réponse LLM (contexte du mode graph), sauf en --no-llm
@@ -357,7 +393,7 @@ def run(con: duckdb.DuckDBPyConnection, args: argparse.Namespace) -> dict[str, A
 
     # ── Rapport : couverture ─────────────────────────────────────────
     print(f"\n{'='*56}")
-    print("COUVERTURE RETRIEVAL (source attendue dans top-k)")
+    print("COUVERTURE RETRIEVAL (bonne réponse QCM couverte dans top-k)")
     for mode in ("classic", "graph"):
         row = " | ".join(f"top-{k}: {cover[mode][k]}/{n}" for k in (1, 3, 5))
         print(f"  {mode:8s} {row}")
