@@ -202,12 +202,18 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ question, use_graph: true, top_k: 4 }),
           });
-          if (!res.ok)
+          if (!res.ok) {
+            let detail = "";
+            try {
+              detail = (await res.json()).detail || "";
+            } catch (_) {}
             throw new Error(
               "HTTP " +
                 res.status +
-                (res.status === 429 ? " (rate limit)" : ""),
+                (res.status === 429 ? " (rate limit)" : "") +
+                (detail ? " — " + detail : ""),
             );
+          }
           const data = await res.json();
           typing.classList.remove("typing");
           typing.textContent = data.answer;
