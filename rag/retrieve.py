@@ -24,7 +24,10 @@ from dotenv import load_dotenv
 from voyageai.client import Client as VoyageClient
 
 ROOT = Path(__file__).resolve().parent
-DB_PATH = ROOT / "permis.duckdb"
+
+# Chemin de la base DuckDB — surchargeable par env (Docker/Dokploy :
+# PERMIS_DB_PATH=/data/permis.duckdb avec un volume monté).
+DB_PATH = Path(os.environ.get("PERMIS_DB_PATH", str(ROOT / "permis.duckdb")))
 VOYAGE_MODEL = os.environ.get("VOYAGE_MODEL", "voyage-3-lite")
 
 # Cherche .env dans rag/ ET dans le dossier parent du projet

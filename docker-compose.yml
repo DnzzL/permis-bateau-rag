@@ -1,0 +1,37 @@
+# Déploiement Dokploy — API permis bateau RAG
+#
+# Créer une application de type "Docker Compose" dans Dokploy pointant vers
+# ce repo, puis coller dans l'onglet "Environment" du service `api` :
+#   VOYAGE_API_KEY=...
+#   MISTRAL_API_KEY=...
+#   (optionnel) MISTRAL_MODEL, CORS_ORIGINS, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW
+#
+# La base DuckDB n'est PAS dans l'image (gitignorée) — monte-la une fois :
+#   scp rag/permis.duckdb user@vps:/path/dokploy/data/permis.duckdb
+# Le volume ci-dessous la rend accessible à /data/permis.duckdb.
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: permis-bateau-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data
+    environment:
+      - PERMIS_DB_PATH=/data/permis.duckdb
+      # CORS par défaut : ton site Netlify + localhost. À adapter.
+      - CORS_ORIGINS=${CORS_ORIGINS:-https://permis-bateau.netlify.app,http://localhost:5173}
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=5)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
