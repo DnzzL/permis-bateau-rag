@@ -24,6 +24,12 @@ services:
       # CORS neutre par défaut (inutile pour le front inclus — même origine).
       # Ne mettre des origines que si un front externe appelle l'API.
       - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173,http://localhost:8000}
+      # Clés API — interpolées depuis l'onglet Environment Dokploy :
+      # il faut les RÉFÉRENCER ici (${...}), sinon elles ne sont pas transmises
+      # au conteneur. Les valeurs vivent dans l'UI Dokploy, jamais dans le repo.
+      - VOYAGE_API_KEY=${VOYAGE_API_KEY:-}
+      - MISTRAL_API_KEY=${MISTRAL_API_KEY:-}
+      - MISTRAL_MODEL=${MISTRAL_MODEL:-mistral-small-latest}
     restart: unless-stopped
     healthcheck:
       test:

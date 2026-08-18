@@ -103,6 +103,11 @@ def health() -> dict[str, object]:
         "chunks": chunks,
         "qcm": qcm,
         "model": MISTRAL_MODEL,
+        # Présence des clés (sans les valeurs) — diagnostic rapide en déploiement.
+        "keys": {
+            "voyage": bool(os.environ.get("VOYAGE_API_KEY")),
+            "mistral": bool(os.environ.get("MISTRAL_API_KEY")),
+        },
         "rate_limit": {"max": limiter.max_requests, "window_s": limiter.window_s},
     }
 
