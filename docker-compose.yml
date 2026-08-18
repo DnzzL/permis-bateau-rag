@@ -1,16 +1,17 @@
-# Déploiement Dokploy — API permis bateau RAG
+# Déploiement Dokploy — API permis bateau RAG (front + API, single-origin)
 #
 # Créer une application de type "Docker Compose" dans Dokploy pointant vers
 # ce repo, puis coller dans l'onglet "Environment" du service `api` :
 #   VOYAGE_API_KEY=...
 #   MISTRAL_API_KEY=...
-#   CORS_ORIGINS=https://ton-domaine.fr,https://ton-site.netlify.app
-#   (optionnel) MISTRAL_MODEL, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW
+#   (optionnel) MISTRAL_MODEL, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW,
+#               CORS_ORIGINS (seulement si un front externe appelle l'API)
 #
-# La base DuckDB est COMMITÉE dans le repo et copiée dans l'image :
-# déploiement immédiat, aucune étape manuelle. Pour servir une base fraîche
-# (après rebuild du corpus), monte-la en volume :
-#   volumes: - ./data:/data   +   PERMIS_DB_PATH=/data/permis.duckdb
+# Le même process sert le front statique (web/) à / et l'API à /api/chat :
+# un seul port (8000), pas de CORS nécessaire. La base DuckDB est COMMITÉE
+# dans le repo et copiée dans l'image : déploiement immédiat, aucune étape
+# manuelle. Pour servir une base fraîche (après rebuild du corpus), monte-la
+# en volume :  volumes: - ./data:/data   +   PERMIS_DB_PATH=/data/permis.duckdb
 services:
   api:
     build:
@@ -20,8 +21,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      # CORS neutre par défaut (développement local) — mets tes propres
-      # origines via l'env Dokploy (ex. https://ton-site.netlify.app).
+      # CORS neutre par défaut (inutile pour le front inclus — même origine).
+      # Ne mettre des origines que si un front externe appelle l'API.
       - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173,http://localhost:8000}
     restart: unless-stopped
     healthcheck:

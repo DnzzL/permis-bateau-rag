@@ -137,28 +137,20 @@ Le mode graphe n'améliore pas le classement sémantique (corpus petit et bien s
 
 ## 🌐 API HTTP & déploiement (Dokploy)
 
-Le chatbot est exposé comme **API FastAPI** (`rag/api.py`) — prête pour ton VPS Dokploy :
+Le chatbot est exposé comme **API FastAPI** (`rag/api.py`) qui sert aussi le **front statique** (`web/index.html`) — architecture *single-origin* (un seul process, un seul port, pas de CORS) :
 
 | Endpoint | Description |
 | --- | --- |
+| `GET /` | **Front statique** — chat minimal (page unique, sans build) |
 | `GET /health` | État de la base (chunks, QCM) + modèle + limite de rate limiting |
 | `POST /api/chat` | `{"question", "use_graph", "top_k"}` → `{answer, sources, model}` |
 
 - **Rate limiting** basique par IP (fenêtre glissante en mémoire, `RATE_LIMIT_MAX`/`RATE_LIMIT_WINDOW`, défaut 15 req/60 s, `429` au-delà).
-- **CORS** restreint aux origines de `CORS_ORIGINS` (défaut neutre : `http://localhost:5173,http://localhost:8000`) — mets tes propres domaines dans l'env de déploiement, pas dans le code.
+- **CORS** (optionnel) : inutile pour le front inclus (même origine) ; utile seulement si tu appelles l'API depuis un autre domaine. Origines via `CORS_ORIGINS` (défaut neutre : `http://localhost:5173,http://localhost:8000`).
 - **Clés API** (`VOYAGE_API_KEY`, `MISTRAL_API_KEY`) : `.env` au runtime, jamais dans l'image (voir `.env.server.example`).
 - **Base DuckDB commitée** (3,8 Mo) : copiée dans l'image → déploiement immédiat, aucun `scp`. Pour servir une base fraîche, monte-la en volume et surcharge `PERMIS_DB_PATH`.
 
-**Déploiement** (`Dockerfile` + `docker-compose.yml`) :
-
-```bash
-# Dans Dokploy : Application « Docker Compose » → ce repo
-# Onglet Environment :
-#   VOYAGE_API_KEY=...
-#   MISTRAL_API_KEY=...
-#   CORS_ORIGINS=https://ton-site.netlify.app,http://localhost:5173
-# (cf. .env.server.example)
-```
+**Déploiement** (`Dockerfile` + `docker-compose.yml`) : dans Dokploy, Application « Docker Compose » → ce repo, onglet Environment : `VOYAGE_API_KEY`, `MISTRAL_API_KEY` (et `CORS_ORIGINS` seulement si front externe). Rien d'autre : le front est servi à `/` et l'API à `/api/chat` sur le même port.
 
 ## ⚖️ Licence
 
@@ -168,4 +160,4 @@ Le chatbot est exposé comme **API FastAPI** (`rag/api.py`) — prête pour ton 
 
 ---
 
-_Projet personnel — révision de l'examen du permis bateau côtier & fluvial (2026)._
+*Projet personnel — révision de l'examen du permis bateau côtier & fluvial (2026).*

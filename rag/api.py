@@ -17,6 +17,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from mistralai.client import Mistral
 from pydantic import BaseModel, Field
 
@@ -26,6 +27,9 @@ from retrieve import DB_PATH, retrieve_classic, retrieve_graph
 
 ROOT = Path(__file__).resolve().parent
 MISTRAL_MODEL = os.environ.get("MISTRAL_MODEL", "mistral-small-latest")
+# Front statique servi par le même process (pattern single-origin) :
+# dev = ../web depuis rag/, conteneur = STATIC_DIR défini dans le Dockerfile.
+STATIC_DIR = Path(os.environ.get("STATIC_DIR", str(ROOT.parent / "web")))
 
 load_dotenv()
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
@@ -87,17 +91,6 @@ class ChatResponse(BaseModel):
     answer: str
     sources: list[dict[str, str | float]]
     model: str
-
-
-@app.get("/")
-def index() -> dict[str, str]:
-    return {
-        "name": "Permis Bateau RAG API",
-        "endpoints": "/health, /api/chat (POST)",
-        "docs": "/docs",
-    }
-
-
 @app.get("/health")
 def health() -> dict[str, object]:
     con = get_con()
@@ -186,3 +179,10 @@ def _chunk_rows(con: duckdb.DuckDBPyConnection, hits: list[tuple[int, float]]):
         if row:
             rows.append((row[0], row[1], score))
     return rows
+
+
+# ── Front statique (single-origin : le même process sert le front et l'API) ──
+# Monté en dernier : les routes /health et /api/chat ci-dessus priment ; tout
+# le reste (/, /style…) vient du dossier web/.
+if STATIC_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="web")

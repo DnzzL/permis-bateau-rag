@@ -24,6 +24,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # locaux (from retrieve import ...) se résolvent comme en dev (cwd rag/).
 COPY rag/rag.py rag/prompts.py rag/retrieve.py rag/rate_limit.py rag/api.py ./
 
+# Front statique (single-origin) — servi par le même process sur le port 8000.
+COPY web/ ./web/
+ENV STATIC_DIR=/app/web
+
 # Base DuckDB pré-construite (commitée dans le repo) — point de montage par
 # défaut, surchargeable via PERMIS_DB_PATH.
 COPY rag/permis.duckdb /data/permis.duckdb
