@@ -145,20 +145,20 @@ Le chatbot est exposé comme **API FastAPI** (`rag/api.py`) — prête pour ton 
 | `POST /api/chat` | `{"question", "use_graph", "top_k"}` → `{answer, sources, model}` |
 
 - **Rate limiting** basique par IP (fenêtre glissante en mémoire, `RATE_LIMIT_MAX`/`RATE_LIMIT_WINDOW`, défaut 15 req/60 s, `429` au-delà).
-- **CORS** restreint aux origines de `CORS_ORIGINS` (défaut : site Netlify + localhost).
+- **CORS** restreint aux origines de `CORS_ORIGINS` (défaut neutre : `http://localhost:5173,http://localhost:8000`) — mets tes propres domaines dans l'env de déploiement, pas dans le code.
 - **Clés API** (`VOYAGE_API_KEY`, `MISTRAL_API_KEY`) : `.env` au runtime, jamais dans l'image (voir `.env.server.example`).
+- **Base DuckDB commitée** (3,8 Mo) : copiée dans l'image → déploiement immédiat, aucun `scp`. Pour servir une base fraîche, monte-la en volume et surcharge `PERMIS_DB_PATH`.
 
 **Déploiement** (`Dockerfile` + `docker-compose.yml`) :
 
 ```bash
-# 1. Copier la base DuckDB sur le VPS (elle est gitignorée, pas dans l'image)
-scp rag/permis.duckdb user@vps:/chemin/dokploy/data/permis.duckdb
-
-# 2. Dans Dokploy : Application « Docker Compose » → ce repo
-#    Onglet Environment : VOYAGE_API_KEY, MISTRAL_API_KEY (cf. .env.server.example)
+# Dans Dokploy : Application « Docker Compose » → ce repo
+# Onglet Environment :
+#   VOYAGE_API_KEY=...
+#   MISTRAL_API_KEY=...
+#   CORS_ORIGINS=https://ton-site.netlify.app,http://localhost:5173
+# (cf. .env.server.example)
 ```
-
-Le volume `./data:/data` rend la base accessible à `PERMIS_DB_PATH=/data/permis.duckdb`. Test local : `cd rag && .venv/bin/uvicorn api:app --reload`.
 
 ## ⚖️ Licence
 

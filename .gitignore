@@ -19,7 +19,11 @@ node_modules/
 __pycache__/
 *.pyc
 .env
-rag/permis.duckdb
+
+# rag/permis.duckdb est COMMITÉ (3,8 Mo) : base DuckDB pré-construite (101 chunks,
+# 165 QCM, graphe). Justification : repo open source → clone & test immédiats
+# sans relancer le pipeline (extract/embed/graph coûtent des appels API).
+# Artefact reproductible (voir README « Reconstruire la base depuis zéro »).
 rag/data/*.jsonl
 rag/data/*.json
 rag/data/*.log
