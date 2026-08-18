@@ -3,142 +3,295 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Permis Bateau — Assistant RAG</title>
+    <title>Permis Bateau — Carnet de bord</title>
     <style>
+      /* === Permis Bateau — Assistant RAG · Carnet de bord ===
+     Même univers que le site (Tufte) : papier, encre, bleu marine.
+     Les sources vivent dans la marge, comme des notes marginales. */
       :root {
-        --bg: #0f172a;
-        --card: #1e293b;
-        --border: #334155;
-        --accent: #38bdf8;
-        --text: #e2e8f0;
-        --muted: #94a3b8;
+        --paper: #fffff8;
+        --ink: #111;
+        --muted: #6a6a6a;
+        --marine: #1a5276;
+        --nav: #2980b9;
+        --cardinal: #c0392b;
+        --hairline: #ddd;
+        --max-w: 780px;
       }
       * {
         box-sizing: border-box;
         margin: 0;
       }
+      html {
+        font-size: 15px;
+      }
       body {
-        background: var(--bg);
-        color: var(--text);
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.6;
+        color: var(--ink);
+        background: var(--paper);
         height: 100vh;
         display: flex;
         flex-direction: column;
       }
+
+      /* --- Header : carnet de bord --- */
       header {
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 2px solid var(--marine);
+        padding: 1rem clamp(1rem, 4vw, 2rem);
         display: flex;
         align-items: center;
-        gap: 0.75rem;
-      }
-      header h1 {
-        font-size: 1.1rem;
-        font-weight: 600;
-      }
-      header span {
-        color: var(--muted);
-        font-size: 0.85rem;
-      }
-      main {
-        flex: 1;
-        overflow-y: auto;
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 760px;
+        gap: 1.1rem;
+        max-width: var(--max-w);
         width: 100%;
         margin: 0 auto;
       }
-      .msg {
-        max-width: 80%;
-        padding: 0.75rem 1rem;
-        border-radius: 0.75rem;
-        font-size: 0.95rem;
+      .rose {
+        width: 44px;
+        height: 44px;
+        flex: none;
+      }
+      .rose .spokes {
+        animation: spin-in 1.1s cubic-bezier(0.2, 0.7, 0.3, 1);
+        transform-origin: 50% 50%;
+      }
+      @keyframes spin-in {
+        from {
+          transform: rotate(-42deg);
+        }
+        to {
+          transform: rotate(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .rose .spokes {
+          animation: none;
+        }
+      }
+      header h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+      header .sub {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      header .stats {
+        margin-left: auto;
+        text-align: right;
+        font-family: ui-monospace, "SF Mono", Consolas, monospace;
+        font-size: 0.68rem;
+        color: var(--muted);
         line-height: 1.5;
+        white-space: pre;
+      }
+
+      /* --- Zone de dialogue : grille message + marge (sidenotes) --- */
+      main {
+        flex: 1;
+        overflow-y: auto;
+        max-width: var(--max-w);
+        width: 100%;
+        margin: 0 auto;
+        padding: 1.2rem clamp(1rem, 4vw, 2rem) 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 150px;
+        gap: 1rem;
+        align-items: start;
+      }
+      .row.user-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .msg {
+        max-width: 560px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .user-row .msg {
+        justify-self: end;
+        text-align: right;
+        background: #eef3f7;
+        border: 1px solid var(--hairline);
+        border-radius: 8px;
+        padding: 0.55rem 0.9rem;
+        font-style: italic;
+        color: var(--marine);
+      }
+      .meta {
+        font-family: ui-monospace, "SF Mono", Consolas, monospace;
+        font-size: 0.66rem;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .user-row .meta {
+        text-align: right;
+      }
+      .bot .answer {
         white-space: pre-wrap;
       }
-      .user {
-        align-self: flex-end;
-        background: var(--accent);
-        color: #082f49;
+      .bot .answer strong {
+        color: var(--marine);
       }
-      .bot {
-        align-self: flex-start;
-        background: var(--card);
-        border: 1px solid var(--border);
-      }
-      .sources {
-        margin-top: 0.5rem;
-        font-size: 0.75rem;
+      .sidenote {
+        font-family: ui-monospace, "SF Mono", Consolas, monospace;
+        font-size: 0.66rem;
         color: var(--muted);
+        line-height: 1.55;
+        border-left: 1px solid var(--hairline);
+        padding-left: 0.6rem;
+      }
+      .sidenote .sn-label {
+        color: var(--cardinal);
+        font-weight: 700;
       }
       .typing {
         color: var(--muted);
         font-style: italic;
       }
-      form {
-        border-top: 1px solid var(--border);
-        padding: 1rem 1.5rem;
+      .error {
+        color: var(--cardinal);
+      }
+      .error .err-title {
+        font-weight: 700;
+      }
+
+      /* --- Suggestions --- */
+      .suggest {
         display: flex;
-        gap: 0.75rem;
-        max-width: 760px;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        max-width: var(--max-w);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0.4rem clamp(1rem, 4vw, 2rem) 0;
+      }
+      .suggest button {
+        font-family: inherit;
+        font-size: 0.78rem;
+        background: none;
+        color: var(--nav);
+        border: 1px solid var(--hairline);
+        border-radius: 999px;
+        padding: 0.28rem 0.8rem;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .suggest button:hover {
+        border-color: var(--nav);
+        color: var(--marine);
+      }
+
+      /* --- Composer --- */
+      form {
+        border-top: 1px solid var(--hairline);
+        padding: 0.9rem clamp(1rem, 4vw, 2rem);
+        display: flex;
+        gap: 0.6rem;
+        max-width: var(--max-w);
         width: 100%;
         margin: 0 auto;
       }
       input {
         flex: 1;
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        padding: 0.75rem 1rem;
-        color: var(--text);
+        background: #fff;
+        border: 1px solid var(--hairline);
+        border-radius: 6px;
+        padding: 0.6rem 0.9rem;
+        font-family: inherit;
         font-size: 0.95rem;
+        color: var(--ink);
         outline: none;
       }
       input:focus {
-        border-color: var(--accent);
+        border-color: var(--nav);
       }
-      button {
-        background: var(--accent);
-        color: #082f49;
+      input::placeholder {
+        color: var(--muted);
+      }
+      button.send {
+        background: var(--marine);
+        color: #fff;
         border: none;
-        border-radius: 0.5rem;
-        padding: 0.75rem 1.25rem;
+        border-radius: 6px;
+        padding: 0.6rem 1.1rem;
+        font-family: inherit;
+        font-size: 0.9rem;
         font-weight: 600;
         cursor: pointer;
+        transition: background 0.15s;
+      }
+      button.send:hover {
+        background: var(--nav);
       }
       button:disabled {
-        opacity: 0.5;
+        opacity: 0.55;
         cursor: not-allowed;
       }
-      .suggest {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        padding: 0 1.5rem;
-        max-width: 760px;
-        width: 100%;
-        margin: 0 auto;
+      :focus-visible {
+        outline: 2px solid var(--nav);
+        outline-offset: 2px;
       }
-      .suggest button {
-        background: var(--card);
-        color: var(--text);
-        border: 1px solid var(--border);
-        font-size: 0.8rem;
-        padding: 0.35rem 0.75rem;
-        font-weight: 400;
+
+      @media (max-width: 720px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+        .sidenote {
+          border-left: none;
+          border-top: 1px solid var(--hairline);
+          padding-left: 0;
+          padding-top: 0.35rem;
+        }
+        header .stats {
+          display: none;
+        }
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>⚓ Permis Bateau</h1>
-      <span>Assistant RAG — révision côté &amp; fluvial</span>
+      <svg class="rose" viewBox="-30 -30 60 60" aria-hidden="true">
+        <g class="spokes">
+          <!-- pointes cardinales -->
+          <polygon points="0,-26 4.5,0 0,3 -4.5,0" fill="#c0392b" />
+          <!-- N : rouge cardinal -->
+          <polygon points="26,0 0,4.5 -3,0 0,-4.5" fill="#1a5276" />
+          <polygon points="0,26 -4.5,0 0,-3 4.5,0" fill="#1a5276" />
+          <polygon points="-26,0 0,-4.5 3,0 0,4.5" fill="#1a5276" />
+          <!-- pointes intercardinales -->
+          <polygon points="0,-15 3.2,0 0,3 -3.2,0" fill="#6a6a6a" />
+          <polygon points="15,0 0,3.2 -3,0 0,-3.2" fill="#6a6a6a" />
+          <polygon points="0,15 -3.2,0 0,-3 3.2,0" fill="#6a6a6a" />
+          <polygon points="-15,0 0,-3.2 3,0 0,3.2" fill="#6a6a6a" />
+          <!-- cercle -->
+          <circle r="3.4" fill="#fffff8" stroke="#1a5276" stroke-width="1.4" />
+          <!-- lettres -->
+          <text
+            x="0"
+            y="-27.5"
+            text-anchor="middle"
+            font-size="7"
+            fill="#c0392b"
+            font-family="Georgia,serif"
+            font-weight="700"
+          >
+            N
+          </text>
+        </g>
+      </svg>
+      <div>
+        <h1>⚓ Permis Bateau</h1>
+        <div class="sub">Carnet de bord — assistant de révision RAG</div>
+      </div>
+      <div class="stats" id="stats">chargement…</div>
     </header>
 
     <div class="suggest">
@@ -156,44 +309,149 @@
       </button>
     </div>
 
-    <main id="chat"></main>
+    <main id="chat">
+      <div class="row">
+        <div class="msg bot">
+          <div class="meta">— à la barre</div>
+          <div class="answer">
+            Bonjour. Pose-moi une question sur le permis bateau (côtier ou
+            fluvial) : balisage, feux, priorités, météo, VHF, cartes… Je réponds
+            avec les fiches du cours en marge.
+          </div>
+        </div>
+      </div>
+    </main>
 
     <form id="form">
       <input
         id="input"
-        placeholder="Pose ta question sur le permis bateau…"
+        placeholder="Ta question sur le permis bateau…"
         autocomplete="off"
         required
       />
-      <button type="submit">Envoyer</button>
+      <button type="submit" class="send">Envoyer</button>
     </form>
 
     <script>
       const chat = document.getElementById("chat");
       const form = document.getElementById("form");
       const input = document.getElementById("input");
+      const statsEl = document.getElementById("stats");
 
-      function addMsg(text, who, sources) {
-        const div = document.createElement("div");
-        div.className = "msg " + who;
-        div.textContent = text;
-        if (sources && sources.length) {
-          const s = document.createElement("div");
-          s.className = "sources";
-          s.textContent =
-            "📚 " + sources.map((x) => x.source.split("/").pop()).join(" · ");
-          div.appendChild(s);
+      // Stats réelles de la base, depuis /health (même origine).
+      fetch("/health")
+        .then((r) => r.json())
+        .then((d) => {
+          statsEl.textContent =
+            "base : " +
+            d.chunks +
+            " extraits\n" +
+            "qcm  : " +
+            d.qcm +
+            " questions\n" +
+            "moteur : " +
+            (d.model || "").split("-").slice(0, 2).join(" ");
+        })
+        .catch(() => {
+          statsEl.textContent = "base : hors-ligne";
+        });
+
+      function hhmm() {
+        const d = new Date();
+        return (
+          String(d.getHours()).padStart(2, "0") +
+          ":" +
+          String(d.getMinutes()).padStart(2, "0")
+        );
+      }
+
+      function hhmm() {
+        const d = new Date();
+        return (
+          String(d.getHours()).padStart(2, "0") +
+          ":" +
+          String(d.getMinutes()).padStart(2, "0")
+        );
+      }
+
+      // Construit une rangée message + éventuelle marge sources, sans innerHTML.
+      function addRow(who, meta, content) {
+        const row = document.createElement("div");
+        row.className = who === "user" ? "row user-row" : "row";
+        const msg = document.createElement("div");
+        msg.className = "msg " + (who === "user" ? "" : "bot");
+        if (meta) {
+          const m = document.createElement("div");
+          m.className = "meta";
+          m.textContent = meta;
+          msg.appendChild(m);
         }
-        chat.appendChild(div);
+        msg.appendChild(content);
+        row.appendChild(msg);
+        chat.appendChild(row);
         chat.scrollTop = chat.scrollHeight;
-        return div;
+        return row;
+      }
+
+      function addSources(row, sources) {
+        if (!sources || !sources.length) return;
+        const sn = document.createElement("div");
+        sn.className = "sidenote";
+        const label = document.createElement("span");
+        label.className = "sn-label";
+        label.textContent = "SOURCES";
+        sn.appendChild(label);
+        sn.appendChild(document.createElement("br"));
+        for (const s of sources) {
+          const line = document.createElement("div");
+          line.textContent = s.source.split("/").pop();
+          sn.appendChild(line);
+        }
+        const score = document.createElement("div");
+        score.style.color = "var(--muted)";
+        score.textContent = "score " + Math.round(sources[0].score * 100) + "%";
+        sn.appendChild(score);
+        row.appendChild(sn);
+      }
+
+      // Rendu de la réponse en nœuds DOM : **gras**, puces, numéros.
+      function renderAnswer(el, text) {
+        for (const rawLine of text.split("\n")) {
+          let line = rawLine;
+          let prefix = "";
+          const num = /^(\d+)\.\s+/.exec(line);
+          if (num) {
+            line = line.slice(num[0].length);
+          } else if (line.startsWith("- ")) {
+            prefix = "· ";
+            line = line.slice(2);
+          }
+          const div = document.createElement("div");
+          if (prefix) div.appendChild(document.createTextNode(prefix));
+          const parts = line.split(/\*\*(.+?)\*\*/g);
+          for (let j = 0; j < parts.length; j++) {
+            if (!parts[j]) continue;
+            if (j % 2 === 1) {
+              const b = document.createElement("strong");
+              b.textContent = parts[j];
+              div.appendChild(b);
+            } else {
+              div.appendChild(document.createTextNode(parts[j]));
+            }
+          }
+          el.appendChild(div);
+        }
       }
 
       async function ask(question) {
         input.value = "";
-        addMsg(question, "user");
-        const typing = addMsg("…", "bot");
-        typing.classList.add("typing");
+        const q = document.createElement("div");
+        q.textContent = question;
+        addRow("user", hhmm(), q);
+        const answerEl = document.createElement("div");
+        answerEl.className = "answer typing";
+        answerEl.textContent = "…";
+        const row = addRow("bot", "— à la barre", answerEl);
         const btn = form.querySelector("button");
         btn.disabled = true;
         try {
@@ -215,20 +473,19 @@
             );
           }
           const data = await res.json();
-          typing.classList.remove("typing");
-          typing.textContent = data.answer;
-          if (data.sources && data.sources.length) {
-            const s = document.createElement("div");
-            s.className = "sources";
-            s.textContent =
-              "📚 " +
-              data.sources.map((x) => x.source.split("/").pop()).join(" · ");
-            typing.appendChild(s);
-          }
-          chat.scrollTop = chat.scrollHeight;
+          answerEl.classList.remove("typing");
+          renderAnswer(answerEl, data.answer);
+          addSources(row, data.sources);
         } catch (e) {
-          typing.classList.remove("typing");
-          typing.textContent = "❌ Erreur : " + e.message;
+          answerEl.classList.remove("typing");
+          const err = document.createElement("span");
+          err.className = "error";
+          const title = document.createElement("span");
+          title.className = "err-title";
+          title.textContent = "❌ Panne — ";
+          err.appendChild(title);
+          err.appendChild(document.createTextNode(e.message));
+          answerEl.appendChild(err);
         } finally {
           btn.disabled = false;
           input.focus();
