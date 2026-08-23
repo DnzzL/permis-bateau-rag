@@ -10,11 +10,11 @@ Pose une question sur les règles de route, les feux, le balisage, la VHF, les �
 
 | Mode | Description |
 | --- | --- |
-| `chat` | Question → retrieval (graphe par défaut, classique en fallback) → réponse streamée avec sources |
+| `chat` | Question → retrieval vectoriel → réponse streamée avec sources |
 | `quiz` | QCM aléatoire du corpus (ou filtré par thème) avec correction détaillée |
 | `benchmark` | Mesure la couverture du retrieval et la pertinence des réponses |
 
-- **Retrieval hybride** : similarité cosinus (embeddings Voyage) **+** graphe de connaissances (entités + relations extraites par LLM)
+- **Retrieval vectoriel** : similarité cosinus sur embeddings Voyage, chunks découpés par section (h1/h2/h3) et préfixés de leur chemin de titres
 - **Sources citées** à chaque réponse (leçon / fiche / note)
 - **Détection hors-sujet** : refuse poliment les questions sans rapport avec la navigation
 - Streaming des réponses
@@ -22,20 +22,19 @@ Pose une question sur les règles de route, les feux, le balisage, la VHF, les �
 ## 🏗️ Architecture
 
 ```
-┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
-│ T1       │   │ T2       │   │ T3       │   │ T4       │   │ T5       │
-│ extract  │→  │ embed    │→  │ graph    │→  │ retrieve │→  │ rag (CLI)│
-│ HTML/MD  │   │ Voyage + │   │ entités  │   │ hybride  │   │ chat/quiz│
-│ → JSONL  │   │ DuckDB   │   │ + rel.   │   │ rerank   │   │          │
-└──────────┘   └──────────┘   └──────────┘   └──────────┘   └──────────┘
+┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
+│ T1       │   │ T2       │   │ T4       │   │ T5       │
+│ extract  │→  │ embed    │→  │ retrieve │→  │ rag (CLI)│
+│ HTML/MD  │   │ Voyage + │   │ cos_sim  │   │ chat/quiz│
+│ → JSONL  │   │ DuckDB   │   │ top-k    │   │          │
+└──────────┘   └──────────┘   └──────────┘   └──────────┘
 ```
 
-Toutes les étapes produisent/consomment une base DuckDB unique (`rag/permis.duckdb`) avec 5 tables : `documents`, `qcm`, `entities`, `relationships`, `document_entities`.
+Toutes les étapes produisent/consomment une base DuckDB unique (`rag/permis.duckdb`) avec 2 tables : `documents`, `qcm`.
 
 - **Extraction** (`extract.py`) : parseur zéro-dépendance (stdlib `html.parser`) → `corpus.jsonl` + `qcm.json`
-- **Embedding** (`embed.py`) : [Voyage AI](https://voyageai.com) `voyage-3-lite` (512 dims), chunks de 400 mots avec 50 mots de recouvrement
-- **Graphe** (`graph.py`) : extraction LLM [Mistral](https://mistral.ai) `mistral-small-latest` — 10 types d'entités, 8 types de relations, dédup par nom normalisé
-- **Retrieval** (`retrieve.py`) : classique (cos_sim) vs graphe (seed → entités → voisins 1-hop → chunks liés → rerank avec bonus de partage d'entités)
+- **Embedding** (`embed.py`) : [Voyage AI](https://voyageai.com) `voyage-3-lite` (512 dims). **Découpage par section** : une section h1/h2/h3 = un chunk, fusionnée sous 60 mots, re-découpée en fenêtre glissante (400/50) seulement si elle dépasse 400 mots — une frontière de chunk n'est jamais au milieu d'un tableau ou d'une carte de balise. Chaque chunk est préfixé de son chemin de titres (« Balisage Maritime / Marques cardinales »)
+- **Retrieval** (`retrieve.py`) : cos_sim sur tous les chunks → top-k
 - **Chatbot** (`rag.py`) : orchestration retrieval → contexte → Mistral (streaming)
 
 ## 🚀 Démarrage rapide
@@ -65,11 +64,8 @@ Variables d'environnement (fichier `.env` à la racine du projet ou dans `rag/`)
 ### Utilisation
 
 ```bash
-# Chat (mode graphe par défaut)
+# Chat
 .venv/bin/python rag.py chat "Qui est prioritaire entre deux voiliers ?"
-
-# Chat en retrieval classique (fallback)
-.venv/bin/python rag.py chat --no-graph "Comment annoncer une détresse à la VHF ?"
 
 # QCM aléatoire
 .venv/bin/python rag.py quiz
@@ -77,8 +73,11 @@ Variables d'environnement (fichier `.env` à la racine du projet ou dans `rag/`)
 # QCM sur un thème précis
 .venv/bin/python rag.py quiz --topic feux
 
-# Benchmark couverture + pertinence (15 questions de référence)
+# Benchmark QCM : couverture + pertinence (60 questions, graine fixe)
 .venv/bin/python benchmark.py
+
+# Benchmark chatbot : 24 questions composites multi-sources
+.venv/bin/python benchmark_composite.py
 ```
 
 ## 🔄 Reconstruire la base depuis zéro
@@ -89,10 +88,9 @@ Si la base DuckDB n'existe pas ou que vous voulez la régénérer avec un autre 
 cd rag
 .venv/bin/python extract.py   # 1. corpus.jsonl + qcm.json depuis lessons/, reference/, learning-records/
 .venv/bin/python embed.py     # 2. chunks + embeddings Voyage → DuckDB (coût ≈ gratuit)
-.venv/bin/python graph.py     # 3. entités + relations Mistral → DuckDB (⚠️ facturé, ~80 appels)
 ```
 
-Le graphe s'exécute chunk par chunk avec un checkpoint JSON (`rag/data/checkpoint_extractions.json`) : une interruption ne perd pas le travail, et `graph.py --rebuild` reconstruit la table à partir du checkpoint sans rappeler l'API.
+Deux étapes suffisent : la reconstruction complète ne fait aucun appel facturé au-delà des embeddings Voyage.
 
 ## 📁 Structure
 
@@ -107,11 +105,11 @@ permis bateau/
 ├── evals/             # snapshots de benchmark (régression)
 └── rag/
     ├── extract.py     # T1 — parsing du corpus
-    ├── embed.py       # T2 — embeddings + DuckDB
-    ├── graph.py       # T3 — graphe de connaissances
-    ├── retrieve.py    # T4 — retrieval hybride
+    ├── embed.py       # T2 — chunking par section + embeddings + DuckDB
+    ├── retrieve.py    # T4 — retrieval vectoriel
     ├── rag.py         # T5 — chatbot CLI
-    ├── benchmark.py   # Benchmark couverture/pertinence
+    ├── benchmark.py   # Benchmark QCM (couverture/pertinence)
+    ├── benchmark_composite.py  # Benchmark chatbot (questions multi-sources)
     └── data/          # artefacts générés (ignorés par git)
 ```
 
@@ -121,9 +119,9 @@ Benchmark étendu : **60 questions** (5 manuelles + échantillon stratifié des 
 
 | Métrique | Résultat |
 | --- | --- |
-| Bonne réponse couverte en top-1 | classic 80 % · graph 82 % |
-| Bonne réponse couverte en top-3 | **classic 90 % · graph 92 %** |
-| Couverture conceptuelle des réponses | ~67 % (proxy mots-clés volontairement conservateur) |
+| Bonne réponse couverte en top-1 | 80 % |
+| Bonne réponse couverte en top-3 | **88 %** (91 % en top-9, le budget servi au chatbot) |
+| Couverture conceptuelle des réponses | ~69 % (proxy mots-clés volontairement conservateur) |
 | Réponses complètes (tous les concepts) | ~9/60 — des réponses correctes courtes scoreront rarement 100 % |
 | Refus hors-domaine (10 pièges, sans contexte) | ~9-10/10 |
 
@@ -133,7 +131,41 @@ Spot-checks manuels des réponses (mille nautique = 1852 m, latitude sur les bor
 
 **Régression** : `rag/benchmark.py --snapshot` écrit `evals/report-<date>.json`, `--baseline` fige la référence, `--check` échoue (code 1) si pertinence ou top-3 régresse de plus de 5 points — à brancher en CI.
 
-Le mode graphe n'améliore pas le classement sémantique (corpus petit et bien structuré) mais **diversifie les sources** : il découvre des fiches de référence (`feux.html`, `signaux-bateaux-fluviaux.html`) que le retrieval classique rate.
+### Benchmark chatbot (questions composites)
+
+Le benchmark QCM ne mesure pas l'usage réel : une question de QCM se répond depuis **une** section. `benchmark_composite.py` évalue 24 questions multi-sources du type « Mistral force 7 demain, bateau catégorie C, sortie en zone 2 : je sors ? », chacune avec ses sources requises et ses faits attendus définis avant tout retrieval :
+
+| Métrique (top-9) | Résultat |
+| --- | --- |
+| Rappel des sources requises | 93 % |
+| Sources distinctes dans le contexte | 5,0 |
+| Faits attendus présents dans la réponse | 73-77 % |
+
+⚠️ **Bruit de mesure** : à `temperature 0.2`, deux exécutions identiques s'écartent de ±6,3 pt sur la couverture factuelle (mesuré : 73,3 %, puis 77,2 % et 77,4 %). Ne rien conclure sous ~7 pt d'écart.
+
+### Pourquoi pas de graphe de connaissances
+
+Un GraphRAG a été implémenté (extraction Mistral par chunk → 1 481 entités, 2 055 relations, expansion 1-hop + rerank), mesuré, puis **retiré**. Il n'apportait rien, sur deux protocoles indépendants :
+
+| | classic | graph | graph « diversité d'entités » |
+| --- | --- | --- | --- |
+| QCM, couverture top-k (60 q.) | 80 / 88 / 92 % | identique au chunk près | — |
+| Composite, rappel sources (24 q.) | 93,1 % | 92,0 % | 93,1 % |
+| Composite, faits couverts | 73,3 % | 76,4 % | 76,3 % |
+
+Le +3,1 pt du graphe est indistinguable du bruit : `t = 0,78`, IC95 `[-4,7 ; +11,0]`, 6 victoires / 4 défaites / 14 égalités — et deux runs de `classic` contre lui-même s'écartent de ±6,3 pt, soit **plus que l'avantage revendiqué**. Ce n'est pas un effet de saturation : à top-3 (69 %), top-4 (78 %) et top-6 (84 %), où il reste de la marge, les chiffres sont identiques.
+
+Trois causes mesurées :
+
+- **71 % des entités n'apparaissent que dans un seul chunk** (1 053 / 1 481) — elles ne relient rien.
+- L'expansion 1-hop retenait **67 à 83 % du corpus** comme candidats : le graphe ne filtrait pas, il resélectionnait.
+- Les entités multi-chunks sont génériques (`vent`, `mouillage`, `écluse`, `VHF`) : elles relient tout à tout.
+
+Deux bugs avaient aussi masqué le diagnostic : le bonus récompensait les chunks *seed* (qui partagent 100 % de leurs entités avec eux-mêmes), et son plafond de 0,30 valait **66 rangs** d'écart de `cos_sim` — il écrasait la similarité vectorielle au lieu de la nuancer. Corrigés, le graphe devenait strictement équivalent au retrieval vectoriel.
+
+Un GraphRAG paie sur un corpus grand, à entités denses et récurrentes, pour des questions à sauts implicites. Ce corpus est petit (206 chunks), plat et à questions quasi mono-section : le vectoriel seul y est déjà quasi optimal. Le code reste dans l'historique git (`rag/graph.py`, supprimé le 2026-08-23) si le corpus change de nature.
+
+**Limite du protocole** : les 24 questions composites sont multi-sources mais pas vraiment multi-*hop* — elles nomment explicitement les domaines concernés, donc l'embedding trouve les deux sans saut implicite. Un jeu à sauts réellement implicites resterait à construire pour clore définitivement la question.
 
 ## 🌐 API HTTP & déploiement (Dokploy)
 
@@ -143,7 +175,7 @@ Le chatbot est exposé comme **API FastAPI** (`rag/api.py`) qui sert aussi le **
 | --- | --- |
 | `GET /` | **Front statique** — chat minimal (page unique, sans build) |
 | `GET /health` | État de la base (chunks, QCM) + modèle + limite de rate limiting |
-| `POST /api/chat` | `{"question", "use_graph", "top_k"}` → `{answer, sources, model}` |
+| `POST /api/chat` | `{"question", "top_k"}` → `{answer, sources, model}` — `top_k` par défaut 9 (~1 300 mots de contexte) |
 
 - **Rate limiting** basique par IP (fenêtre glissante en mémoire, `RATE_LIMIT_MAX`/`RATE_LIMIT_WINDOW`, défaut 15 req/60 s, `429` au-delà).
 - **CORS** (optionnel) : inutile pour le front inclus (même origine) ; utile seulement si tu appelles l'API depuis un autre domaine. Origines via `CORS_ORIGINS` (défaut neutre : `http://localhost:5173,http://localhost:8000`).

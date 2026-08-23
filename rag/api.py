@@ -2,7 +2,7 @@
 
 Endpoints :
   GET  /health     → état de la base (chunks, QCM) + limite configurée
-  POST /api/chat   → question → retrieval (graph ou classic) → réponse Mistral
+  POST /api/chat   → question → retrieval vectoriel → réponse Mistral
 
 Rate limiting basique par IP (fenêtre glissante en mémoire, 429 au-delà),
 CORS restreint aux origines configurées (CORS_ORIGINS, virgule-séparé).
@@ -23,7 +23,8 @@ from pydantic import BaseModel, Field
 
 from prompts import SYSTEM_PROMPT
 from rate_limit import RateLimiter
-from retrieve import DB_PATH, retrieve_classic, retrieve_graph
+from retrieve import DB_PATH, retrieve_classic
+from sources import source_label, source_url
 
 ROOT = Path(__file__).resolve().parent
 MISTRAL_MODEL = os.environ.get("MISTRAL_MODEL", "mistral-small-latest")
@@ -83,13 +84,16 @@ app.add_middleware(
 
 class ChatRequest(BaseModel):
     question: str = Field(min_length=1, max_length=500, description="Question sur le permis bateau")
-    use_graph: bool = True
-    top_k: int = Field(default=4, ge=1, le=8)
+    # Chunks par section (~143 mots) au lieu de la fenêtre de 400 : il faut
+    # ~9 chunks pour retrouver le budget de contexte de l'ancien top-4
+    # (4 x 311 = 1244 mots). Aligner le nombre de chunks aurait divisé le
+    # contexte du chatbot par deux.
+    top_k: int = Field(default=9, ge=1, le=16)
 
 
 class ChatResponse(BaseModel):
     answer: str
-    sources: list[dict[str, str | float]]
+    sources: list[dict[str, str | float | None]]
     model: str
 @app.get("/health")
 def health() -> dict[str, object]:
@@ -123,10 +127,7 @@ def chat(req: ChatRequest, request: Request) -> ChatResponse:
 
     con = get_con()
     try:
-        if req.use_graph:
-            hits = retrieve_graph(con, req.question, req.top_k)
-        else:
-            hits = retrieve_classic(con, req.question, req.top_k)
+        hits = retrieve_classic(con, req.question, req.top_k)
     except Exception as exc:  # clé Voyage absente/invalide, API injoignable…
         raise HTTPException(
             status_code=502,
@@ -169,11 +170,36 @@ def chat(req: ChatRequest, request: Request) -> ChatResponse:
         else:
             answer += "".join(getattr(part, "text", "") or "" for part in delta)
 
-    sources = [
-        {"source": src, "score": round(score, 2)}
-        for src, _text, score in _chunk_rows(con, hits)
-    ]
-    return ChatResponse(answer=answer, sources=sources, model=MISTRAL_MODEL)
+    return ChatResponse(answer=answer, sources=_sources_payload(con, hits), model=MISTRAL_MODEL)
+
+
+def _sources_payload(
+    con: duckdb.DuckDBPyConnection, hits: list[tuple[int, float]]
+) -> list[dict[str, str | float | None]]:
+    """Sources dédupliquées, avec l'URL publique de la fiche quand elle existe.
+
+    Dédup nécessaire : avec top_k=9 sur des chunks par section, plusieurs
+    chunks viennent souvent de la même fiche — la liste affichait le même nom
+    (et afficherait maintenant le même lien) plusieurs fois. Les hits arrivent
+    dans l'ordre du retrieval, donc la première occurrence porte le meilleur
+    score.
+
+    `url` vaut None pour les sources non publiées sur le site (les
+    learning-records) : le front les affiche alors sans lien.
+    """
+    out: list[dict[str, str | float | None]] = []
+    seen: set[str] = set()
+    for src, _text, score in _chunk_rows(con, hits):
+        if src in seen:
+            continue
+        seen.add(src)
+        out.append({
+            "source": src,
+            "label": source_label(src),
+            "url": source_url(src),
+            "score": round(score, 2),
+        })
+    return out
 
 
 def _chunk_rows(con: duckdb.DuckDBPyConnection, hits: list[tuple[int, float]]):

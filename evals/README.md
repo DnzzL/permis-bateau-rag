@@ -1,7 +1,13 @@
 # Évaluations du benchmark RAG « permis bateau »
 
-Ce dossier contient les rapports du benchmark exécutable via
-`rag/benchmark.py` (le pipeline embed/retrieve n'est pas touché).
+Ce dossier contient les rapports des deux benchmarks (le pipeline
+embed/retrieve n'est pas touché) :
+
+- `rag/benchmark.py` — **QCM** : couverture, pertinence, refus hors-domaine.
+  Snapshots `report-<date>.json`, référence `baseline.json`.
+- `rag/benchmark_composite.py` — **chatbot** : 24 questions multi-sources
+  (`composite.json`), rapport `composite-report.json`. Le QCM ne mesure pas
+  l'usage réel, une question de QCM se répondant depuis une seule section.
 
 ## Les 3 métriques
 
@@ -10,14 +16,16 @@ Ce dossier contient les rapports du benchmark exécutable via
 Pour chacune des **60 questions** de l'échantillon, on sait *a priori* quelle
 leçon/fiche contient la réponse (le `source` du QCM pour les questions QCM,
 un fragment de chemin pour les 5 questions manuelles). On vérifie qu'un chunk
-de cette source apparaît dans le top-1 / top-3 / top-5 du classement, pour
-`retrieve_classic` ET `retrieve_graph`. C'est le mode `--no-llm` (pas d'appel
-LLM, pas de clé Mistral requise).
+de cette source apparaît dans le top-1 / top-3 / top-5 du classement.
+`--top-k N` ajoute le palier réellement servi au chatbot (défaut 9) ; les
+paliers 1/3/5 restent rapportés pour rester comparables aux snapshots
+antérieurs. C'est le mode `--no-llm` (pas d'appel LLM, pas de clé Mistral
+requise).
 
 ### 2. Pertinence des réponses (LLM)
 
-Chaque question est envoyée au LLM avec le contexte du mode graph dans le
-top-5. Pour chaque question, des **mots-clés attendus** sont définis :
+Chaque question est envoyée au LLM avec le contexte du retrieval dans le
+top-k (défaut 9, soit ~1 300 mots — le budget servi par l'API). Pour chaque question, des **mots-clés attendus** sont définis :
 
 - 5 questions manuelles pédagogiques : mots-clés écrits à la main ;
 - questions issues du QCM : mots-clés **dérivés mécaniquement** de la bonne

@@ -2,13 +2,13 @@
 T5 — Chatbot CLI (rag.py)
 
 Modes :
-  chat  : question → retrieval (graph par défaut, classic en fallback)
+  chat  : question → retrieval vectoriel → réponse streamée avec sources
           → contexte → réponse Mistral streamée avec sources
   quiz  : QCM aléatoire du corpus avec correction détaillée
 
 Usage :
   .venv/bin/python rag.py chat "Qui est prioritaire entre deux voiliers ?"
-  .venv/bin/python rag.py chat --no-graph "Quelle est la VHF d'appel ?"
+  .venv/bin/python rag.py chat "Quelle est la VHF d'appel ?"
   .venv/bin/python rag.py quiz
   .venv/bin/python rag.py quiz --topic feux
 """
@@ -23,7 +23,8 @@ import duckdb
 from dotenv import load_dotenv
 from mistralai.client import Mistral
 
-from retrieve import DB_PATH, retrieve_classic, retrieve_graph
+from retrieve import DB_PATH, retrieve_classic
+from sources import source_url
 from prompts import SYSTEM_PROMPT
 
 ROOT = Path(__file__).resolve().parent
@@ -50,12 +51,9 @@ def format_sources(con: duckdb.DuckDBPyConnection, hits: list[tuple[int, float]]
 
 # ── Chat ─────────────────────────────────────────────────────────────
 
-def chat(con: duckdb.DuckDBPyConnection, question: str, use_graph: bool = True, top_k: int = 4) -> None:
+def chat(con: duckdb.DuckDBPyConnection, question: str, top_k: int = 9) -> None:
     client = Mistral(api_key=os.environ.get("MISTRAL_API_KEY", ""))
-    if use_graph:
-        hits = retrieve_graph(con, question, top_k)
-    else:
-        hits = retrieve_classic(con, question, top_k)
+    hits = retrieve_classic(con, question, top_k)
 
     context = format_sources(con, hits)
     user_prompt = (
@@ -92,10 +90,17 @@ def chat(con: duckdb.DuckDBPyConnection, question: str, use_graph: bool = True, 
     print()
 
     print("\n📚 Sources utilisées :")
+    # Dédup : plusieurs chunks viennent souvent de la même fiche (chunks par
+    # section + top_k=9). Le premier hit d'une source porte son meilleur score.
+    seen: set[str] = set()
     for cid, score in hits:
         row = con.execute("SELECT source FROM documents WHERE id = ?", [cid]).fetchone()
-        if row:
-            print(f"  • {row[0]} (score {score:.2f})")
+        if not row or row[0] in seen:
+            continue
+        seen.add(row[0])
+        url = source_url(row[0])
+        suffix = f"\n    {url}" if url else ""
+        print(f"  • {row[0]} (score {score:.2f}){suffix}")
 
 
 # ── Quiz ─────────────────────────────────────────────────────────────
@@ -150,8 +155,7 @@ def main() -> None:
 
     p_chat = sub.add_parser("chat", help="Pose une question au chatbot")
     p_chat.add_argument("question", help="La question à poser")
-    p_chat.add_argument("--no-graph", action="store_true", help="Désactive le mode graphe (retrieval classique)")
-    p_chat.add_argument("--top-k", type=int, default=4)
+    p_chat.add_argument("--top-k", type=int, default=9)
 
     p_quiz = sub.add_parser("quiz", help="QCM aléatoire")
     p_quiz.add_argument("--topic", help="Thème du QCM (ex: feux, balisage)")
@@ -164,9 +168,9 @@ def main() -> None:
         print("❌ VOYAGE_API_KEY not set.")
         raise SystemExit(1)
 
-    con = duckdb.connect(str(DB_PATH))
+    con = duckdb.connect(str(DB_PATH), read_only=True)
     if args.command == "chat":
-        chat(con, args.question, use_graph=not args.no_graph, top_k=args.top_k)
+        chat(con, args.question, top_k=args.top_k)
     elif args.command == "quiz":
         quiz(con, args.topic)
     con.close()

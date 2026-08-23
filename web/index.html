@@ -150,6 +150,20 @@
         color: var(--cardinal);
         font-weight: 700;
       }
+      /* Les sources publiées renvoient à leur fiche sur le site. Souligné
+         pointillé plutôt que plein : un renvoi de note marginale, pas un
+         bouton. Les learning-records ne sont pas publiés → pas de lien. */
+      .sidenote a {
+        color: var(--marine);
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-underline-offset: 2px;
+      }
+      .sidenote a:hover,
+      .sidenote a:focus-visible {
+        color: var(--nav);
+        text-decoration-style: solid;
+      }
       .typing {
         color: var(--muted);
         font-style: italic;
@@ -404,7 +418,19 @@
         sn.appendChild(document.createElement("br"));
         for (const s of sources) {
           const line = document.createElement("div");
-          line.textContent = s.source.split("/").pop();
+          const name = s.label || s.source.split("/").pop();
+          if (s.url) {
+            const a = document.createElement("a");
+            a.href = s.url;
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.textContent = name;
+            a.title = "Ouvrir la fiche : " + s.source;
+            line.appendChild(a);
+          } else {
+            // Non publié sur le site (learning-records) : pas de lien mort.
+            line.textContent = name;
+          }
           sn.appendChild(line);
         }
         const score = document.createElement("div");
@@ -458,7 +484,7 @@
           const res = await fetch("/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question, use_graph: true, top_k: 4 }),
+            body: JSON.stringify({ question }),
           });
           if (!res.ok) {
             let detail = "";

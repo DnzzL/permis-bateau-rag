@@ -4,7 +4,7 @@ Benchmark représentatif + régressif (benchmark.py)
 Trois métriques :
   1. COUVERTURE retrieval : pour chaque question de référence, un chunk de
      la source attendue (leçon/fiche) est-il dans le top-1 / top-3 / top-5 ?
-     Évalué pour retrieve_classic ET retrieve_graph.
+     Évalué sur retrieve_classic.
   2. PERTINENCE des réponses : réponse LLM générée avec le contexte → les
      concepts-clés attendus y figurent-ils ? (mots-clés dérivés de la bonne
      réponse officielle du QCM + feedback, ou manuels pour les 5 questions
@@ -42,7 +42,7 @@ import duckdb
 from dotenv import load_dotenv
 from mistralai.client import Mistral
 
-from retrieve import DB_PATH, retrieve_classic, retrieve_graph
+from retrieve import DB_PATH, retrieve_classic
 
 ROOT = Path(__file__).resolve().parent
 EVALS_DIR = ROOT.parent / "evals"
@@ -340,18 +340,22 @@ def run(con: duckdb.DuckDBPyConnection, args: argparse.Namespace) -> dict[str, A
     qs = qs[: args.questions] if args.questions else qs
     n = len(qs)
 
-    cover = {"classic": {k: 0 for k in (1, 3, 5)}, "graph": {k: 0 for k in (1, 3, 5)}}
+    cover_ks = sorted({1, 3, 5, args.top_k})
+    cover = {"classic": {k: 0 for k in cover_ks}}
     answers: list[str] = []
 
     llm: Mistral | None = None if args.no_llm else Mistral(api_key=os.environ.get("MISTRAL_API_KEY", ""))
 
     for i, q in enumerate(qs):
         print(f"\n[{i+1}/{n}] ({q.origin}) {q.question[:70]}")
-        hits_g = retrieve_graph(con, q.question, 5)
-        hits_c = retrieve_classic(con, q.question, 5)
+        # Les paliers 1/3/5 restent calculés pour rester comparables aux
+        # snapshots existants ; --top-k ajoute le palier réellement servi au
+        # chatbot (le contexte de génération, lui, en dépend directement).
+        k_max = max(5, args.top_k)
+        hits_c = retrieve_classic(con, q.question, k_max)
 
         gold_norm = _norm(q.gold) if q.gold else ""
-        for mode, hits in (("classic", hits_c), ("graph", hits_g)):
+        for mode, hits in (("classic", hits_c),):
             srcs = top_sources(con, hits)
             # Couverture = la BONNE RÉPONSE (gold) apparaît dans le contenu
             # des top-k chunks ; fallback sur la source attendue pour les
@@ -363,7 +367,7 @@ def run(con: duckdb.DuckDBPyConnection, args: argparse.Namespace) -> dict[str, A
                     "SELECT chunk_text FROM documents WHERE id = ?", [cid]
                 ).fetchone()
                 chunks.append(_norm(row[0]) if row else "")
-            for k in (1, 3, 5):
+            for k in cover_ks:
                 in_content = bool(gold_norm) and any(gold_hit(c, gold_norm) for c in chunks[:k])
                 in_source = any(q.expected in s for s in srcs[:k])
                 if in_content or (not gold_norm and in_source):
@@ -375,10 +379,10 @@ def run(con: duckdb.DuckDBPyConnection, args: argparse.Namespace) -> dict[str, A
             tag = "✓" if hit_top1 else "✗"
             print(f"    {mode:8s} top-1: {top[:55]} {tag}")
 
-        # Réponse LLM (contexte du mode graph), sauf en --no-llm
+        # Réponse LLM (contexte du retrieval), sauf en --no-llm
         if llm is not None:
             context = []
-            for cid, _score in hits_g:
+            for cid, _score in hits_c[:args.top_k]:
                 row = con.execute(
                     "SELECT source, chunk_text FROM documents WHERE id = ?", [cid]
                 ).fetchone()
@@ -394,20 +398,21 @@ def run(con: duckdb.DuckDBPyConnection, args: argparse.Namespace) -> dict[str, A
     # ── Rapport : couverture ─────────────────────────────────────────
     print(f"\n{'='*56}")
     print("COUVERTURE RETRIEVAL (bonne réponse QCM couverte dans top-k)")
-    for mode in ("classic", "graph"):
-        row = " | ".join(f"top-{k}: {cover[mode][k]}/{n}" for k in (1, 3, 5))
+    for mode in ("classic",):
+        row = " | ".join(f"top-{k}: {cover[mode][k]}/{n}" for k in cover_ks)
         print(f"  {mode:8s} {row}")
 
     metrics: dict[str, Any] = {
         "date": date.today().isoformat(),
         "question_seed": args.seed,
         "n_questions": n,
+        "top_k": args.top_k,
         "coverage": {
             mode: {
                 f"top{k}": {"n": cover[mode][k], "pct": round(100 * cover[mode][k] / max(n, 1), 1)}
-                for k in (1, 3, 5)
+                for k in cover_ks
             }
-            for mode in ("classic", "graph")
+            for mode in ("classic",)
         },
     }
 
@@ -486,7 +491,7 @@ def check_regression(metrics: dict[str, Any]) -> int:
 
     fails: list[str] = []
     try:
-        for mode in ("classic", "graph"):
+        for mode in ("classic",):
             b = float(base["coverage"][mode]["top3"]["pct"])
             c = float(metrics["coverage"][mode]["top3"]["pct"])
             if b - c > 5.0:
@@ -516,6 +521,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Benchmark couverture + pertinence + refus hors-domaine")
     parser.add_argument("--questions", type=int, default=None, help="Limite le nb de questions du domaine (défaut : tout l'échantillon)")
     parser.add_argument("--no-llm", action="store_true", help="Saute la génération de réponses (couverture seule)")
+    parser.add_argument("--top-k", type=int, default=9,
+                        help="Chunks servis au LLM (défaut 9 = budget du chatbot). "
+                             "Les paliers 1/3/5 restent rapportés pour comparaison.")
     parser.add_argument("--seed", type=int, default=QUESTION_SEED, help=f"Graine de l'échantillon (défaut {QUESTION_SEED})")
     parser.add_argument("--snapshot", action="store_true", help="Écrit evals/report-YYYYMMDD.json")
     parser.add_argument("--baseline", action="store_true", help="Force l'écriture de evals/baseline.json")
