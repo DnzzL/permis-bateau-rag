@@ -1,0 +1,125 @@
+{
+  "_readme": "Jeu de questions COMPOSITES : chaque question exige de composer depuis >= 2 sources distinctes du corpus. Conçu pour l'usage chatbot, pas pour le QCM (une question de QCM se répond depuis une seule section). required_sources = fichiers sources qui portent chacun un morceau nécessaire de la réponse, définis à la lecture du corpus AVANT tout retrieval. facts = faits attendus dans la réponse générée, en sous-chaînes normalisées (contains_keywords).",
+  "questions": [
+    {
+      "q": "Je navigue de nuit à 4 milles de la côte, mon moteur tombe en panne et le vent monte à force 7. Qu'est-ce qui s'applique à moi ?",
+      "required_sources": ["lessons/0003-feux-navigation.html", "lessons/0005-meteo-vents.html", "lessons/0006-securite-equipements.html", "reference/signaux-detresse.html"],
+      "facts": ["feu", "beaufort", "coup de vent", "gilet", "vhf"]
+    },
+    {
+      "q": "J'ai appris le balisage en Région A et je pars naviguer aux Antilles. Qu'est-ce qui change concrètement, et qu'est-ce qui reste identique ?",
+      "required_sources": ["reference/balisage-region-b.html", "reference/balisage.html"],
+      "facts": ["region b", "tribord", "babord", "cardinal", "inchang"]
+    },
+    {
+      "q": "Avec un bateau de catégorie de conception C, combien de personnes puis-je embarquer et jusqu'où puis-je m'éloigner de la côte ?",
+      "required_sources": ["reference/categorie-conception-ce.html", "reference/marquage-ce.html", "lessons/0006-securite-equipements.html"],
+      "facts": ["categorie c", "plaque", "milles", "zone"]
+    },
+    {
+      "q": "Je veux mouiller devant une plage où il y a un parc à huîtres. Que dois-je vérifier avant de jeter l'ancre ?",
+      "required_sources": ["lessons/0008-mouillage-manoeuvres.html", "reference/conchyliculture.html", "lessons/0007-reglementation.html"],
+      "facts": ["300", "ancre", "interdit", "profondeur"]
+    },
+    {
+      "q": "Un homme tombe à la mer par force 6. Qu'est-ce que je fais à bord et qu'est-ce que j'annonce à la VHF ?",
+      "required_sources": ["lessons/0006-securite-equipements.html", "reference/signaux-detresse.html"],
+      "facts": ["mayday", "canal 16", "bouee", "moteur"]
+    },
+    {
+      "q": "J'entre dans un port de nuit. Comment je lis les feux d'entrée, qui j'appelle à la VHF et à quelle vitesse je circule ?",
+      "required_sources": ["reference/trafic-portuaire.html"],
+      "facts": ["feu", "vhf", "vitesse"]
+    },
+    {
+      "q": "Je remonte un chenal étroit à la voile et un cargo arrive en face. Qui a la priorité et pourquoi ?",
+      "required_sources": ["reference/regles-route.html", "lessons/0002-regles-route-priorites.html"],
+      "facts": ["chenal etroit", "voilier", "tirant d'eau", "regle 9"]
+    },
+    {
+      "q": "Je passe une écluse en montant, une péniche de commerce arrive en même temps. Qui passe en premier, comment je m'amarre et comment je lis les feux d'écluse ?",
+      "required_sources": ["lessons/0014-passage-ecluse.html", "reference/fluvial.html"],
+      "facts": ["commerce", "amarr", "feu", "rouge"]
+    },
+    {
+      "q": "La carte indique une sonde de 3 mètres et la marée donne 1,5 m de hauteur d'eau. Quelle longueur de chaîne je mouille ?",
+      "required_sources": ["reference/carte-marine.html", "lessons/0008-mouillage-manoeuvres.html", "lessons/0009-carte-navigation.html"],
+      "facts": ["sonde", "hauteur d'eau", "3 fois", "profondeur"]
+    },
+    {
+      "q": "Quelles sont les limites d'alcoolémie en fluvial et quels documents dois-je avoir à bord ?",
+      "required_sources": ["lessons/0012-fluvial-reglementation-securite.html", "lessons/0007-reglementation.html"],
+      "facts": ["alcool", "permis", "carte de circulation"]
+    },
+    {
+      "q": "Je veux repeindre la coque de mon bateau avec un antifouling. Où ai-je le droit de caréner et qu'est-ce qui est interdit de rejeter ?",
+      "required_sources": ["reference/antisalissures.html", "reference/reglementation.html"],
+      "facts": ["carenage", "aire", "tbt", "interdit"]
+    },
+    {
+      "q": "Comment je reconnais de nuit un bateau incapable de manœuvrer, en mer et sur une rivière ?",
+      "required_sources": ["reference/signaux-bateaux-fluviaux.html", "reference/regles-route.html", "reference/feux.html"],
+      "facts": ["rouge", "incapable de manoeuvrer", "feu"]
+    },
+    {
+      "q": "Je vois un pavillon Alpha hissé sur un bateau devant moi. Qu'est-ce que ça veut dire, à quelle distance je dois passer et que dit la réglementation ?",
+      "required_sources": ["lessons/0007-reglementation.html", "reference/reglementation.html"],
+      "facts": ["plongeur", "alpha", "distance"]
+    },
+    {
+      "q": "Je navigue en menue embarcation sur un canal de nuit. Quels feux je porte et quels signaux sonores je dois connaître ?",
+      "required_sources": ["reference/signaux-bateaux-fluviaux.html", "reference/fluvial.html"],
+      "facts": ["menue embarcation", "blanc", "son"]
+    },
+    {
+      "q": "Mistral annoncé à force 7 demain. J'ai un bateau de catégorie C et je voulais faire une sortie en zone 2. Je sors ou pas ?",
+      "required_sources": ["lessons/0005-meteo-vents.html", "reference/meteo.html", "lessons/0006-securite-equipements.html", "reference/categorie-conception-ce.html"],
+      "facts": ["mistral", "beaufort", "coup de vent", "zone"]
+    },
+    {
+      "q": "Quelle est la différence entre le cap et la route, et combien de temps me faut-il pour couvrir 12 milles à 6 nœuds ?",
+      "required_sources": ["reference/carte-marine.html", "lessons/0009-carte-navigation.html"],
+      "facts": ["cap", "route", "derive", "2 h"]
+    },
+    {
+      "q": "Quelle veille radio suis-je obligé d'assurer, sur quel canal, en mer et en fluvial ?",
+      "required_sources": ["reference/signaux-detresse.html", "reference/radio-vhf.html"],
+      "facts": ["canal 16", "veille", "atis"]
+    },
+    {
+      "q": "Comment je distingue un panneau fluvial d'interdiction d'un panneau de limitation, et quels exemples je risque de croiser ?",
+      "required_sources": ["lessons/0013-panneaux-fluviaux.html", "reference/panneaux-fluviaux.html", "reference/fluvial.html"],
+      "facts": ["interdiction", "bordure rouge", "limitation", "barre"]
+    },
+    {
+      "q": "En rivière, de quel côté je tiens ma route, comment je repère la rive droite et quels panneaux m'indiquent de changer de côté du chenal ?",
+      "required_sources": ["lessons/0011-navigation-fluviale.html", "reference/fluvial.html", "reference/panneaux-fluviaux.html"],
+      "facts": ["rive droite", "source", "droite", "chenal"]
+    },
+    {
+      "q": "Je sors du port, je traverse la bande des 300 mètres et je vois des plongeurs. Quelle vitesse, quelles règles ?",
+      "required_sources": ["lessons/0007-reglementation.html", "reference/trafic-portuaire.html"],
+      "facts": ["300", "5 noeuds", "perpendiculaire", "plongeur"]
+    },
+    {
+      "q": "Un son long au sifflet : qu'est-ce que ça signifie en mer et sur une voie fluviale ?",
+      "required_sources": ["reference/regles-route.html", "reference/signaux-bateaux-fluviaux.html", "reference/fluvial.html"],
+      "facts": ["son long", "attention", "signal"]
+    },
+    {
+      "q": "Quels nuages annoncent une dégradation, où j'écoute le bulletin météo et à partir de quelle force ça devient sérieux ?",
+      "required_sources": ["lessons/0005-meteo-vents.html", "reference/meteo.html"],
+      "facts": ["cumulonimbus", "bulletin", "beaufort", "coup de vent"]
+    },
+    {
+      "q": "Une bouée cardinale Ouest de nuit : quel est son feu, sa forme, et de quel côté je passe ?",
+      "required_sources": ["lessons/0004-balisage-maritime.html", "reference/balisage.html"],
+      "facts": ["ouest", "q(9)", "danger", "passer"]
+    },
+    {
+      "q": "Quels équipements de sécurité sont obligatoires, et en quoi la liste diffère entre une sortie côtière en zone 1 et une navigation fluviale ?",
+      "required_sources": ["lessons/0006-securite-equipements.html", "lessons/0012-fluvial-reglementation-securite.html"],
+      "facts": ["gilet", "zone 1", "extincteur", "fluvial"]
+    }
+  ]
+}
