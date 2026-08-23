@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Image de l'API permis bateau RAG — déployée sur Dokploy (VPS).
 #
-# La base DuckDB (rag/permis.duckdb, 3,8 Mo) est COMMITÉE dans le repo : elle
+# La base DuckDB (rag/permis.duckdb, 2,9 Mo) est COMMITÉE dans le repo : elle
 # est copiée dans l'image → clone & déploiement immédiats. Pour servir une base
 # fraîche, monte-la en volume et surcharge PERMIS_DB_PATH (docker-compose).
 #
@@ -22,7 +22,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Code applicatif — les modules sont copiés à la racine pour que les imports
 # locaux (from retrieve import ...) se résolvent comme en dev (cwd rag/).
-COPY rag/rag.py rag/prompts.py rag/retrieve.py rag/rate_limit.py rag/api.py ./
+COPY rag/rag.py rag/prompts.py rag/retrieve.py rag/rate_limit.py rag/sources.py rag/api.py ./
 
 # Front statique (single-origin) — servi par le même process sur le port 8000.
 COPY web/ ./web/
