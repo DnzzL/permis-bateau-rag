@@ -24,6 +24,10 @@ DB_PATH = ROOT / "permis.duckdb"
 VOYAGE_MODEL = os.environ.get("VOYAGE_MODEL", "voyage-3-lite")
 CHUNK_WORDS = 400
 CHUNK_OVERLAP = 50
+# En dessous de ce seuil, une section est fusionnée avec la suivante : un chunk
+# de 15 mots ("Balisage Maritime — 5 min de lecture") n'est pas une unité de
+# sens et son embedding ne fait que du bruit dans le top-k.
+MIN_SECTION_WORDS = 60
 
 
 # ── Chunking ─────────────────────────────────────────────────────────
@@ -45,6 +49,58 @@ def chunk_text(text: str, words: int = CHUNK_WORDS, overlap: int = CHUNK_OVERLAP
             break
         start = end - overlap
     return chunks
+
+
+def chunk_document(doc: dict) -> list[str]:
+    """Découpe un document en chunks, par section quand c'est possible.
+
+    Une section (h1/h2/h3, produite par extract.py) est l'unité par défaut :
+    elle correspond à une frontière sémantique réelle, là où la fenêtre
+    glissante coupait au milieu d'un tableau ou d'une carte de balise.
+
+    Trois règles :
+      - section < MIN_SECTION_WORDS → fusionnée avec les suivantes (titre =
+        premier titre non vide du groupe) ;
+      - section > CHUNK_WORDS → re-découpée en fenêtre glissante *à
+        l'intérieur* de la section, sans jamais franchir sa frontière ;
+      - chaque chunk est préfixé de son chemin de titres, pour que
+        l'embedding voie "Balisage Maritime / Marques cardinales" et pas un
+        bloc de mots anonyme.
+
+    Sans sections exploitables (learning-records, qui n'ont qu'un titre `#`),
+    on retombe sur la fenêtre glissante d'origine sur le texte entier.
+    """
+    sections = doc.get("sections") or []
+    if not sections:
+        return chunk_text(doc["text"])
+
+    out: list[str] = []
+    buf_texts: list[str] = []
+    buf_heading = ""
+    buf_words = 0
+
+    def emit():
+        nonlocal buf_texts, buf_heading, buf_words
+        if not buf_texts:
+            return
+        body = "\n".join(buf_texts).strip()
+        if body:
+            for piece in chunk_text(body):
+                out.append(f"{buf_heading}\n\n{piece}" if buf_heading else piece)
+        buf_texts, buf_heading, buf_words = [], "", 0
+
+    for sec in sections:
+        text = sec.get("text", "").strip()
+        if not text:
+            continue
+        if not buf_heading:
+            buf_heading = sec.get("heading", "")
+        buf_texts.append(text)
+        buf_words += len(text.split())
+        if buf_words >= MIN_SECTION_WORDS:
+            emit()
+    emit()
+    return out
 
 
 # ── Embedding ────────────────────────────────────────────────────────
@@ -107,7 +163,7 @@ def main():
     # 2. Chunk
     chunks: list[dict] = []
     for doc in docs:
-        for i, text in enumerate(chunk_text(doc["text"])):
+        for i, text in enumerate(chunk_document(doc)):
             chunks.append({
                 "source": doc["source"],
                 "type": doc["type"],
@@ -115,7 +171,10 @@ def main():
                 "chunk_index": i,
                 "chunk_text": text,
             })
-    print(f"Chunked into {len(chunks)} chunks ({CHUNK_WORDS} words, {CHUNK_OVERLAP} overlap)")
+    n_sectioned = sum(1 for d in docs if d.get("sections"))
+    print(f"Chunked into {len(chunks)} chunks — sections h1/h2/h3 pour "
+          f"{n_sectioned}/{len(docs)} docs, fenêtre glissante "
+          f"({CHUNK_WORDS}/{CHUNK_OVERLAP}) en secours")
 
     # 3. Embed all chunks
     print(f"Embedding {len(chunks)} chunks with {VOYAGE_MODEL}...")

@@ -46,12 +46,21 @@ REF_TOPIC = {
 
 # ── HTML text extraction ─────────────────────────────────────────────
 
+# Sentinel prefixed to every text fragment coming from an h1/h2/h3 tag, so the
+# flat serialised text still carries its structure and `split_sections` can cut
+# on real headings. \x02 (STX) never occurs in the corpus, so a line starting
+# with it is unambiguously a heading.
+HEADING_SENTINEL = "\x02"
+_HEADING_TAGS = {"h1": 1, "h2": 2, "h3": 3}
+
+
 class TextExtractor(HTMLParser):
     """Extract clean text from HTML, preserving paragraph/h2/h3 structure."""
     def __init__(self):
         super().__init__()
         self.parts: list[str] = []
         self._skip = False
+        self._heading_level: int | None = None
         # `tr` is a block boundary: table rows are visual lines, so each row
         # must be emitted on its own line instead of being glued to the next
         # row (e.g. "Sud … Q(6)+LFl … Ouest … Q(9) …" on one line).
@@ -69,8 +78,12 @@ class TextExtractor(HTMLParser):
         if tag in self._block_tags and not self._skip:
             if self.parts and not self.parts[-1].endswith("\n"):
                 self.parts.append("\n")
+        if tag in _HEADING_TAGS and not self._skip:
+            self._heading_level = _HEADING_TAGS[tag]
 
     def handle_endtag(self, tag):
+        if tag in _HEADING_TAGS:
+            self._heading_level = None
         if tag in ("script", "style", "svg", "nav", "footer", "header"):
             self._skip = False
             return
@@ -82,6 +95,8 @@ class TextExtractor(HTMLParser):
             return
         text = data.strip()
         if text:
+            if self._heading_level is not None:
+                text = f"{HEADING_SENTINEL}{self._heading_level}{HEADING_SENTINEL}{text}"
             self.parts.append(text + " ")
 
     def get_text(self) -> str:
@@ -122,6 +137,56 @@ def _order_cardinal_feux(lines: list[str]) -> list[str]:
         if out[i].startswith("Feu :") and out[i - 1].startswith(_SHAPE_GLYPH_PREFIX):
             out[i - 1], out[i] = out[i], out[i - 1]
     return out
+
+
+# ── Section splitting ────────────────────────────────────────────────
+
+_SENTINEL_RE = re.compile(re.escape(HEADING_SENTINEL) + r"(\d)" + re.escape(HEADING_SENTINEL))
+
+
+def strip_sentinels(text: str) -> str:
+    """Remove heading sentinels, restoring plain readable text."""
+    return _SENTINEL_RE.sub("", text)
+
+
+def split_sections(text: str) -> list[dict]:
+    """Cut sentinel-tagged text into sections, one per h1/h2/h3.
+
+    Returns [{"heading": "Doc title / Section / Sub-section", "text": body}].
+    The heading path is the stack of enclosing headings, so a chunk carries its
+    own context ("Balisage maritime / Marques cardinales") instead of appearing
+    as an anonymous slab of words to the embedder.
+
+    Text appearing before the first heading becomes a section with an empty
+    heading; a heading with no body is dropped (it only feeds the path of the
+    sections nested under it).
+    """
+    sections: list[dict] = []
+    stack: list[str] = []  # heading titles, index 0 = level 1
+    body: list[str] = []
+
+    def flush():
+        joined = "\n".join(body).strip()
+        if joined:
+            sections.append({"heading": " / ".join(t for t in stack if t), "text": joined})
+        body.clear()
+
+    for line in text.split("\n"):
+        m = _SENTINEL_RE.match(line)
+        if not m:
+            body.append(strip_sentinels(line))
+            continue
+        flush()
+        level = int(m.group(1))
+        title = strip_sentinels(line).strip()
+        # Truncate the stack to this level, then set it (a level can be skipped,
+        # e.g. h1 → h3, so pad rather than assume contiguity).
+        del stack[level - 1:]
+        while len(stack) < level - 1:
+            stack.append("")
+        stack.append(title)
+    flush()
+    return sections
 
 
 def _strip_tags(text: str) -> str:
@@ -226,13 +291,15 @@ def extract_all():
         html = f.read_text(encoding="utf-8")
         extractor = TextExtractor()
         extractor.feed(html)
-        text = extractor.get_text()
+        tagged = extractor.get_text()
+        text = strip_sentinels(tagged)
         if text.strip():
             documents.append({
                 "source": f"lessons/{f.name}",
                 "type": "lesson",
                 "topic": topic,
                 "text": text,
+                "sections": split_sections(tagged),
             })
         # Extract quizzes
         qs = extract_quizzes(html)
@@ -249,13 +316,15 @@ def extract_all():
         html = f.read_text(encoding="utf-8")
         extractor = TextExtractor()
         extractor.feed(html)
-        text = extractor.get_text()
+        tagged = extractor.get_text()
+        text = strip_sentinels(tagged)
         if text.strip():
             documents.append({
                 "source": f"reference/{f.name}",
                 "type": "reference",
                 "topic": topic,
                 "text": text,
+                "sections": split_sections(tagged),
             })
 
     # ── Learning records (Markdown) ──
@@ -298,6 +367,9 @@ def extract_all():
             "type": "learning-record",
             "topic": topic,
             "text": markdown,
+            # Les learning-records n'ont qu'un titre `#` et aucun `##` : pas de
+            # sections exploitables, embed.py retombe sur la fenêtre glissante.
+            "sections": [],
         })
 
     return documents, quizzes
@@ -338,6 +410,10 @@ if __name__ == "__main__":
 
     # Topic breakdown
     from collections import Counter
+    n_sections = sum(len(d.get("sections") or []) for d in docs)
+    print(f"   {n_sections} sections (h1/h2/h3) across "
+          f"{sum(1 for d in docs if d.get('sections'))} documents")
+
     topic_counts = Counter(d["topic"] for d in docs)
     print("\nTopics:")
     for t, c in topic_counts.most_common():
